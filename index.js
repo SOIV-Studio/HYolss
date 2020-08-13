@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const token = process.env.token;
 
 client.on('ready', () => {
-  console.log('온라인');
+  console.log('온라인!');
   client.user.setPresence({ game: { name: '도움말 명령어는 !help' }, status: 'online' })
 });
 
