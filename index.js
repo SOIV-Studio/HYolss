@@ -11,7 +11,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content === '온라인') {
-    message.reply('온라인 확인!');
+    message.reply('서버 체크 완료!');
   }
 
   if(message.content == '!서버정보') {
