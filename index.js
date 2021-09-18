@@ -37,8 +37,7 @@ client.on('message', (message) => {
   if(message.content == '!help') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
-      {name: '!ping', desc: '현재 핑 상태 (제작중)'},
-      {name: '!서버정보', desc: '생활공간 디스코드 정보'},
+      {name: '!서버정보', desc: '사용 금지'},
       {name: '!help', desc: 'commandList'},
     ];
     let commandStr = '';
