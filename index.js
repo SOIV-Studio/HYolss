@@ -47,7 +47,9 @@ client.on('message', (message) => {
       msg.channel.fetchMessages({ limit: amount }).then(dmsg => { // Fetches the messages
       msg.channel.bulkDelete(dmsg // Bulk deletes all messages that have been fetched and are not older than 14 days (due to the Discord API)
       ).catch(console.log);});
-    } else if(message.content == '!help') {
+    }
+  
+  if(message.content == '!help') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
       {name: '!ping', desc: '현재 핑 상태 (제작중)'},
