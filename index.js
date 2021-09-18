@@ -4,7 +4,7 @@ const token = process.env.token;
 
 client.on('ready', () => {
   console.log('온라인!');
-  client.user.setPresence({ game: { name: '도움말 명령어는 !help' }, status: 'online' })
+  client.user.setActivity('도움말 명령어는 !help', { type: 'PLAYING' })
 });
 
 client.on('message', (message) => {
@@ -32,7 +32,20 @@ client.on('message', (message) => {
       .setFooter('𝓱𝓲𝓭𝓭𝓮𝓷 𝓴𝔂')
     
     message.channel.send(embed)
-  } else if(message.content == '!help') {
+  } else if (msg.content.toLowerCase().startsWith("!청소")) {
+      const args = msg.content.split(' ').slice(1); // All arguments behind the command name with the prefix
+      const amount = args.join(' '); // Amount of messages which should be deleted
+ 
+      if (!amount) return msg.reply('삭제할 메시지의 숫자를 적어 주세요! ex) !청소 20'); // Checks if the `amount` parameter is given
+      if (isNaN(amount)) return msg.reply('청소 가능한 숫자가 너무 커요!'); // Checks if the `amount` parameter is a number. If not, the command throws an error
+ 
+      if (amount > 500) return msg.reply('청소가 가능한 숫자는 500개에요! 500개 이하로 숫자를 작성해주세요!'); // Checks if the `amount` integer is bigger than 100
+      if (amount < 1) return msg.reply('최소 1개 이상의 메시지를 삭제 해주세요!'); // Checks if the `amount` integer is smaller than 1
+ 
+      msg.channel.fetchMessages({ limit: amount }).then(dmsg => { // Fetches the messages
+      msg.channel.bulkDelete(dmsg // Bulk deletes all messages that have been fetched and are not older than 14 days (due to the Discord API)
+      ).catch(console.log);});
+    } else if(message.content == '!help') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
       {name: '!ping', desc: '현재 핑 상태 (제작중)'},
