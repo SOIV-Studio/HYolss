@@ -32,7 +32,9 @@ client.on('message', (message) => {
       .setFooter('𝓱𝓲𝓭𝓭𝓮𝓷 𝓴𝔂')
     
     message.channel.send(embed)
-  } else if (msg.content.toLowerCase().startsWith("!청소")) {
+  } 
+  
+  if (msg.content.toLowerCase().startsWith("!청소")) {
       const args = msg.content.split(' ').slice(1); // All arguments behind the command name with the prefix
       const amount = args.join(' '); // Amount of messages which should be deleted
  
