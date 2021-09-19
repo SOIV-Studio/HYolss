@@ -1,7 +1,7 @@
 {
-  "name": "hiddenky",
+  "name": "HYolss",
   "version": "1.0.0",
-  "description": "",
+  "description": "U-til 전용 봇",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
