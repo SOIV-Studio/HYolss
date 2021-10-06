@@ -1,3 +1,4 @@
+Kor-Disccord-BOT_C_2020
 # Discord_BOT_HYolss
 디스코드 봇이며 봇의 이름은 HYolss 입니다
 
