@@ -33,6 +33,7 @@ client.on('message', (message) => {
       .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n')
       .addBlankField()
       .setTimestamp()
+      .setColor('#186de6')
       .setFooter('HYolss BOT')
     
     message.channel.send(embed)
