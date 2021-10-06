@@ -15,7 +15,7 @@ client.on('message', (message) => {
   }
   
   if(message.content === '!응애') {
-    message.reply('응애 나 디코봇 아가');
+    message('응애 나 디코봇 아가');
   }
 
   if(message.content == '!서버정보') {
