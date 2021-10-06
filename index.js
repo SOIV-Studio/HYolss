@@ -13,6 +13,10 @@ client.on('message', (message) => {
   if(message.content === '온라인') {
     message.reply('서버 체크 완료!');
   }
+  
+  if(message.content === '!응애') {
+    message.reply('응애 나 디코봇 아가');
+  }
 
   if(message.content == '!서버정보') {
     let img = 'https://media.discordapp.net/attachments/622810138985758743/743334765100400681/20.jpg'
