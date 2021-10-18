@@ -19,60 +19,33 @@ client.on('message', (message) => {
   }
 
   if(message.content == '!봇정보') {
-    let img = 'https://media.discordapp.net/attachments/622810138985758743/743334765100400681/20.jpg'
     const embed = new Discord.MessageEmbed()
+      .setColor('#186de6')
       .setTitle('HYolss BOT 정보')
       .setURL()
-      .setAuthor('얀녕! 날 소계 해줄게!', img)
+      .setAuthor('얀녕! 날 소계 해줄게!')
       .setThumbnail()
-      .addBlankField()
       .addField('나의 집사는 000 이야', '')
-      .addField('집자 커미션 사이트', 'https://bit.ly/comsIVsNT', true)
-      .addField('Inline field title', 'Some value here', false)
-      .addField('Inline field title', 'Some value here', false)
-      .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n', false)
-      .addBlankField()
+      .addField('집사 커미션 사이트', 'https://bit.ly/comsIVsNT')
       .setTimestamp()
-      .setColor('#186de6')
       .setFooter('HYolss BOT')
     
-    message.channel.send(embed)
+      msg.channel.send(embed);
   } 
 
   if(message.content == '!help') {
-    let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
-    let commandList = [
-      {name: '!봇정보', desc: '사용 금지'},
-      {name: '!help', desc: 'commandList'},
-    ];
-    let commandStr = '';
     const embed = new Discord.MessageEmbed()
-      .setAuthor('Help of HYolss BOT', helpImg)
-      .addField(commandList)
-      .setColor('#186de6')
+      .setColor('186de6')
+      .setAuthor('Help of HYolss BOT', 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png')
+      .setTitle('나의 명령어를 알러줄깨!')
+      .addField(
+		  	{name: '!봇정보', value: '사용 금지', inline: true},
+      	{name: '!help', value: 'commandList', inline: true},
+      )
       .setFooter('HYolss BOT')
-      .setTimestamp()
-    
-    commandList.forEach(x => {
-      commandStr += `• \`\`${changeCommandStringLength(`${x.name}`)}\`\` : **${x.desc}**\n`;
-    });
 
-    embed.addField('Commands: ', commandStr);
-
-    message.channel.send(embed)
+      msg.channel.send(embed);
   }
 });
-
-function changeCommandStringLength(str, limitLen = 8) {
-  let tmp = str;
-  limitLen -= tmp.length;
-
-  for(let i=0;i<limitLen;i++) {
-      tmp += ' ';
-  }
-
-  return tmp;
-}
-
 
 client.login(token);
