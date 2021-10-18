@@ -14,7 +14,7 @@ client.on('message', (message) => {
     message.reply('서버 체크 완료!');
   }
   
-  if(message.content === '!응애') {
+  if(message.content === '응애') {
     message.reply('는 응애야.. 지켜줘야되..');
   }
 
