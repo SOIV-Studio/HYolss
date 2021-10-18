@@ -20,7 +20,7 @@ client.on('message', (message) => {
 
   if(message.content == '!봇정보') {
     let img = 'https://media.discordapp.net/attachments/622810138985758743/743334765100400681/20.jpg'
-    let embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
       .setTitle('HYolss BOT 정보')
       .setURL()
       .setAuthor('얀녕! 날 소계 해줄게!', img)
@@ -28,9 +28,9 @@ client.on('message', (message) => {
       .addBlankField()
       .addField('나의 집사는 000 이야', '')
       .addField('집자 커미션 사이트', 'https://bit.ly/comsIVsNT', true)
-      .addField('Inline field title', 'Some value here', true)
-      .addField('Inline field title', 'Some value here', true)
-      .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n')
+      .addField('Inline field title', 'Some value here', false)
+      .addField('Inline field title', 'Some value here', false)
+      .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n', false)
       .addBlankField()
       .setTimestamp()
       .setColor('#186de6')
@@ -38,7 +38,7 @@ client.on('message', (message) => {
     
     message.channel.send(embed)
   } 
-  
+
   if(message.content == '!help') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
@@ -46,7 +46,7 @@ client.on('message', (message) => {
       {name: '!help', desc: 'commandList'},
     ];
     let commandStr = '';
-    let embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
       .setAuthor('Help of HYolss BOT', helpImg)
       .addField(commandList)
       .setColor('#186de6')
