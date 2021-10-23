@@ -48,4 +48,15 @@ client.on('message', (message) => {
   }
 });
 
+function changeCommandStringLength(str, limitLen = 8) {
+  let tmp = str;
+  limitLen -= tmp.length;
+
+  for(let i=0;i<limitLen;i++) {
+      tmp += ' ';
+  }
+
+  return tmp;
+}
+
 client.login(token);
