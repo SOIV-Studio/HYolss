@@ -16,7 +16,7 @@ client.on('message', (message) => {
   }
 
 client.on("message", msg => {
-  if (msg.content === "ping") {
+  if (msg.content === "!ping") {
     msg.reply("Pong!")
   }
 
