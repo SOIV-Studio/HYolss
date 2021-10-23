@@ -14,7 +14,12 @@ client.on('message', (message) => {
   if(message.content === '온라인') {
     message.reply('서버 체크 완료!');
   }
-  
+
+client.on("message", msg => {
+  if (msg.content === "ping") {
+    msg.reply("Pong!")
+  }
+
   if(message.content === '응애') {
     message.reply('는(은) 응애야.. 지켜줘야되..');
   }
