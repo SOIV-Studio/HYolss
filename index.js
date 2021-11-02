@@ -4,7 +4,7 @@ const token = process.env.token;
 
 client.on('ready', () => {
   console.log('온라인!');
-  client.user.setActivity('도움말 명령어는 !help', { type: 'PLAYING' })
+  client.user.setPresence({ game: { name: '도움말 명령어는 !help' }, status: 'online' })
 });
 
 client.on('message', (message) => {
@@ -52,5 +52,16 @@ client.on("message", msg => {
       msg.channel.send(embed);
   }
 });
+
+function changeCommandStringLength(str, limitLen = 8) {
+  let tmp = str;
+  limitLen -= tmp.length;
+
+  for(let i=0;i<limitLen;i++) {
+      tmp += ' ';
+  }
+
+  return tmp;
+}
 
 client.login(token);
