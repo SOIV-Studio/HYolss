@@ -45,7 +45,7 @@ client.on("message", msg => {
       .setAuthor('Help of HYolss BOT', 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png')
       .setTitle('나의 명령어를 알러줄깨!')
       .addField(
-		  	{name: '!봇정보', value: '사용 금지', inline: true},
+	{name: '!봇정보', value: '사용 금지', inline: true},
       	{name: '!help', value: 'commandList', inline: true},
       )
       .setFooter('HYolss BOT')
