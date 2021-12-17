@@ -1,11 +1,14 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = process.env.token;
-var port = process.env.PORT || 8080;
+// const token = process.env.token;
+// var port = process.env.PORT || 8080;
 
-client.on('ready', () => {
-  console.log('온라인!');
-  client.user.setPresence({ game: { name: '도움말 명령어는 !help' }, status: 'online' })
+client.once('ready', () => {
+	console.log('Ready!');
+	client.user.setPresence({ game: { name: '도움말 명령어는 !help' }, status: 'online' })
+
+// client.on('ready', () => {
+//   client.user.setPresence({ game: { name: '도움말 명령어는 !help' }, status: 'online' })
 });
 
 client.on('message', (message) => {
