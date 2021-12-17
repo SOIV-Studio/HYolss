@@ -5,14 +5,9 @@ const client = new Discord.Client();
 
 client.once('ready', () => {
 	console.log('Ready!');
-	client.user.setPresence({ game: { name: '도움말 명령어는 !help' }, status: 'online' })
 
 // client.on('ready', () => {
 //   client.user.setPresence({ game: { name: '도움말 명령어는 !help' }, status: 'online' })
-});
-
-client.on('message', message => {
-	console.log(message.content);
 });
 
 client.on('message', (message) => {
@@ -20,7 +15,8 @@ client.on('message', (message) => {
 
   if(message.content === '온라인') {
     message.reply('서버 체크 완료!');
-  }
+
+});
 
 client.on("message", msg => {
   if (msg.content === "!ping") {
@@ -61,15 +57,15 @@ client.on("message", msg => {
 //  }
 });
 
-function changeCommandStringLength(str, limitLen = 8) {
-  let tmp = str;
-  limitLen -= tmp.length;
-
-  for(let i=0;i<limitLen;i++) {
-      tmp += ' ';
-  }
-
-  return tmp;
-}
+// function changeCommandStringLength(str, limitLen = 8) {
+//   let tmp = str;
+//   limitLen -= tmp.length;
+//
+//   for(let i=0;i<limitLen;i++) {
+//       tmp += ' ';
+//   }
+//
+//   return tmp;
+// }
 
 client.login(token);
