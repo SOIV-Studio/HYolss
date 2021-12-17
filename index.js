@@ -11,7 +11,7 @@ client.once('ready', () => {
 });
 
 client.on('message', (message) => {
-  if(message.author.bot) return;
+//  if(message.author.bot) return;
 
   if(message.content === '온라인') {
     message.reply('서버 체크 완료!');
