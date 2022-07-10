@@ -1,7 +1,7 @@
 {
   "name": "HYolss",
   "version": "1.0.0",
-  "description": "U-til 전용 Discord_BOT_HYolss",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
