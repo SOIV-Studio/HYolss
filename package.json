@@ -1,12 +1,22 @@
 {
+  "dependencies": {
+    "eris": "^0.17.1"
+  },
   "name": "HYolss",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "run": "npm i && node ."
   },
-  "dependencies": {
-    "discord.js": "^12.2.0"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SOIV/Discord_BOT_HYolss.git"
+  },
+  "author": "소이브_SOIV#2243",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SOIV/Discord_BOT_HYolss/issues"
+  },
+  "homepage": "https://github.com/SOIV/Discord_BOT_HYolss#readme"
 }
