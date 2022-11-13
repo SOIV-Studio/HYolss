@@ -6,7 +6,7 @@ async function init(token) {
     // Register the stupid ass command
     stupidAssBot.on('ready', async () => {
         await stupidAssBot.bulkEditCommands([{
-            name: 'lol',
+            name: 'HYolss',
             description: 'I hate discord so much you cannot believe it',
             type: 1,
         }])
@@ -18,27 +18,21 @@ async function init(token) {
             await interaction.createMessage({
                 content: 'Pong!'
             })
-            console.log('Self destructing...')
+            console.log('ping.. Pong!')
+            process.exit(0)
+        }
+    })
+    stupidAssBot.on('interactionCreate', async (interaction) => {
+        if (interaction?.data?.name === 'help') {
+            await interaction.createMessage({
+                content: 'help 명령어 등록 대기중'
+            })
+            console.log('command List')
             process.exit(0)
         }
     })
     stupidAssBot.connect();
 }
-
-client.once('ready', () => {
-  console.log('Ready!');
-  client.user.setPresence({ game: { name: '도움말 명령어는 !help' }, status: 'online' })
-});
-
-client.on("message", msg => {
-  if(message.content === '응애') {
-    message.reply('는(은) 응애야.. 지켜줘야되..');
-  }
-
-  if(message.content === '!help') {
-    message.reply('help는 없는 명령어 입니다. (명령어 생성 안되어 있음)');
-  }
-});
 
 const tokenFromStupidCommand = process.argv[2]
 init(tokenFromStupidCommand);
