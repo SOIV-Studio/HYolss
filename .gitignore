@@ -1,1 +1,2 @@
-# Byte-compiled / optimized
+/node_modules
+/package-lock.json
