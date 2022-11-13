@@ -1,26 +1,36 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const token = process.env.token;
-var port = process.env.PORT || 8080;
+const { CommandClient } = require('eris')
+
+// Stupid ass bot creation
+async function init(token) {
+    const stupidAssBot = new CommandClient(`Bot ${token}`, { intents: ['guilds'], maxShards: 'auto',restMode: true })
+    // Register the stupid ass command
+    stupidAssBot.on('ready', async () => {
+        await stupidAssBot.bulkEditCommands([{
+            name: 'lol',
+            description: 'I hate discord so much you cannot believe it',
+            type: 1,
+        }])
+        console.log(`Paste the URL below into your browser to invite your bot!\nhttps://discord.com/oauth2/authorize?client_id=${stupidAssBot.user.id}&scope=applications.commands%20bot&permissions=3072`)
+    })
+    // Stupid ass interaction creation event
+    stupidAssBot.on('interactionCreate', async (interaction) => {
+        if (interaction?.data?.name === 'ping') {
+            await interaction.createMessage({
+                content: 'Pong!'
+            })
+            console.log('Self destructing...')
+            process.exit(0)
+        }
+    })
+    stupidAssBot.connect();
+}
 
 client.once('ready', () => {
   console.log('Ready!');
   client.user.setPresence({ game: { name: '도움말 명령어는 !help' }, status: 'online' })
 });
 
-client.on('message', (message) => {
-  if(message.author.bot) return;
-
-  if(message.content === '온라인') {
-    message.reply('서버 체크 완료!');
-
-});
-
 client.on("message", msg => {
-  if (msg.content === "!ping") {
-    msg.reply("Pong!")
-  }
-
   if(message.content === '응애') {
     message.reply('는(은) 응애야.. 지켜줘야되..');
   }
@@ -30,15 +40,5 @@ client.on("message", msg => {
   }
 });
 
-function changeCommandStringLength(str, limitLen = 8) {
-  let tmp = str;
-  limitLen -= tmp.length;
-
-  for(let i=0;i<limitLen;i++) {
-      tmp += ' ';
-  }
-
-  return tmp;
-}
-
-client.login(token);
+const tokenFromStupidCommand = process.argv[2]
+init(tokenFromStupidCommand);
