@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SOIV/Discord_BOT_HYolss.git"
+    "url": "git+https://github.com/SOIV/HYolss_js.git"
   },
   "author": "소이브_SOIV#2243",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SOIV/Discord_BOT_HYolss/issues"
+    "url": "https://github.com/SOIV/HYolss_js/issues"
   },
-  "homepage": "https://github.com/SOIV/Discord_BOT_HYolss#readme"
+  "homepage": "https://github.com/SOIV/HYolss_js#readme"
 }
