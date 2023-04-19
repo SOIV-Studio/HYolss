@@ -3,7 +3,7 @@
     "eris": "^0.17.1"
   },
   "name": "HYolss",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
