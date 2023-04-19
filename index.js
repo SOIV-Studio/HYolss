@@ -18,7 +18,7 @@ client.on('ready', () => {
 client.ws.on('INTERACTION_CREATE', async interaction => {
   const { name } = interaction.data;
 
-  if (name === '오늘의 메뉴') {
+  if (name === '오늘의메뉴') {
     const word = randomWords(); // get a random word
     const response = {
       type: 4,
