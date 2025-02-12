@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "discord.js": "^14.18.0",
     "eris": "^0.17.1"
   },
   "name": "HYolss",
