@@ -3,7 +3,7 @@
     "discord.js": "^14.18.0",
     "eris": "^0.17.1"
   },
-  "name": "HYolss",
+  "name": "hyolss-js",
   "version": "2.0.0",
   "description": "",
   "main": "index.js",
