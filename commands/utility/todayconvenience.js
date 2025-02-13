@@ -5,7 +5,7 @@ const path = require('path');
 // 랜덤 단어 파일에서 단어들을 읽어오는 함수
 function getRandomWord() {
     try {
-        const wordsPath = path.join(__dirname, '..', '..', 'random-words-store', 'menu.txt');
+        const wordsPath = path.join(__dirname, '..', '..', 'random-words-store', 'convenience.txt');
         console.log('Reading file from path:', wordsPath);
         
         const fileContent = fs.readFileSync(wordsPath, 'utf8');
@@ -24,8 +24,8 @@ function getRandomWord() {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('오늘의메뉴')
-        .setDescription('오늘의 메뉴를 추천해줍니다.'),
+        .setName('오늘의편의점')
+        .setDescription('오늘의 편의점 메뉴를 추천해줍니다.'),
     async execute(interaction) {
         try {
             const nickname = interaction.member.displayName;
@@ -36,7 +36,7 @@ module.exports = {
                 ephemeral: false
             });
         } catch (error) {
-            console.error('Error in 오늘의메뉴 command:', error);
+            console.error('Error in 오늘의편의점 command:', error);
             await interaction.reply({
                 content: '메뉴를 추천하는 중에 오류가 발생했습니다.',
                 ephemeral: true

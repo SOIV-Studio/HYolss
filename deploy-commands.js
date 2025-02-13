@@ -18,6 +18,7 @@ for (const folder of commandFolders) {
 		const command = require(filePath);
 		if ('data' in command && 'execute' in command) {
 			commands.push(command.data.toJSON());
+			console.log(`[INFO] Loaded command: ${command.data.name}`);
 		} else {
 			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
@@ -31,6 +32,7 @@ const rest = new REST().setToken(token);
 (async () => {
 	try {
 		console.log(`Started refreshing ${commands.length} application (/) commands globally.`);
+		console.log('Commands to be registered:', commands.map(cmd => cmd.name).join(', '));
 
 		// The put method is used to fully refresh all commands globally with the current set
 		const data = await rest.put(
@@ -39,8 +41,13 @@ const rest = new REST().setToken(token);
 		);
 
 		console.log(`Successfully reloaded ${data.length} application (/) commands globally.`);
+		console.log('Registered commands:', data.map(cmd => cmd.name).join(', '));
 	} catch (error) {
-		// And of course, make sure you catch and log any errors!
+		// More detailed error logging
+		console.error('Failed to deploy commands:');
 		console.error(error);
+		if (error.rawError) {
+			console.error('API Error details:', error.rawError);
+		}
 	}
 })();
