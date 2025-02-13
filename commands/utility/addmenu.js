@@ -48,7 +48,7 @@ module.exports = {
                 .setTitle('❌ 권한 없음')
                 .setDescription('이 명령어를 사용할 권한이 없습니다.')
                 .setTimestamp()
-                .setFooter({ text: 'HYolss Bot' });
+                .setFooter({ text: 'HYolss' });
 
             return interaction.reply({
                 embeds: [noPermissionEmbed],
@@ -75,7 +75,7 @@ module.exports = {
                 { name: '결과', value: result.message }
             )
             .setTimestamp()
-            .setFooter({ text: 'HYolss Bot' });
+            .setFooter({ text: 'HYolss' });
 
         return interaction.reply({
             embeds: [embed],

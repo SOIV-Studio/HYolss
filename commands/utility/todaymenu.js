@@ -36,7 +36,7 @@ module.exports = {
                 .setTitle('🍽️ 오늘의 메뉴 추천')
                 .setDescription(`${nickname}님 ${randomWord} 어때?`)
                 .setTimestamp()
-                .setFooter({ text: 'HYolss Bot' });
+                .setFooter({ text: 'HYolss' });
 
             return interaction.reply({
                 embeds: [embed],
@@ -49,7 +49,7 @@ module.exports = {
                 .setTitle('❌ 오류 발생')
                 .setDescription('메뉴를 추천하는 중에 오류가 발생했습니다.')
                 .setTimestamp()
-                .setFooter({ text: 'HYolss Bot' });
+                .setFooter({ text: 'HYolss' });
 
             if (!interaction.replied) {
                 return interaction.reply({
