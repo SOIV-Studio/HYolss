@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 
@@ -31,16 +31,32 @@ module.exports = {
             const nickname = interaction.member.displayName;
             const randomWord = getRandomWord();
             
-            await interaction.reply({
-                content: `${nickname}님 ${randomWord} 어때?`,
+            const embed = new EmbedBuilder()
+                .setColor('#FF6B6B')
+                .setTitle('🏪 오늘의 편의점 메뉴 추천')
+                .setDescription(`${nickname}님 ${randomWord} 어때?`)
+                .setTimestamp()
+                .setFooter({ text: 'HYolss Bot' });
+
+            return interaction.reply({
+                embeds: [embed],
                 ephemeral: false
             });
         } catch (error) {
             console.error('Error in 오늘의편의점 command:', error);
-            await interaction.reply({
-                content: '메뉴를 추천하는 중에 오류가 발생했습니다.',
-                ephemeral: true
-            });
+            const errorEmbed = new EmbedBuilder()
+                .setColor('#FF0000')
+                .setTitle('❌ 오류 발생')
+                .setDescription('메뉴를 추천하는 중에 오류가 발생했습니다.')
+                .setTimestamp()
+                .setFooter({ text: 'HYolss Bot' });
+
+            if (!interaction.replied) {
+                return interaction.reply({
+                    embeds: [errorEmbed],
+                    ephemeral: true
+                });
+            }
         }
     },
 };
