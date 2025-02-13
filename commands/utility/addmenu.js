@@ -25,7 +25,7 @@ async function appendToFile(filePath, newMenu) {
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('메뉴추가')
-        .setDescription('새로운 메뉴를 추가합니다.')
+        .setDescription('[개발자 전용 명령어] 새로운 메뉴를 추가합니다.')
         .addStringOption(option =>
             option.setName('메뉴이름')
                 .setDescription('추가할 메뉴의 이름을 입력하세요.')
