@@ -41,6 +41,22 @@ module.exports = {
 
     async execute(interaction) {
         try {
+            // 권한 체크
+            const allowedUserId = '336746851971891203';
+            if (interaction.user.id !== allowedUserId) {
+                const noPermissionEmbed = new EmbedBuilder()
+                    .setColor('#FF0000')
+                    .setTitle('❌ 권한 없음')
+                    .setDescription('이 명령어를 사용할 권한이 없습니다.')
+                    .setTimestamp()
+                    .setFooter({ text: 'HYolss Bot' });
+
+                return interaction.reply({
+                    embeds: [noPermissionEmbed],
+                    ephemeral: true
+                });
+            }
+
             const menuName = interaction.options.getString('메뉴이름');
             const menuType = interaction.options.getString('메뉴종류');
             
