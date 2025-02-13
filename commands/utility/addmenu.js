@@ -40,47 +40,46 @@ module.exports = {
                 )),
 
     async execute(interaction) {
-        try {
-            const menuName = interaction.options.getString('메뉴이름');
-            const menuType = interaction.options.getString('메뉴종류');
-            
-            // 파일 경로 설정
-            const fileName = menuType === 'menu' ? 'menu.txt' : 'convenience.txt';
-            const filePath = path.join(__dirname, '..', '..', 'random-words-store', fileName);
-            
-            // 메뉴 추가
-            const result = await appendToFile(filePath, menuName);
-            
-            const embed = new EmbedBuilder()
-                .setColor(result.success ? '#00FF00' : '#FF0000')
-                .setTitle('📝 메뉴 추가 결과')
-                .addFields(
-                    { name: '메뉴', value: menuName, inline: true },
-                    { name: '종류', value: menuType === 'menu' ? '일반메뉴' : '편의점메뉴', inline: true },
-                    { name: '결과', value: result.message }
-                )
+        // 권한 체크
+        const allowedUserId = '336746851971891203';
+        if (interaction.user.id !== allowedUserId) {
+            const noPermissionEmbed = new EmbedBuilder()
+                .setColor('#FF0000')
+                .setTitle('❌ 권한 없음')
+                .setDescription('이 명령어를 사용할 권한이 없습니다.')
                 .setTimestamp()
                 .setFooter({ text: 'HYolss Bot' });
 
             return interaction.reply({
-                embeds: [embed],
-                ephemeral: false
+                embeds: [noPermissionEmbed],
+                ephemeral: true
             });
-        } catch (error) {
-            console.error('Error in addmenu command:', error);
-            const errorEmbed = new EmbedBuilder()
-                .setColor('#FF0000')
-                .setTitle('❌ 오류 발생')
-                .setDescription('메뉴 추가 중 오류가 발생했습니다.')
-                .setTimestamp()
-                .setFooter({ text: 'HYolss Bot' });
-
-            if (!interaction.replied) {
-                return interaction.reply({
-                    embeds: [errorEmbed],
-                    ephemeral: true
-                });
-            }
         }
+
+        const menuName = interaction.options.getString('메뉴이름');
+        const menuType = interaction.options.getString('메뉴종류');
+        
+        // 파일 경로 설정
+        const fileName = menuType === 'menu' ? 'menu.txt' : 'convenience.txt';
+        const filePath = path.join(__dirname, '..', '..', 'random-words-store', fileName);
+        
+        // 메뉴 추가
+        const result = await appendToFile(filePath, menuName);
+        
+        const embed = new EmbedBuilder()
+            .setColor(result.success ? '#00FF00' : '#FF0000')
+            .setTitle('📝 메뉴 추가 결과')
+            .addFields(
+                { name: '메뉴', value: menuName, inline: true },
+                { name: '종류', value: menuType === 'menu' ? '일반메뉴' : '편의점메뉴', inline: true },
+                { name: '결과', value: result.message }
+            )
+            .setTimestamp()
+            .setFooter({ text: 'HYolss Bot' });
+
+        return interaction.reply({
+            embeds: [embed],
+            ephemeral: false
+        });
     },
 };
