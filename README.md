@@ -1,103 +1,60 @@
 SOIV_Studio-Project_BOT-C_2020~2025
 # Discord_BOT_HYolss
-디스코드 봇이며 봇의 이름은 HYolss 입니다
-
-코딩을 해본적이 없는 사람이라 코드가 무척 지저분하니 양해해주세요
+HYolss는 개인이 사용하기 위해 제작된 디스코드 봇입니다.
+코딩을 해본적이 없는 사람이라 코드가 무척 지저분할 수 있으니 양해바랍니다.
 
 ## 안내사향
-이봇은 이 제작자의 개인 디스코드 봇이며 그외에 다른 사용자에게는 서버에 넣을수있는 링크를 배포를 하지 않을것이며
-이점에서 주의 하여주시기 바람니다
+HYolss는 이 디스코드 봇을 만든 제작자의 개인 전용 디스코드 봇이며
+그 외에 제작자가 추가하지 않거나 허락되지 않은 서버에는 사용이 불안할 수 있습니다.
+현제 봇 구동은 24시간제 구동 상태가 아님니다. (봇을 구동할 호스팅업체 검색중)
 
 # 기능
-
-## 주요 작동 서비스
+## 주요 작동 방식
 Embed
 Message Component
 슬래시 명령어 [ / ]
 접두사 명령어 [ ! or = ] (일부 기능에서만 사용)
 
+## 기본 메인 서비스 (기능 및 명령어)
+0. 봇 관리용 대시보드
+ - ( SOIV_Studio-Project_BOT 에서 제작된 모든 디스코드 봇을 관리가 가능한 대시보드 입니다. )
+1. 핑 상태 [ping, 핑] / 슬래시 명령어 [ / ]
+ - ( ping을 사용하면 Pong! 하며 서버와의 핑을 알려줘요! )
+2. 명령어 안내 [help]
+ - ( 추가 적으로 설명이 필요한 명령어를 위해 존재하는 help 명령어 입니다. / 명령어 제작 예정정 )
+3. 봇 정보, 내 정보
+ - ( 봇 상태와 기본적인 정보를 표시 해드립니다! / 명령어 제작 예정 )
+ - ( 나의 디스코드 정보와 서버 입장 날짜 등을 알려줍니다. / 명령어 제작 예정 )
+4. AI chat (LLM)
+ - ( LLM을 사용한 AI chat 서비스입니다, 제작 예정 불문 명함 )
+5. 오늘의 메뉴, 오늘의 편의점 / 슬래시 명령어 [ / ]
+ - ( 어떤걸 먹을지 고민중인 여러분에게 메뉴를 추천해드립니다! / 메뉴 추가는 개발자 전용 명령어 입니다. )
+6. 트위치, 치지직, SOOP 방송 알림, 유튜브 업로드 알림
+ - ( 방송 알림, 영상 업로드 알림 등을 전송 해주는 명령어입니다. / 시스템 및 명령어 제작 예정 )
+7. SNS 알림
+ - ( X(구 트위터), 인스타그램, Bluesky 등 여러 SNS 서비스의 API를 사용하여 알림을 띄워줌니다. )
+ - ( 서비스 및 명령어 제작 불분 명함 / API 서비스에 대한 문제로 인한 )
+8. 그외 디스코드 서버 관리를 위한 모든 기능들
+ - ( 지금까지 디스코드 봇들에게서 보였던 좋았거나 장점이 보이는 모든 명령어와 기능들을 한곳에서 사용할 수 있다! )
+ - ( 제작될 기능 리스트 : -(작성 대기중))
+
+## 개발자 전용 서비스 (기능 및 명령어)
+1. 개발자 문의 / 개발자 공지 등 개발자가 봇으로 전달하는 기능
+ - ( 명령어 및 봇 대시보드에서 개발자에게 문의 및 개선사항 문의 )
+2. 개발자 전용 대시보드
+ - ( 기본 대시보드에서 개발자 및 관련된 사람만 입장 가능한 대시보드 )
+
 ## 봇 입장시 안내 문구 (EMbed)
-나를 이방에 초대 해줘서 고마워! 이방에 나를 작동되개하는 법을 안내해 줄깨!
+처음 뵙겠습니다! 그리고 나를 이방에 초대 해줘서 고마워!
+나는 봇 하나로 모든걸 해보거나 해보고 싶은걸 실험해보기 위해 작동하는 HYolss 이라고해.
 
-일단 나의 명령어 접두사는 ! or = 가 있어 하지면 그래도 슬레시(/) 명령어가 있다고!
-시작 명령어는 'setup' 이나 '셋업' 을 접두사나 슬래시를 붙어서 치면 자동으로 작동해
+일단 내가 작동하는 방식에 대해 짧개 알려줄깨!
+기본은 슬레시(/)를 사용하고 다른 방식으로는
+접두사 방식인 ! or = 으로 호출 및 명령어, 기능능 사용이 가능하고
+명령어를 사용하면 버튼과 메뉴 선택이라는 기능을 주로 작동되니 이점 알아줘!
 
-그리고 나는 명령어를 사용하면 버튼과 메뉴 선택이라는 기능을 주로 작동되
-추가적인 명령어를 보고싶으면 'help' 를 치면 나에게 있는 명령어들이 다 나와!
+명령어를 사용하는데 모르는 점이 있어?
+그렇다면 그 명령어에 대한 설명을 보고 싶으면
+'/help'를 사용하여 명령어 사용법에 대한 내용을 볼 수 있어!
 
-## 기본 작동 서비스
-핑 상태 [ping, 핑]
-봇 정보 
-명령어 안내 [help]
-트위치, 치지직, SOOP 방송 알림
-유튜브 업로드 알림
-봇 DM으로 건의 사항 발송시 관리자에게 해당 메시지 전송
-AI chat (LLM)
-
-## 주요 작동 서비스
-### 역활 지급 시스템 [명령어는 관리자 전용 명령어]
-[Embed, Message Component(Select Menu)]
-기타 게임권한요청
-※기타 게임 추가요청은 5인이상 플레이하시는분이 있어야 추가가 가능합니다.
-요청시 [관리자 언급] 으로 문의부탁드립니다.
-
-아래 리스트중 원하시는 역할을 선택하여 채널 입장권한을 얻어주세요.
--권한이 있는상태로 클릭시 해당 권한은 제거됩니다.
-
-### 입장시 인증 명령어 
-단. 메시지가 봇을 추가 했을때 전송 되거나 인증이 되개끔 가면서 안될경우 추방이 안되도록 해야된다.
-
-명령어는 !인증 [캡차인증 코드]
-
-### 로그 기능
-통화방, 채팅방, 설정 로그를 어느 채팅방에 설정을 해두면 자동으로 로그가 뜰때마다 올라가개끔 해주는 식
-ex) Logger#6088랑 기능 비슷한 느낌으로 가도 좋음
-명령어 [setchannel]
-
-설정 관련 로그
-channelCreate, channelUpdate, channelDelete, guildBanAdd, guildBanRemove, guildRoleCreate, guildRoleDelete, guildRoleUpdate, guildUpdate
-
-통화방 관련 로그
-voiceChannelJoin, voiceStateUpdate, voiceChannelSwitch, voiceChannelLeave
-
-채팅방 관련 로그
-messageDelete, messageDeleteBulk, messageUpdate
-
-채널 설정
-대시보드는 가장 쉬운 설정 방법입니다! Setchannel은 봇 로깅 동작을 구성합니다.
-
-예:
-%setchannel <- 이것이 전송된 모든 것을 기록합니다.
-%setchannel messageDelete, messageUpdate <- 메시지 삭제 및 업데이트 기록
-%setchannel guildMemberAdd, guildMemberRemove, guildMemberKick <- 로그인, 탈퇴, 시작
-%setchannel anyevent <- 기록할 이벤트를 하나씩 설정합니다. 다중에는 쉼표를 사용합니다. 유효한 이벤트:
-channelCreate, channelUpdate, channelDelete, guildBanAdd, guildBanRemove, guildRoleCreate, guildRoleDelete, guildRoleUpdate, guildUpdate, messageDelete, messageDeleteBulk, messageUpdate, guildMemberAdd, guildMemberKick, guildMemberRemove, guildMemberUpdate, voiceChannelLeave, voiceChannelJoin, voiceStateUpdate, voiceChannelSwitch, guildMemberNickUpdate, guildMemberVerify, guildEmojisUpdate, guildMemberBoostUpdate
-
-stoplogging
-특정(또는 모든) 이벤트를 기록하지 않도록 하려면 로그 채널에서 이것을 사용하십시오. 이 명령은 setchannel의 반대이며 이벤트를 설정하는 대신 설정 해제하는 데 동일한 방식으로 사용할 수 있습니다.
-
-예:
-%stoplogging <- 사용된 채널에 기록하도록 구성된 모든 이벤트 기록을 중지합니다.
-%stoplogging messageDelete, messageUpdate <- 봇이 이것이 사용된 채널에 messageDelete 및 messageUpdate를 기록했다면 이제 설정 해제됩니다.
-%stoplogging guildMemberVerify <- 봇이 이것이 사용된 채널에 회원 확인 이벤트를 기록했다면, 그렇게 하지 않을 것입니다.
-
-### 채팅 청소 [청소, prune]
-
-사용시 뜨는 문구
-
-00개의 메세지(들)을/를 삭제하고 있어요... 잠시 기다려주세요.
-
-삭제 완료시
-
-완료! 아래에 결과를 표시할게요.
-Embed
-정리결과
-모든 메시지를 삭제했어요
-```숫자```
-오래된 메시지들을 삭제했어요
-```숫자```
-유저에 의해 메시지가 삭제되었어요
-```
-kileu#0001 : 숫자
-```
-자동 삭제 기능이 작동되었어요. 10초후 메시지를 삭제할꺼에요. 'c'를 눌러 취소할 수 있어요
+[ TIP ] 시작 명령어는 'setup' 이나 '셋업' 을 접두사나 슬래시를 붙어서 치면 자동으로 작동합니다.
