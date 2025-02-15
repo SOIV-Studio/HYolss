@@ -1,4 +1,4 @@
-Kor-Disccord-BOT_C_2020
+SOIV_Studio-Project_BOT-C_2020~2025
 # Discord_BOT_HYolss
 디스코드 봇이며 봇의 이름은 HYolss 입니다
 
