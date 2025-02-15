@@ -16,7 +16,7 @@
     "url": "git+https://github.com/SOIV/HYolss_js.git"
   },
   "author": "soiv_studio",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/SOIV/HYolss_js/issues"
   },
