@@ -1,6 +1,7 @@
 SOIV_Studio-Project_BOT-C_2020~2025
 # Discord_BOT_HYolss
 HYolss는 개인이 사용하기 위해 제작된 디스코드 봇입니다.
+
 코딩을 해본적이 없는 사람이라 코드가 무척 지저분할 수 있으니 양해바랍니다.
 
 ## 안내사향
