@@ -1,5 +1,5 @@
 ## 주요 작동 서비스
-### 역활 지급 시스템 [명령어는 관리자 전용 명령어]
+### 역활 지급 시스템 [명령어는 관리자 전용 명령어] (기획 수정 및 현제 기준에 맞는 내용으로 업데이트 예정정)
 [Embed, Message Component(Select Menu)]
 기타 게임권한요청
 ※기타 게임 추가요청은 5인이상 플레이하시는분이 있어야 추가가 가능합니다.
@@ -45,7 +45,7 @@ stoplogging
 %stoplogging messageDelete, messageUpdate <- 봇이 이것이 사용된 채널에 messageDelete 및 messageUpdate를 기록했다면 이제 설정 해제됩니다.
 %stoplogging guildMemberVerify <- 봇이 이것이 사용된 채널에 회원 확인 이벤트를 기록했다면, 그렇게 하지 않을 것입니다.
 
-### 채팅 청소 [청소, prune]
+### 채팅 청소 [청소, prune] (구현 제외)
 
 사용시 뜨는 문구
 
