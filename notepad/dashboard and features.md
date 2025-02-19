@@ -102,13 +102,14 @@
 - 구독 시스템(유료/결제 시스템 구현 필요)
 
 ### 봇 기능
-- AI 채팅 시스템 (LLM/GPT)
-- 스트리밍 플랫폼 알림
-  * Twitch
-  * CHZZK
+- AI 채팅 시스템 (LLM/GPT) / API 사용 또는 자체 LLM 사용 계획 필요요
+- 스트리밍 플랫폼 알림 (구현 우선순위)
   * YouTube
+  * CHZZK
   * SOOP
-- SNS 알림
+  * Twitch
+  * KICK
+- SNS 알림 (동시 구현)
   * Twitter(X)
   * Instagram
   * Bluesky
