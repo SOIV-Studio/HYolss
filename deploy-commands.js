@@ -1,3 +1,5 @@
+// legacy code - 명령어를 등록하는 코드입니다.
+// 이 코드는 더 이상 사용되지 않습니다.
 require('dotenv').config();
 const { REST, Routes } = require('discord.js');
 const fs = require('node:fs');
