@@ -6,7 +6,8 @@
 - `website.com/` (메인)
 - `website.com/portfolio` (작업물)
 - `website.com/commission` (커미션)
-- `website.com/services` (외주)
+- `website.com/service/agreement` (이용약관) terms-of-service
+- `website.com/service/privacy` (개인정보처리방침) privacy-policy
 
 ### 대시보드 구조
 - `dashboard.website.com` (봇 대시보드)
