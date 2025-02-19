@@ -1,3 +1,4 @@
 node_modules
 .env
-// config.json
+# config 파일은 더 이상 사용하지 않음
+config.json
