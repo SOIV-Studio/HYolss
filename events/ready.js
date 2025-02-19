@@ -22,6 +22,12 @@ module.exports = {
             { name: '저의 주인장은 SOIV라는 사람인데요..', type: ActivityType.Custom },
             { name: '저는 SOIV Studio에 소속된 Discord BOT이에요!', type: ActivityType.Custom }
         ];
+
+        // 상태 메시지 : 안내 및 점검, 평상시에는 사용을 하지 않음
+        // const activities = [
+        //    { name: '안내 : 봇 점검중입니다. 잠시만 기달려 주세요.', type: ActivityType.Custom },
+        //    { name: '안내 : DEV버전의 봇입니다. 재부팅 또는 정상 작동이 안될 수 있습니다.', type: ActivityType.Custom }
+        //];
         
         // 10초마다 랜덤으로 상태 메시지 변경
         setInterval(() => {
