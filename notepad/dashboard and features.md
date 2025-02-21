@@ -347,6 +347,7 @@
 ## 6. 개발 및 배포 프로세스
 
 ### Git 브랜치 전략
+
 ```
 main (또는 master) ← 메인 버전
    ↑
@@ -354,6 +355,52 @@ development ← 개발 버전
    ↑
 feature/* ← 새로운 기능 개발
 ```
+
+#### 브랜치 설명
+1. main (또는 master)
+   - 실제 서비스에 배포되는 안정적인 버전
+   - 철저한 테스트와 코드 리뷰를 거친 코드만 병합
+   - 직접적인 커밋은 금지, development 브랜치를 통해서만 업데이트
+
+2. development
+   - 개발 중인 코드가 모이는 브랜치
+   - 새로운 기능 개발이 완료되면 여기에 병합
+   - 충분한 테스트 후 main 브랜치로 병합
+
+3. feature/*
+   - 새로운 기능 개발을 위한 브랜치
+   - development 브랜치에서 분기
+   - 기능 개발 완료 후 development로 병합
+   - 브랜치명 예시: feature/login, feature/dashboard
+
+#### 작업 프로세스
+1. 기능 개발 시작
+   ```bash
+   git checkout development
+   git pull origin development
+   git checkout -b feature/새기능
+   ```
+
+2. 기능 개발 완료 후
+   ```bash
+   git add .
+   git commit -m "feat: 새로운 기능 추가"
+   git push origin feature/새기능
+   ```
+
+3. development 브랜치로 병합
+   ```bash
+   git checkout development
+   git merge feature/새기능
+   git push origin development
+   ```
+
+4. main 브랜치로 배포
+   ```bash
+   git checkout main
+   git merge development
+   git push origin main
+   ```
 
 ### 환경 설정 분리
 ```
