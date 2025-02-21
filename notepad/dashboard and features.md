@@ -331,7 +331,7 @@
 - 데이터베이스 지원
 
 ### 추천 호스팅 서비스
-- AWS
+- AWS (메인 호스팅)
 - Google Cloud
 - DigitalOcean
 - Heroku
