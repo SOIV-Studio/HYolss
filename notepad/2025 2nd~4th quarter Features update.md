@@ -7,7 +7,7 @@ dashboard and features.md에 작성되어 있는 일부 내용의 업데이트 �
 따라서 2025년도 4분기 또는 2026년도에 작업이 진행될 수 있습니다.
 
 ## HYolss Discord BOT setup
-### 디스코드 서버 입장 관련 기능
+### 디스코드 봇 서버 입장 관련 기능
 - **dashboard and features.md: 46번 줄부터 확인 바람**
 - 초대자 및 서버 기록에 따른 전용 메시지 전송 기능
 - 메시지 전송 조건
