@@ -19,7 +19,7 @@ HYolss는 이 디스코드 봇을 만든 제작자의 개인 전용 디스코드
 
 - 봇 온라인 명령어
     * 기본 모드 : node index.js
-    * 점검 모드 : node "Server-maintenance/index.js"
+    * 점검 모드 : node system-maintenance.js
 
 # 봇 기능!
 ## 주요 작동 방식
