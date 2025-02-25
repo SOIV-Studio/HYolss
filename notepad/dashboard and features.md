@@ -283,7 +283,7 @@
 - node.js, CSS으로 직접 명령어 코딩을 하여 작동하는 방식 (고급 사용자용)
 
 ### 2-7. 음악 시스템
-- 지원 플렛폼 : YouTube, Spotify, SoundCloud
+- 지원 플렛폼 : YouTube(YouTube/YouTube Music), Spotify, SoundCloud
 - 시스템 제작 여부는 확정되지 않았습니다.
 - 별계의 봇으로 운영 될 가능성도 있음
 
