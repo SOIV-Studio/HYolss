@@ -691,6 +691,7 @@
 - Heroku
 - Vercel (프론트엔드)
 - MongoDB Atlas (데이터베이스)
+- PostgreSQL 17.4 (데이터베이스)
 
 ### 필수 설정
 - 환경 변수 관리
