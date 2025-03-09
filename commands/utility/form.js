@@ -218,7 +218,9 @@ async function saveFormConfiguration(serverId, formType, formName, fields, desig
     ON CONFLICT (server_id, form_type) 
     DO UPDATE SET form_name = $3, fields = $4, designated_channel = $5, updated_at = CURRENT_TIMESTAMP;
   `;
-  const values = [serverId, formType, formName, fields, designatedChannel];
+  // fields를 JSON 문자열로 명시적으로 변환
+  const fieldsJson = JSON.stringify(fields);
+  const values = [serverId, formType, formName, fieldsJson, designatedChannel];
   try {
     await pool.query(query, values);
     return true;
@@ -370,7 +372,7 @@ async function handleFormSetup(interaction, formType, formName, channelId) {
         label: '필드 1', 
         style: 'short', 
         required: true, 
-        placeholder: '첫 번째 필드에 내용을 입력하세요.' 
+        placeholder: '내용을 입력하세요' 
       }
     ];
     
@@ -571,7 +573,7 @@ async function handleAddField(interaction, serverId, formType) {
       .setCustomId('placeholder')
       .setLabel('필드 플레이스홀더')
       .setStyle(TextInputStyle.Short)
-      .setPlaceholder('입력 필드에 표시될 안내 텍스트')
+      .setPlaceholder('안내 텍스트 입력')
       .setRequired(false);
     
     const styleInput = new TextInputBuilder()
@@ -590,12 +592,12 @@ async function handleAddField(interaction, serverId, formType) {
       .setValue('true')
       .setRequired(true);
     
-    const maxLengthInput = new TextInputBuilder()
-      .setCustomId('max_length')
-      .setLabel('최대 길이')
-      .setStyle(TextInputStyle.Short)
-      .setPlaceholder('최대 입력 가능한 글자 수 (선택사항)')
-      .setRequired(false);
+      const maxLengthInput = new TextInputBuilder()
+        .setCustomId('max_length')
+        .setLabel('최대 길이')
+        .setStyle(TextInputStyle.Short)
+        .setPlaceholder('최대 글자 수 (선택사항)')
+        .setRequired(false);
     
     modal.addComponents(
       new ActionRowBuilder().addComponents(labelInput),
@@ -782,7 +784,7 @@ async function handleEditField(interaction, serverId, formType) {
         .setLabel('최대 길이')
         .setStyle(TextInputStyle.Short)
         .setValue(selectedField.max_length ? selectedField.max_length.toString() : '')
-        .setPlaceholder('최대 입력 가능한 글자 수 (선택사항)')
+        .setPlaceholder('최대 글자 수 (선택사항)')
         .setRequired(false);
       
       modal.addComponents(
