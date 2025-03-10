@@ -29,7 +29,7 @@ client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
 
     await interaction.reply({
-        content: '🔧 현재 서버 점검 중입니다.\n잠시 후 다시 이용해 주시기 바랍니다.',
+        content: '🔧 현재 서비스 점검 중입니다.\n잠시 후 다시 이용해 주시기 바랍니다.',
         ephemeral: true
     });
 });
