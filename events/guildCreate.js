@@ -43,7 +43,7 @@ async function updateBotServerHistory(guildId) {
       return { isNew: false, data: serverData };
     }
   } catch (err) {
-    console.error('서버 입장 기록 업데이트 오류:', err);
+    console.error('[ERROR] 서버 입장 기록 업데이트 오류:', err);
     return { isNew: false, error: err };
   }
 }
@@ -70,7 +70,7 @@ module.exports = {
   name: Events.GuildCreate,
   async execute(guild) {
     try {
-      console.log(`봇이 새로운 서버에 추가되었습니다: ${guild.name} (ID: ${guild.id})`);
+      console.log(`[WAN-DB] 봇이 새로운 서버에 추가되었습니다: ${guild.name} (ID: ${guild.id})`);
       
       // 서버 입장 기록 업데이트
       const serverHistory = await updateBotServerHistory(guild.id);
@@ -93,7 +93,7 @@ module.exports = {
       }
       
       if (!targetChannel) {
-        console.log(`서버 ${guild.name}에 메시지를 보낼 채널을 찾을 수 없습니다.`);
+        console.log(`[WAN-DB] 서버 ${guild.name}에 메시지를 보낼 채널을 찾을 수 없습니다.`);
         return;
       }
       
@@ -139,7 +139,7 @@ module.exports = {
       await targetChannel.send({ embeds: [welcomeEmbed] });
       
     } catch (error) {
-      console.error('서버 입장 처리 오류:', error);
+      console.error('[ERROR] 서버 입장 처리 오류:', error);
     }
   },
   
