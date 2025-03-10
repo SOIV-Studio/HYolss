@@ -61,7 +61,7 @@ async function saveBotInviter(guildId, inviterId) {
     await pool.query(query, [guildId, inviterId]);
     return true;
   } catch (err) {
-    console.error('초대자 정보 저장 오류:', err);
+    console.error('[ERROR] 초대자 정보 저장 오류:', err);
     return false;
   }
 }
