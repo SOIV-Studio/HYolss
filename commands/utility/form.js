@@ -1,45 +1,7 @@
 const { SlashCommandBuilder, ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const { pool } = require('../../db.js'); // DB 연결 객체만 가져오기
+const { pool } = require('../../database.js'); // DB 연결 객체만 가져오기
 
-// 테이블 초기화 함수
-async function initializeFormTables() {
-  try {
-    // 테이블이 존재하는지 확인
-    const checkTableQuery = `
-      SELECT EXISTS (
-        SELECT FROM information_schema.tables 
-        WHERE table_schema = 'public'
-        AND table_name = 'form_configurations'
-      );
-    `;
-    
-    const tableExists = await pool.query(checkTableQuery);
-    
-    if (!tableExists.rows[0].exists) {
-      console.log('form_configurations 테이블이 존재하지 않습니다. 데이터베이스 관리자에게 다음 SQL을 실행하도록 요청하세요:');
-      console.log(`
-        CREATE TABLE form_configurations (
-          id SERIAL PRIMARY KEY,
-          server_id VARCHAR(20) NOT NULL,
-          form_type VARCHAR(50) NOT NULL,
-          form_name VARCHAR(100) NOT NULL,
-          fields JSONB NOT NULL,
-          designated_channel VARCHAR(20),
-          created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-          updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-          UNIQUE(server_id, form_type)
-        );
-      `);
-      return false;
-    }
-    
-    console.log('양식 시스템 테이블이 이미 존재합니다.');
-    return true;
-  } catch (err) {
-    console.error('양식 시스템 테이블 초기화 오류:', err);
-    return false;
-  }
-}
+// 양식 시스템 관련 함수들
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -166,10 +128,7 @@ module.exports = {
         filtered.slice(0, 25) // Discord는 최대 25개 옵션만 지원
       );
     }
-  },
-  
-  // 테이블 초기화 함수 내보내기
-  initializeFormTables
+  }
 };
 
 // 서버의 모든 양식 조회
