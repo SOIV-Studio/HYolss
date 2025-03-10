@@ -2,7 +2,7 @@ require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits, REST, Routes } = require('discord.js');
-const { testConnection } = require('./db'); // DB 모듈에서 testConnection만 가져오기
+const { testConnection } = require('./database'); // DB 모듈에서 testConnection만 가져오기
 
 // 환경 변수에 따라 토큰과 clientId 선택
 const token = process.env.NODE_ENV === 'development' 
@@ -42,22 +42,22 @@ async function loadAndDeployCommands() {
     // 명령어 등록
     const rest = new REST().setToken(token);
     try {
-        console.log(`Started refreshing ${commands.length} application (/) commands globally.`);
-        console.log('Commands to be registered:', commands.map(cmd => cmd.name).join(', '));
-        console.log(`Using ${process.env.NODE_ENV} environment`);
+        console.log(`[INFO] Started refreshing ${commands.length} application (/) commands globally.`);
+        console.log('[INFO] Commands to be registered:', commands.map(cmd => cmd.name).join(', '));
+        console.log(`[INFO] Using ${process.env.NODE_ENV} environment`);
 
         const data = await rest.put(
             Routes.applicationCommands(clientId),
             { body: commands },
         );
 
-        console.log(`Successfully reloaded ${data.length} application (/) commands globally.`);
-        console.log('Registered commands:', data.map(cmd => cmd.name).join(', '));
+        console.log(`[INFO] Successfully reloaded ${data.length} application (/) commands globally.`);
+        console.log('[INFO] Registered commands:', data.map(cmd => cmd.name).join(', '));
     } catch (error) {
-        console.error('Failed to deploy commands:');
+        console.error('[ERROR] Failed to deploy commands:');
         console.error(error);
         if (error.rawError) {
-            console.error('API Error details:', error.rawError);
+            console.error('[ERROR] API Error details:', error.rawError);
         }
     }
 }
@@ -88,8 +88,9 @@ async function startBot() {
             const formCommand = require('./commands/utility/form');
             
             // 데이터베이스 테이블 초기화
-            console.log('[INFO] 양식 시스템 테이블 초기화 중...');
-            await formCommand.initializeFormTables();
+            const guildCreateEvent = require('./events/guildCreate');
+            console.log('[INFO] 데이터베이스 테이블 초기화 중...');
+            await guildCreateEvent.initializeBotServerTables();
             
             // 명령어 등록
             await loadAndDeployCommands();
@@ -102,7 +103,7 @@ async function startBot() {
             process.exit(1);
         }
     } catch (error) {
-        console.error('Error starting bot:', error);
+        console.error('[ERROR] Error starting bot:', error);
         process.exit(1);
     }
 }
@@ -117,7 +118,7 @@ client.on('interactionCreate', async interaction => {
     try {
         await command.autocomplete(interaction);
     } catch (error) {
-        console.error(`Error handling autocomplete for ${interaction.commandName}:`, error);
+        console.error(`[ERROR] Error handling autocomplete for ${interaction.commandName}:`, error);
     }
 });
 
