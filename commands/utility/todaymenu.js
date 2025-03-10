@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, InteractionResponseFlags } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 
@@ -28,19 +28,20 @@ module.exports = {
         .setDescription('오늘의 메뉴를 추천해줍니다.'),
     async execute(interaction) {
         try {
-            const nickname = interaction.member.displayName;
+            // 사용자 ID를 가져와 멘션 형식으로 변환
+            const userMention = `<@${interaction.user.id}>`;
             const randomWord = getRandomWord();
             
             const embed = new EmbedBuilder()
                 .setColor('#0099ff')
                 .setTitle('🍽️ 오늘의 메뉴 추천')
-                .setDescription(`${nickname}님 ${randomWord} 어때?`)
+                .setDescription(`${userMention} 님 ${randomWord} 어때?`)
                 .setTimestamp()
                 .setFooter({ text: 'HYolss' });
 
             return interaction.reply({
-                embeds: [embed],
-                ephemeral: false
+                embeds: [embed]
+                // ephemeral: false 옵션 제거 (기본값이 false이므로 생략 가능)
             });
         } catch (error) {
             console.error('Error in 오늘의메뉴 command:', error);
@@ -54,7 +55,7 @@ module.exports = {
             if (!interaction.replied) {
                 return interaction.reply({
                     embeds: [errorEmbed],
-                    ephemeral: true
+                    flags: [InteractionResponseFlags.Ephemeral]
                 });
             }
         }
