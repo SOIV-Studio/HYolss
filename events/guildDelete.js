@@ -1,5 +1,5 @@
 const { Events } = require('discord.js');
-const { pool } = require('../database.js');
+const { pool } = require('../database/database.js');
 
 // 서버 퇴장 기록 업데이트 함수
 async function updateBotServerLeave(guildId) {

@@ -1,5 +1,5 @@
 const { Events, EmbedBuilder } = require('discord.js');
-const { pool, initializeBotServerTables } = require('../database.js');
+const { pool, initializeBotServerTables } = require('../database/database.js');
 
 // 서버 입장 기록 업데이트 함수
 async function updateBotServerHistory(guildId) {

@@ -83,38 +83,6 @@ async function initializeBotServerTables() {
       console.log('[INFO-DB] bot_inviter_tracking 테이블이 이미 존재합니다.');
     }
     
-    // 양식 시스템 테이블 확인
-    const checkFormTableQuery = `
-      SELECT EXISTS (
-        SELECT FROM information_schema.tables
-        WHERE table_schema = 'public'
-        AND table_name = 'form_configurations'
-      );
-    `;
-    
-    const formTableExists = await pool.query(checkFormTableQuery);
-    
-    if (!formTableExists.rows[0].exists) {
-      console.log('[INFO-DB] form_configurations 테이블이 존재하지 않습니다. 테이블을 생성합니다.');
-      const createFormTableQuery = `
-        CREATE TABLE form_configurations (
-          id SERIAL PRIMARY KEY,
-          server_id VARCHAR(20) NOT NULL,
-          form_type VARCHAR(50) NOT NULL,
-          form_name VARCHAR(100) NOT NULL,
-          fields JSONB NOT NULL,
-          designated_channel VARCHAR(20),
-          created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-          updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-          UNIQUE(server_id, form_type)
-        );
-      `;
-      await pool.query(createFormTableQuery);
-      console.log('[INFO-DB] form_configurations 테이블이 생성되었습니다.');
-    } else {
-      console.log('[INFO-DB] form_configurations 테이블이 이미 존재합니다.');
-    }
-    
     return true;
   } catch (err) {
     console.error('[ERROR] 테이블 초기화 오류:', err);
