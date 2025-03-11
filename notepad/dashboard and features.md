@@ -759,16 +759,18 @@
 ## 6. 필요한 패키지
 
 ### 웹사이트
-- express 또는 next.js (웹 프레임워크)
+- next.js (웹 프레임워크)
 - ejs 또는 react (프론트엔드)
 - passport (인증)
 - express-session (세션 관리)
 - mongoose 또는 sqlite3 (데이터베이스)
 
 ### 봇 대시보드
+- next.js (웹 프레임워크)
+- ejs 또는 react (프론트엔드)
 - discord.js (디스코드 API)
 - passport-discord (디스코드 OAuth2)
-- express-session
+- express-session (세션 관리)
 - 데이터베이스 패키지
 
 ## 7. 호스팅 고려사항
