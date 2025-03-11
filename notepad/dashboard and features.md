@@ -92,7 +92,17 @@
   * [Emoji-Resource] : 이모지, 스티커를 사용하는 기능
   * [AUTO-System] : 자동으로 작동하는 시스템, 사용자가 명령어로 작동하는 방식이 아닌 기능
 
-### 2-0. MAIN AI 시스템 (default AI system)
+### 2-0-1. default command
+- 정보(information)
+  * 봇 정보를 보여줍니다.
+- 지원(Support)
+  * 지원서버의 초대 링크를 보여줍니다.
+- 대시보드(dashboard)
+  * 봇을 쉽게 조작또는 설정 할 수 있는 웹사이트를 안내합니다.
+- 도움말(help)
+  * 조작하기 힘든 명령어나 일부 설명이 필요한 명령어들을 알려줍니다.
+
+### 2-0-2. MAIN AI 시스템 (default AI system)
 - default AI API : Google Gemini, OpenAI ChatGPT
 - AI chat을 제외한 기본 시스템에서 작동하는 AI 기반 시스템입니다.
 - 일반 AI 시스템과 AI chat의 작동 여부는 별개의 시스템으로 분리되어 운영됩니다.
@@ -518,6 +528,9 @@
 - 관리자 문의 시스템
   * 서버내에 있는 관리진에게 문의를 남길 수 있는 시스템
   * 대표적인 봇 : Ticket Tool, ModMail
+- 모듈
+  * 기능을 on/off를 봇에서 할 수 있는 기능
+  * /load, /reload, /unload
 
 ### 실험실 시스템
 - 기능 추가를 위해 일부 기간동안 피드백 및 개선을 위한 실험실 기능
