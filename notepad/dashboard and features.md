@@ -15,6 +15,7 @@
 - `website.com/commission` (커미션)
 - `website.com/service/agreement` (이용약관) terms-of-service
 - `website.com/service/privacy` (개인정보처리방침) privacy-policy
+- `website.com/(discordbotname)-bot` (디스코드 봇 메인 페이지)
 
 ### 대시보드 구조
 - `dashboard.website.com` (봇 대시보드)
@@ -68,9 +69,14 @@
     - 4컷 만화
     - 공식 일러스트
   * 봇 활동에 따른 SNS관련
-    - 유튜브 채널
-    - 인스타그램
-    - X(트위터)
+    - YouTube 채널
+    - Instagram
+    - X(Twitter)
+  * 개발자 관련 SNS, 플렛폼
+    - YouTube
+    - CHZZK
+    - Instagram
+    - X(Twitter)
 - 시스템 작동 여부
   * 다음과 같은 상태에서는 작동이 중지 됩니다.
     - 점검 상태에 진입했을 경우 (서버, 봇 업데이트, 재부팅 등)
@@ -93,8 +99,18 @@
   * [AUTO-System] : 자동으로 작동하는 시스템, 사용자가 명령어로 작동하는 방식이 아닌 기능
 
 ### 2-0-1. default command
-- 정보(information)
+- 정보(info)
   * 봇 정보를 보여줍니다.
+  * 포함될 내용
+    - 버전
+      * 봇 버전
+      * node.js 버전
+      * Discord.js 버전
+    - Developer
+    - Uptime
+    - Discord 관련 정보
+      * 서버 수
+      * 핑
 - 지원(Support)
   * 지원서버의 초대 링크를 보여줍니다.
 - 대시보드(dashboard)
@@ -245,7 +261,7 @@
   * TikTok (동영상 / 또 더 있나?)
   * 그외 여러 플랫폼
 - SNS 알림 (동시 구현)
-  * Twitter(X)
+  * X(Twitter)
   * Instagram
   * Bluesky
   * Threads
@@ -362,7 +378,12 @@
 [대시보드] [API] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
 - 지원 플렛폼 : YouTube(YouTube/YouTube Music), Spotify, SoundCloud
 - 시스템 제작 여부는 확정되지 않았습니다.
-- 별계의 봇으로 운영 될 가능성도 있음
+- 별계의 봇으로 운영 될 가능성도 있음 / 실험실을 통하여 테스트 가능성 있음
+- 시스템 방식
+  * 기본 사운드 시스템은 마이크를 통한 사운드 송출
+  * MV 또는 영상을 볼 수 있도록 화면 송출 시스템
+  * 활동기능을 활용한 음악 재생
+    - 예쁘지만 심플한 재생 UI
 
 ### 2-8. 변역 시스템
 [API] [slash-command] [Embed] [Message-Components]
@@ -377,7 +398,7 @@
   * 네이버 파파고 API(미확정)
     - 사용 가능할 경우 유저가 설정을 변경하여 사용 가능
 
-### 2-9. 그외 ETC
+### 2-9. 게임관련 시스템
 [API] [slash-command] [Embed] [Message-Components]
 - 게임 전적 검색 시스템
   * OP.gg, TRN을 통하여 전적 검색 기능 (TRN API 확인 완료, op.gg API 확인 불가능, 라이엇 API 확인 완료)
@@ -391,13 +412,17 @@
 [대시보드] [API] [AI] [DB] [Emoji-Resource]
 - 모든 기능 작업 완료 후 마지막으로 작업 예정
 - API 사용 또는 자체 LLM 사용 계획 필요
-- 단일 AI 채팅 시스템이 아닌 버튜버 뉴로사마(Neurosama)와 같이 성격이 부여된 AI 채팅 시스템
+- 단일 AI 채팅 시스템이 아닌 AI버튜버인 뉴로사마(Neurosama)와 같이 성격이 부여된 AI 채팅 시스템
+- TTS, Live2D를 디스코드 내에 적용할 예정은 1도 없음
+  * 하게 되면 너무 많은 작업이 요구됨
+  * 물론 딥 러닝을 통한 게임 플레이는 X / 채팅으로 놀고 간단한 게임하고 하는건 가능할지도?
 - 모델 선택 및 학습
     * 기본 모델 선택 (GPT-3.5/4, LLaMA, Claude, LLM 등)
     * Fine-tuning 데이터셋 구축
         - 캐릭터 성격에 맞는 대화 데이터 수집
         - 롤플레잉 시나리오 작성
         - 멀티턴 대화 컨텍스트 구성
+        - 금지어, 대화 필터 구성 및 작성
     * 모델 학습 및 평가
         - 하이퍼파라미터 최적화
         - 성능 메트릭 정의
