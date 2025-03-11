@@ -16,14 +16,33 @@
 - `website.com/service/agreement` (이용약관) terms-of-service
 - `website.com/service/privacy` (개인정보처리방침) privacy-policy
 - `website.com/(discordbotname)-bot` (디스코드 봇 메인 페이지)
+- `website.com/status` (statuspage)
 
 ### 대시보드 구조
 - `dashboard.website.com` (봇 대시보드)
     * 디스코드 OAuth2 로그인 사용
     * 봇 관련 기능 전용 대시보드
     * SOIV_Studio-Project_BOT 에서 제작된 모든 디스코드 봇을 관리가 가능한 대시보드
-- `dashboard.website.com/**` (기능)
-- `dashboard.website.com/developer` (개발자 대시보드)
+- `dashboard.website.com/serverid/home` (home)
+- `dashboard.website.com/serverid/**` (기능)
+  * `dashboard.website.com/serverid/general-settings`
+  * `dashboard.website.com/serverid/commands`
+  * `dashboard.website.com/serverid/auto-moderation`
+  * `dashboard.website.com/serverid/moderation`
+  * `dashboard.website.com/serverid/social-notifications`
+  * `dashboard.website.com/serverid/join-roles`
+  * `dashboard.website.com/serverid/reaction-roles`
+  * `dashboard.website.com/serverid/welcome-messages`
+  * `dashboard.website.com/serverid/role-connections`
+  * `dashboard.website.com/serverid/logging`
+  * `dashboard.website.com/serverid/utility`
+  * `dashboard.website.com/serverid/Music`
+  * `dashboard.website.com/serverid/translate`
+- `dashboard.website.com/serverid/Premium/buy` (Premium - buy)
+  * `dashboard.website.com/serverid/Premium/settings` (Premium - settings)
+- `dashboard.website.com/serverid/new` (실험실/얼리 엑세스)
+- `dashboard.website.com/serverid/developer` (개발자 대시보드)
+  * `dashboard.website.com/developer`
 
 ### 로그인 시스템
 1. 메인 사이트
@@ -117,6 +136,8 @@
   * 봇을 쉽게 조작또는 설정 할 수 있는 웹사이트를 안내합니다.
 - 도움말(help)
   * 조작하기 힘든 명령어나 일부 설명이 필요한 명령어들을 알려줍니다.
+- 핑(ping)
+  * 서버와의 핑 테스트를 보여줍니다.
 
 ### 2-0-2. MAIN AI 시스템 (default AI system)
 - default AI API : Google Gemini, OpenAI ChatGPT
@@ -284,6 +305,13 @@
 
 ### 2-4. 유틸리티
 [대시보드] [API] [DB] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
+- 오늘의 시리즈(이미 제작됨)
+  * 메뉴 추가(개발자 전용)
+    - [개발자 전용 명령어] 새로운 메뉴를 추가합니다.
+  * 오늘의 메뉴
+    - 오늘의 메뉴를 추천해줍니다.
+  * 오늘의 편의점
+    - 오늘의 편의점 메뉴를 추천해줍니다.
 - 추첨/투표 시스템
   * 여러 방식의 추첨 기능
   * 디스코드 기본 투표 시스템 / 다른 방식의 투표 기능
