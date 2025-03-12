@@ -13,6 +13,11 @@ HYolss는 기존 개인이 사용하기 위해 제작한 디스코드 봇입니�
 봇 추가는 상관없이 누구나 추가하여 사용은 가능합니다만, 봇이 불안정할 수 있으니 주의 바랍니다.
 
 [Discord Bot add link](https://discord.com/oauth2/authorize?client_id=888061096441819166)
+
+[HYolss Dashboard Web_Front-end](https://github.com/SOIV/HYolss-Dashboard-Web_Front-end)
+[HYolss Dashboard Web_Back-end](https://github.com/SOIV/HYolss-Dashboard-Web_Back-end)
+
+[SOIV Studio_main website(Private)](https://github.com/SOIV/SOIV-Studio_main-website)
 - - -
 개인 봇이 아닌 정식 라이브 서비스를 위한 계획과 작업을 진행중입니다.
 
