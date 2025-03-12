@@ -7,16 +7,33 @@
 - 5.0.0은 봇에게 대시보드를 적용한 후의 버전
 - 모든 버전이 적용되고 안정화 페치 및 그외 기타 업데이트에 관한 버전은 5.5.0 ~ 6.0.0 버전으로 적용한다.
 
+- 대시보드 버전 관리는 별도로 진행한다.
+  * 기본 1.0.0 부터 시작하여 Front-end, Back-end의 개별레포와 버전을 개별로 관리한다.
+  * [HYolss Dashboard Web_Front-end :: Github](https://github.com/SOIV/HYolss-Dashboard-Web_Front-end)
+  * [HYolss Dashboard Web_Back-end :: Github](https://github.com/SOIV/HYolss-Dashboard-Web_Back-end)
+- 메인 웹사이트는 별도의 레포로 관리하여 버전 관리를 한다.
+  * 메인 웹사이트 또한 1.0.0 부터 시작하며 Front-end, Back-end를 모노레포로 관리한다.
+  * [SOIV Studio_main website(Private) :: Github](https://github.com/SOIV/SOIV-Studio_main-website)
+
+- 모든 웹사이트와 봇과의 연동은 API를 통하여 통신한다.
+- statuspage를 제작하여 `status.website.com`으로 표기한다.
+  * 메인 웹사이트, 대시보드, 디스코드 봇 등 SOIV Studio와 연관된 모든 서비스 상태를 여기서 확인 가능하도록 한다.
+
 ## 1. 웹사이트 구조
 
 ### 메인 사이트 구조
 - `website.com/` (메인)
 - `website.com/portfolio` (작업물)
 - `website.com/commission` (커미션)
+- `website.com/(discordbotname)-bot` (디스코드 봇 메인 페이지)
+
+- `website.com/account/dashboard` (웹사이트 대시보드)
+- `website.com/account` (웹사이트 어카운트 페이지)
+
 - `website.com/service/agreement` (이용약관) terms-of-service
 - `website.com/service/privacy` (개인정보처리방침) privacy-policy
-- `website.com/(discordbotname)-bot` (디스코드 봇 메인 페이지)
-- `website.com/status` (statuspage)
+
+- `status.website.com/` (statuspage)
 
 ### 대시보드 구조
 - `dashboard.website.com` (봇 대시보드)
@@ -478,7 +495,7 @@
   * 활동기능을 활용한 음악 재생
     - 예쁘지만 심플한 재생 UI
 
-### 2-8. 변역 시스템
+### 2-8. 변역 시스템(Translate)
 [API] [slash-command] [Embed] [Message-Components]
 - 지원하는 변역 시스템
   * 채팅
@@ -737,11 +754,48 @@
   * 자동 샤드 스케일링 시스템
   * 샤드 상태 모니터링
   * 샤드간 데이터 동기화 전략
-- Custom branded bots에 대한 별도 서버 준비 작업 및 대응 [Premium 시스템에 포함됨]
+- Custom branded bots에 대한 별도 서버 준비 작업 및 대응
   * 전용 인프라 구성
   * 리소스 격리
   * 커스텀 도메인 지원
   * 전용 모니터링 시스템
+
+### Premium
+- Premium에 관하여
+  * Premium은 제한되어 있는 기능들을 원활하게 사용과 잠겨있는 기능들을 사용하기 위해 존제하는 유료 콘텐츠입니다.
+  * 결제 방식은 매월, 매년, 평생을 전부 지원하며 일부 기능은 평생 결제를 지원하지 않습니다.
+  * 플레티넘 1개 결제시 최대 서버 2~3개의 서버에서 사용이 가능하며 서버 선택은 니트로 부스터처럼 선택 및 변경이 가능합니다.
+    - 서버 변경은 매달 1회가 최대입니다. / 디스코드 니트로 부스터와 같은 방식
+  * Premium 결제 등급은 다음과 같이 선택하여 사용이 가능합니다.
+    - default Premium
+      * 가장 기본적인 봇 이름과 프로필 이미지 변경, 제한되지 않은 기능 사용이 들어있는 페키지 입니다.
+    - default Premium (AI+)
+      * default Premium에서 제한되지 않은 AI 시스템이 포함된 페키지입니다.
+    - Premium (AI+)
+      * 봇 이름과 프로필 이미지 변경, 제한되지 않은 AI 시스템만 포함된 페키지입니다.
+    - Premium Custom for AI+
+      * default Premium (AI+) 및 Custom branded bots가 포함된 페키지입니다.
+- 결제 시스템은 토스페이먼츠를 사용
+  * 국내 결제, 해외 결제 전부 토스페이먼츠를 사용
+  * 해외 결제는 토스페이먼츠를 사용하되 페이팔 연동하여 사용 가능
+  * [토스페이먼츠(Tosspayments)](https://developers.tosspayments.com/)
+- Premium 기본 포함된 내용
+  * 봇 이름 변경
+  * 봇 프로필 이미지 변경
+  * 제한되지 않은 기능 사용
+    - 커스텀 명령어
+    - 채널 시스템
+    - 양식 시스템
+    - 추첨/투표 시스템
+    - Social Notifications
+    - Music
+    - Translate
+    - 게임 내전/대회
+  * 제한되지 않은 AI 시스템
+    - default AI system
+    - AI chat system
+- Premium 선텍적 내용
+  * Custom branded bots (추가금 발생/별도 결제 가능)
 
 ## 5. 문서 작업 및 커뮤니티
 
