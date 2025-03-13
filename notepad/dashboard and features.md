@@ -21,6 +21,10 @@
 
 ## 1. 웹사이트 구조
 
+- 도메인 : [호스팅케이알(hosting.kr)](https://www.hosting.kr/)
+- DNS, DDoS, Workers 및 Pages, CDN : [클라우드플레어(cloudflare)](https://www.cloudflare.com/)
+- 서버 : [AWS](https://aws.amazon.com/)
+
 ### 메인 사이트 구조
 - `website.com/` (메인)
 - `website.com/portfolio` (작업물)
