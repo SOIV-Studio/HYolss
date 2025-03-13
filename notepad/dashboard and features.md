@@ -26,26 +26,26 @@
 - 서버 : [AWS](https://aws.amazon.com/)
 
 ### 메인 사이트 구조
-- `website.com/` (메인)
-- `website.com/portfolio` (작업물)
-- `website.com/commission` (커미션)
-- `website.com/(discordbotname)-bot` (디스코드 봇 메인 페이지)
+- `soiv-studio.xyz/` (메인)
+- `soiv-studio.xyz/portfolio` (작업물)
+- `soiv-studio.xyz/commission` (커미션)
+- `soiv-studio.xyz/(discordbotname)-bot` (디스코드 봇 메인 페이지)
 
-- `website.com/account/dashboard` (웹사이트 대시보드)
-- `website.com/account` (웹사이트 어카운트 페이지)
+- `soiv-studio.xyz/account/dashboard` (웹사이트 대시보드)
+- `soiv-studio.xyz/account` (웹사이트 어카운트 페이지)
 
-- `website.com/service/agreement` (이용약관) terms-of-service
-- `website.com/service/privacy` (개인정보처리방침) privacy-policy
+- `soiv-studio.xyz/service/agreement` (이용약관) terms-of-service
+- `soiv-studio.xyz/service/privacy` (개인정보처리방침) privacy-policy
 
-- `status.website.com/` (statuspage)
+- `status.soiv-studio.xyz/` (statuspage)
 
 ### 대시보드 구조
-- `dashboard.website.com` (봇 대시보드)
+- `dashboard.soiv-studio.xyz` (봇 대시보드)
     * 디스코드 OAuth2 로그인 사용
     * 봇 관련 기능 전용 대시보드
     * SOIV_Studio-Project_BOT 에서 제작된 모든 디스코드 봇을 관리가 가능한 대시보드
-- `dashboard.website.com/serverid/home` (home)
-- `dashboard.website.com/serverid/**` (기능)
+- `dashboard.soiv-studio.xyz/serverid/home` (home)
+- `dashboard.soiv-studio.xyz/serverid/**` (기능)
   * `dashboard.website.com/serverid/general-settings`
   * `dashboard.website.com/serverid/commands`
   * `dashboard.website.com/serverid/auto-moderation`
@@ -59,11 +59,11 @@
   * `dashboard.website.com/serverid/utility`
   * `dashboard.website.com/serverid/Music`
   * `dashboard.website.com/serverid/translate`
-- `dashboard.website.com/serverid/Premium/buy` (Premium - buy)
-  * `dashboard.website.com/serverid/Premium/settings` (Premium - settings)
-- `dashboard.website.com/serverid/new` (실험실/얼리 엑세스)
-- `dashboard.website.com/serverid/developer` (개발자 대시보드)
-  * `dashboard.website.com/developer`
+- `dashboard.soiv-studio.xyz/serverid/Premium/buy` (Premium - buy)
+  * `dashboard.soiv-studio.xyz/serverid/Premium/settings` (Premium - settings)
+- `dashboard.soiv-studio.xyz/serverid/new` (실험실/얼리 엑세스)
+- `dashboard.soiv-studio.xyz/serverid/developer` (개발자 대시보드)
+  * `dashboard.soiv-studio.xyz/developer`
 
 ### 로그인 시스템
 1. 메인 사이트
