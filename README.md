@@ -14,7 +14,7 @@ HYolss는 기존 개인이 사용하기 위해 제작한 디스코드 봇입니�
 
 [Discord Bot add link](https://discord.com/oauth2/authorize?client_id=888061096441819166)
 
-[HYolss Dashboard Web_Front-end](https://github.com/SOIV/HYolss-Dashboard-Web_Front-end)
+[HYolss Dashboard Web_Front-end](https://github.com/SOIV/HYolss-Dashboard-Web_Front-end) / 
 [HYolss Dashboard Web_Back-end](https://github.com/SOIV/HYolss-Dashboard-Web_Back-end)
 
 [SOIV Studio_main website(Private)](https://github.com/SOIV/SOIV-Studio_main-website)
