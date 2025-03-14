@@ -815,6 +815,9 @@
 - 안전한 운영 및 필요한 약관 및 정책에 대한 내용 작성 필수 (언어에 따른 한국어, 영어 작성 필요)
 - 서비스 약관 : terms-of-service
 - 개인정보 보호정책 : privacy-policy
+- 철회권 : Right of withdrawal
+- 법적 고지 : Legal Notice
+- Licenses : 제작하는데 포함된 라이브러리
 
 ### 개발자 문서화 및 가이드라인
 - API 문서화
