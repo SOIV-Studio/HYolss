@@ -13,17 +13,27 @@
   * [HYolss Dashboard Web_Back-end :: Github](https://github.com/SOIV/HYolss-Dashboard-Web_Back-end)
 - 메인 웹사이트는 별도의 레포로 관리하여 버전 관리를 한다.
   * 메인 웹사이트 또한 1.0.0 부터 시작하며 Front-end, Back-end를 모노레포로 관리한다.
-  * [SOIV Studio_main website(Private) :: Github](https://github.com/SOIV/SOIV-Studio_main-website)
+  * 모노레포 메인 관리는 Front-end 레포에서 사용되며 Back-end 레포는 추후 서비스 중 분리 작업이 필요할때 사용될 예정
+  * [SOIV-Studio_website_Front-end(Private) :: Github](https://github.com/SOIV/SOIV-Studio_website_Front-end)
+  * [SOIV-Studio_website_Back-end(Private) :: Github](https://github.com/SOIV/SOIV-Studio_website_Back-end)
 
 - 모든 웹사이트와 봇과의 연동은 API를 통하여 통신한다.
 - statuspage를 제작하여 `status.website.com`으로 표기한다.
   * 메인 웹사이트, 대시보드, 디스코드 봇 등 SOIV Studio와 연관된 모든 서비스 상태를 여기서 확인 가능하도록 한다.
+  * 자체 제작 페이지가 될 가능성도 있음 / 기본 statuspage으로만은 추가 관리 및 확인이 가능한 대시보드가 필요하기 때문
 
 ## 1. 웹사이트 구조
 
 - 도메인 : [호스팅케이알(hosting.kr)](https://www.hosting.kr/)
 - DNS, DDoS, Workers 및 Pages, CDN : [클라우드플레어(cloudflare)](https://www.cloudflare.com/)
 - 서버 : [AWS](https://aws.amazon.com/)
+- 이메일
+  * 메인 : biz@soiv-studio.xyz
+    - 기본 모든 메일을 받는 메일 주소 / 문의, 광고, ETC
+  * 서브 : help@soiv-studio.xyz
+    - 웹페이지 또는 기타 서비스에서 별도로 도움이 필요할때 사용되거나 메인 메일이 작동 불능일때 사용하는 메일일
+  * 자동메일 : noreply@soiv-studio.xyz
+    - 인증코드, 회원가입, 회원탈퇴 등등
 
 ### 메인 사이트 구조
 - `soiv-studio.xyz/` (메인)
@@ -295,21 +305,29 @@
 ### 2-2. 플렛폼 알림 시스템(Social Notifications)
 [대시보드] [API] [DB] [slash-command] [Embed]
 - 스트리밍 플랫폼 알림 (플렛폼 우선순번)
-  * YouTube (동영상, 라이브(방송), 최초공개, 쇼츠, 게시물(커뮤니티))
-  * CHZZK (방송, 게시물(커뮤니티))
-  * SOOP (방송, 게시물(커뮤니티))
-  * Twitch (방송, 게시물(커뮤니티))
-  * KICK (방송, 게시물(커뮤니티))
-  * TikTok (동영상 / 또 더 있나?)
+  * YouTube : 공식 API 지원
+  * Vimeo : 유튜브랑 똑같이 가능
+  * Twitch : 공식 API 지원
+  * CHZZK : API 제작 또는 라이브러리 제작 필요
+  * SOOP : API 존제 여부 확인 필요 / 없으면 제작 필요
+  * TikTok : 가능은 하는데 좀 힘듬
+  * KICK : 안됨 (API 존제 여부가 확인 불가능)
+  * Facebook Live : 안됨 (API 지원 X)
+  * Instagram Live : 당연히 안됨 (API 지원 X)
   * 그외 여러 플랫폼
-- SNS 알림 (동시 구현)
-  * X(Twitter)
-  * Instagram
-  * Bluesky
-  * Threads
-  * Facebook
+- SNS 알림 (마지막 과제)
+  * X(Twitter) : API 유료
+  * Instagram : 지원 종료(API에서 계시글 전송 불가)
+  * Bluesky : 복잡함
+  * Threads : API에서 계시글 전송 불가
+  * Facebook : API에서 계시글 전송 불가
+  * NAVER Cafe : 크롤링으로 제목에 링크로 알림 가능
+  * Tumblr : 공식 API 지원
+  * Mastodon : 공식 API 지원
+  * Reddit : 공식 API 지원
+  * RSS Feeds : 이건 그냥 만들면 됨
+  * Podcast : 이건 머지; 그냥 안만들레요
   * 그외 여러 SNS
-  * 지원 가능 여부 확인 불가능 : NAVER Cafe, Tumblr, Mastodon, Reddit, RSS Feeds, Podcast
 - 작업 및 표시 방식
     - 모든 표시방식은 Embed, Message Component 방식을 사용
     - 메시지 Embed 내용 설정은 기본값을 만들어두고 추후 대시보드에서 수정을 할 수 있도록 적용
@@ -491,7 +509,11 @@
 
 ### 2-7. 음악 시스템
 [대시보드] [API] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
-- 지원 플렛폼 : YouTube(YouTube/YouTube Music), Spotify, SoundCloud
+- 지원 플렛폼
+  * YouTube(YouTube/YouTube Music) : 공식 API 지원
+  * Spotify : API 지원은 하나 최근 정책 변경으로 불가능 가능성 있음
+  * SoundCloud : 공식 API 지원
+  * 그외 플렛폼은 지원 예정 없음 (유튜브만 있어도 왠만한거는 다 틀수 있지 않음?)
 - 시스템 제작 여부는 확정되지 않았습니다.
 - 별계의 봇으로 운영 될 가능성도 있음 / 실험실을 통하여 테스트 가능성 있음
 - 시스템 방식
@@ -499,6 +521,9 @@
   * MV 또는 영상을 볼 수 있도록 화면 송출 시스템
   * 활동기능을 활용한 음악 재생
     - 예쁘지만 심플한 재생 UI
+    - 오른쪽에 재생 상태 UI (재생목록은 펼첬다가 접었다가 가능)
+    - 왠쪽에 검색 UI
+    - MV 버튼을 통해 영상 시청 가능
 
 ### 2-8. 변역 시스템(Translate)
 [API] [slash-command] [Embed] [Message-Components]
