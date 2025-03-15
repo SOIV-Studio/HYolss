@@ -48,6 +48,10 @@
 - `soiv-studio.xyz/service/privacy` (개인정보처리방침) privacy-policy
 
 - `status.soiv-studio.xyz` (statuspage)
+  * `status.soiv-studio.xyz/dashboard` (statuspage Dashboard)
+- `urlshort.soiv-studio.xyz` (urlshort/링크단축)
+  * `urlshort.soiv-studio.xyz/dashboard` (urlshort Dashboard)
+  * `urlshort.soiv-studio.xyz/movement/**` (urlshort 링크)
 
 ### 대시보드 구조
 - `dashboard.soiv-studio.xyz` (봇 대시보드)
