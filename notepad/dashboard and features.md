@@ -44,8 +44,8 @@
 - `soiv-studio.xyz/account/dashboard` (웹사이트 대시보드)
 - `soiv-studio.xyz/account` (웹사이트 어카운트 페이지)
 
-- `soiv-studio.xyz/service/agreement` (이용약관) terms-of-service
-- `soiv-studio.xyz/service/privacy` (개인정보처리방침) privacy-policy
+- `soiv-studio.xyz/service/terms-of-service` (이용약관) terms-of-service
+- `soiv-studio.xyz/service/privacy-policy` (개인정보처리방침) privacy-policy
 
 - `status.soiv-studio.xyz` (statuspage)
   * `status.soiv-studio.xyz/dashboard` (statuspage Dashboard)
@@ -73,7 +73,8 @@
   * `dashboard.website.com/serverid/utility`
   * `dashboard.website.com/serverid/Music`
   * `dashboard.website.com/serverid/translate`
-- `dashboard.soiv-studio.xyz/serverid/Premium/buy` (Premium - buy)
+- `dashboard.soiv-studio.xyz/serverid/Premium` (Premium)
+  * `dashboard.soiv-studio.xyz/serverid/Premium/buy` (Premium - buy)
   * `dashboard.soiv-studio.xyz/serverid/Premium/settings` (Premium - settings)
 - `dashboard.soiv-studio.xyz/serverid/new` (실험실/얼리 엑세스)
 - `dashboard.soiv-studio.xyz/serverid/developer` (개발자 대시보드)
@@ -81,8 +82,8 @@
 
 ### 로그인 시스템
 1. 메인 사이트
-    - SNS 로그인 (구글 등) 지원
-    - 일반 회원가입 
+    - SNS 로그인 (구글, 네이버, 카카오, 애플 등) 지원
+    - 일반 회원가입
         * (수집 및 등록 정보 : *이메일, *닉네임, 생년월일 / *처리는 필수 작성)
     - 관리자 전용 로그인 별도 구현(기본 로그인 시스템에 관리자 계정 등록으로도 갠찬을 듯)
 
@@ -99,6 +100,15 @@
     * 추가 SSL 인증서 필요
     * 서브도메인 DNS 설정 필요
     * 서버 비용 증가 가능성
+
+### 회원 정보
+- 닉네임
+- 이메일
+  * 이메일 인증
+- 생년월일
+- 언어
+- SNS 연동
+  - 구글, 네이버, 카카오, 애플, 인스타, 트위터, 디스코드
 
 ## 2. 봇 기능 구현
 
