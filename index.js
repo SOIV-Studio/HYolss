@@ -13,7 +13,13 @@ const clientId = process.env.NODE_ENV === 'development'
     ? process.env.DEV_DISCORD_CLIENT_ID
     : process.env.DISCORD_CLIENT_ID;
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
+    ]
+});
 client.commands = new Collection();
 
 // 명령어 파일 로드 및 등록 함수
