@@ -183,7 +183,7 @@
       * 핑
 - 지원(Support)
   * 지원서버의 초대 링크를 보여줍니다.
-  * 지원 서버 링크 : https://discord.gg/GvpmtExPrf
+  * 지원 서버 링크 : https://discord.gg/te9vPszM9D
 - 대시보드(dashboard)
   * 봇을 쉽게 조작또는 설정 할 수 있는 웹사이트를 안내합니다.
 - 도움말(help)
