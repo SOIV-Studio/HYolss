@@ -169,7 +169,10 @@
   * [AUTO-System] : 자동으로 작동하는 시스템, 사용자가 명령어로 작동하는 방식이 아닌 기능
 
 ### 2-0-1. default command
-- 정보(info) / 이미 제작됨, 내용 수정에 필요할 수 있음
+[slash-command] [Prefix] [Embed] [Message-Components]
+- default command은 유저가 기능을 끌수 없는 명령어입니다.
+
+- 정보(info) / 제작 완료, 내용 수정에 필요할 수 있음
   * 봇 정보를 보여줍니다.
   * 포함될 내용
     - 버전
@@ -181,15 +184,15 @@
     - Discord 관련 정보
       * 서버 수
       * 핑
-- 지원(Support) / 이미 제작됨
+- 지원(Support) / 제작 완료
   * 지원서버의 초대 링크를 보여줍니다.
   * 지원 서버 링크 : https://discord.gg/te9vPszM9D
-- 대시보드(dashboard) / 이미 제작됨
+- 대시보드(dashboard) / 제작 완료
   * 봇을 쉽게 조작또는 설정 할 수 있는 웹사이트를 안내합니다.
 - 도움말(help) / 임시 기반을 제작했으나 추후 대대적으로 수정과 업데이트 필요
   * 조작하기 힘든 명령어나 일부 설명이 필요한 명령어들을 알려줍니다.
   * 이 도움말은 'dcbdocs.soiv-studio.xyz'를 기반으로 알려주지만 간편적으로만 알려주기에 세부적인건 도움말 페이지를 접속하여 확인
-- 핑(ping) / 이미 제작됨
+- 핑(ping) / 제작 완료
   * 서버와의 핑 테스트를 보여줍니다.
 
 ### 2-0-2. MAIN AI 시스템 (default AI system)
@@ -325,19 +328,29 @@
         ```
     - 그외 특정 기반 메시지(확정되지 않은 조건)
 
-### 2-2. 플렛폼 알림 시스템(Social Notifications)
+### 2-2. 플랫폼 알림 시스템(Social Notifications)
 [대시보드] [API] [DB] [slash-command] [Embed]
-- 스트리밍 플랫폼 알림 (플렛폼 우선순번)
-  * YouTube : 공식 API 지원
-  * Vimeo : 유튜브랑 똑같이 가능
-  * Twitch : 공식 API 지원
-  * CHZZK : API 제작 또는 라이브러리 제작 필요
-  * SOOP : API 존제 여부 확인 필요 / 없으면 제작 필요
-  * TikTok : 가능은 하는데 좀 힘듬
-  * KICK : 안됨 (API 존제 여부가 확인 불가능)
-  * Facebook Live : 안됨 (API 지원 X)
-  * Instagram Live : 당연히 안됨 (API 지원 X)
-  * 그외 여러 플랫폼
+- 스트리밍 플랫폼 알림 (플랫폼 우선순번)
+  * 지원하는 플랫폼
+    - YouTube
+    - Vimeo
+    - Twitch
+    - CHZZK
+    - SOOP
+    - TikTok
+    - KICK
+    - 그외 여러 플랫폼
+  * 각 플랫폼의 API 지원 여부부
+    - YouTube : 공식 API 지원
+    - Vimeo : 유튜브랑 똑같이 가능
+    - Twitch : 공식 API 지원
+    - CHZZK : 공식 API 지원 / 공식에서 지원하는 API 기능이 많지 않음
+    - SOOP : 공식 API 지원 / 다만 개인 개발자에게는 공개되지 않음
+    - TikTok : 공식 API 지원 / Docs 문서가 머 이리저리 많냐..
+    - KICK : 공식 API 지원 / API 여부는 확인 했으나 세부적으로 확인 필요
+    - Facebook Live : 안됨 (API 지원 X)
+    - Instagram Live : 당연히 안됨 (API 지원 X)
+    - X(Twitter) Live : 안되거나 유료
 - SNS 알림 (마지막 과제)
   * X(Twitter) : API 유료
   * Instagram : 지원 종료(API에서 계시글 전송 불가)
