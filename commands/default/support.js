@@ -40,7 +40,7 @@ module.exports = {
     // 접두사 명령어 실행 함수
     async executePrefix(message, args) {
         // 지원 서버 링크
-        const supportServerLink = 'https://discord.gg/GvpmtExPrf';
+        const supportServerLink = 'https://discord.gg/te9vPszM9D';
         
         // Embed 생성
         const supportEmbed = new EmbedBuilder()
