@@ -15,11 +15,9 @@ module.exports = {
         // Competing : 경쟁 중
         const activities = [
             { name: '지옥에서 살아 돌아왔다!', type: ActivityType.Custom },
-            { name: '오늘의 메뉴는?', type: ActivityType.Custom },
             { name: '동행자님! 무엇을 도와드릴까요?', type: ActivityType.Custom },
             { name: '저는 열심히 성장하고 여러가지를 해보고 싶어요!', type: ActivityType.Custom },
             { name: '저의 성정과 함께 키워나갈 개발자는 없나요?', type: ActivityType.Custom },
-            { name: '저의 주인장은 SOIV라는 사람인데요..', type: ActivityType.Custom },
             { name: '저는 SOIV Studio에 소속된 Discord BOT이에요!', type: ActivityType.Custom }
         ];
 

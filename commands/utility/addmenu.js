@@ -17,7 +17,7 @@ async function appendToFile(filePath, newMenu) {
         fs.appendFileSync(filePath, `\n${newMenu}`);
         return { success: true, message: '메뉴가 성공적으로 추가되었습니다.' };
     } catch (error) {
-        console.error('Error in appendToFile:', error);
+        console.error('[ERROR] Error in appendToFile:', error);
         return { success: false, message: '메뉴 추가 중 오류가 발생했습니다.' };
     }
 }

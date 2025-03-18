@@ -11,8 +11,8 @@ const client = new Client({
 });
 
 client.once('ready', () => {
-    console.log(`Using ${process.env.NODE_ENV} environment`);
-    console.log('서버 점검 모드가 활성화되었습니다.');
+    console.log(`[INFO] Using ${process.env.NODE_ENV} environment`);
+    console.log('[INFO] 서버 점검 모드가 활성화되었습니다.');
     
     // 봇 상태를 "점검 중"으로 설정
     client.user.setPresence({
@@ -36,7 +36,7 @@ client.on('interactionCreate', async interaction => {
 
 // 에러 핸들링
 client.on('error', error => {
-    console.error('봇 에러 발생:', error);
+    console.error('[ERROR] 봇 에러 발생:', error);
 });
 
 // 봇 시작
@@ -45,7 +45,7 @@ async function startBot() {
         await client.login(token);
         console.log(`Ready! Logged in as ${client.user.tag}`);
     } catch (error) {
-        console.error('점검 모드로 로그인 실패:', error);
+        console.error('[ERROR] 점검 모드로 로그인 실패:', error);
     }
 }
 

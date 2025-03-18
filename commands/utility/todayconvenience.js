@@ -6,18 +6,18 @@ const path = require('path');
 function getRandomWord() {
     try {
         const wordsPath = path.join(__dirname, '..', '..', 'random-words-store', 'convenience.txt');
-        console.log('Reading file from path:', wordsPath);
+        console.log('[INFO] Reading file from path:', wordsPath);
         
         const fileContent = fs.readFileSync(wordsPath, 'utf8');
         const words = fileContent.split('\n').map(word => word.trim()).filter(word => word !== '');
         
         if (words.length === 0) {
-            throw new Error('No words found in the file');
+            throw new Error('[ERROR] No words found in the file');
         }
         
         return words[Math.floor(Math.random() * words.length)];
     } catch (error) {
-        console.error('Error in getRandomWord:', error);
+        console.error('[ERROR] Error in getRandomWord:', error);
         throw error;
     }
 }
@@ -44,7 +44,7 @@ module.exports = {
                 // ephemeral: false 옵션 제거 (기본값이 false이므로 생략 가능)
             });
         } catch (error) {
-            console.error('Error in 오늘의편의점 command:', error);
+            console.error('[ERROR] Error in 오늘의편의점 command:', error);
             const errorEmbed = new EmbedBuilder()
                 .setColor('#FF0000')
                 .setTitle('❌ 오류 발생')

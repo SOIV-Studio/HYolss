@@ -55,7 +55,7 @@ module.exports = {
                         }
                     }
                 } catch (error) {
-                    console.error(`Error loading prefix commands from ${folder} folder:`, error);
+                    console.error(`[ERROR] Error loading prefix commands from ${folder} folder:`, error);
                 }
             }
         }
@@ -70,7 +70,7 @@ module.exports = {
         try {
             await command.executePrefix(message, args);
         } catch (error) {
-            console.error(`Error executing prefix command ${commandName}:`, error);
+            console.error(`[ERROR] Error executing prefix command ${commandName}:`, error);
             await message.reply('명령어 실행 중 오류가 발생했습니다.');
         }
     },
