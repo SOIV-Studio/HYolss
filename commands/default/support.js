@@ -15,7 +15,7 @@ module.exports = {
     // 슬래시 명령어 실행 함수
     async execute(interaction) {
         // 지원 서버 링크
-        const supportServerLink = 'https://discord.gg/te9vPszM9D';
+        const supportServerLink = 'https://discord.gg/tVnhbaB9yY';
         
         // Embed 생성
         const supportEmbed = new EmbedBuilder()
@@ -40,7 +40,7 @@ module.exports = {
     // 접두사 명령어 실행 함수
     async executePrefix(message, args) {
         // 지원 서버 링크
-        const supportServerLink = 'https://discord.gg/te9vPszM9D';
+        const supportServerLink = 'https://discord.gg/tVnhbaB9yY';
         
         // Embed 생성
         const supportEmbed = new EmbedBuilder()
