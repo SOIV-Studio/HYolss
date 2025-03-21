@@ -116,7 +116,7 @@
 - SNS 연동
   - 구글, 네이버, 카카오, 애플, 인스타, 트위터, 디스코드
 
-## 2. 봇 기능 구현
+## 2. 봇 기능 구현 (MODULES)
 
 - 봇 캐릭터 작업 필요(별계의 작업/AI chat 작업 전에 작업 필요)
   * 신규 오리지널 캐릭터 및 설정 작업 필요, 캐릭터에 맞는 이름 적용
@@ -382,7 +382,7 @@
   * 서버내에 있는 관리진에게 문의를 남길 수 있는 시스템
   * 대표적인 봇 : Ticket Tool, ModMail
 
-### 2-4. 유틸리티
+### 2-4. 유틸리티(Utility)
 [대시보드] [API] [DB] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
 - 오늘의 시리즈(이미 제작됨/한국어 전용)
   * 메뉴 추가(개발자 전용)
@@ -490,6 +490,7 @@
   ```
 - Emote 시스템 (확정 안됨)
   * BTTV, 7TV와 같은 이모티콘(이모지)를 사용 하거나 서버내에 등록을 할 수 있도록 제작
+  * BTTV API 공식 지원 확인됨 / 
 
 ### 2-5. 서버 설정 복원 시스템
 [대시보드] [DB] [AUTO-System]
@@ -570,9 +571,11 @@
     - 일부 시스템에서만 지원합니다.
 - 지원 하는 API
   * 구글 변역기 API
-    - 메인으로 작동동
-  * 네이버 파파고 API(미확정)
+    - default Translate API
+  * 네이버 파파고(papago) API(미확정)
+    - 유료 서비스인 Premium에 포함될 예정 / API 자체가 유료임
     - 사용 가능할 경우 유저가 설정을 변경하여 사용 가능
+    - Papago Text Translation, Papago Language Detection
 
 ### 2-9. 게임관련 시스템
 [API] [slash-command] [Embed] [Message-Components]
@@ -591,7 +594,11 @@
 - 단일 AI 채팅 시스템이 아닌 AI버튜버인 뉴로사마(Neurosama)와 같이 성격이 부여된 AI 채팅 시스템
 - TTS, Live2D를 디스코드 내에 적용할 예정은 1도 없음
   * 하게 되면 너무 많은 작업이 요구됨
-  * 물론 딥 러닝을 통한 게임 플레이는 X / 채팅으로 놀고 간단한 게임하고 하는건 가능할지도?
+  * 물론 딥 러닝을 통한 게임 플레이는 X(이건 뉴로사마(Neurosama)으로 충분... 뉴로사마 발전할때마다 놀라움을..)
+  * 채팅으로 놀고 간단한 게임하고 하는건 가능할지도?
+- AI가 직접적으로 사용 가능한 활동
+  * Google search (제한적 검색)
+  * Translate
 - 모델 선택 및 학습
     * 기본 모델 선택 (GPT-3.5/4, LLaMA, Claude, LLM(딥러닝 기반) 등)
     * Fine-tuning 데이터셋 구축
@@ -781,6 +788,14 @@
     - AI chat system
 - Premium 선텍적 내용
   * Custom branded bots (추가금 발생/별도 결제 가능)
+
+### 제휴(coalition)
+제휴 관련 연락은 개발자의 연락처로 문의를 남기면 개발자가 검토 후 계약을 하는 방식
+- 제휴에 포함되는 기본적인 리스트
+  * 기본적인 디스코드 봇에 대한 모든 기능들
+  * Premium (Premium Custom for AI+)
+  * 가장 우선 순위 지원
+  * 안정적인 릴리즈 버전과 원활한 라이브 서비스
 
 ## 5. 추가 고려사항
 
