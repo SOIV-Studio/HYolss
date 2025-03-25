@@ -9,13 +9,13 @@
 
 - 대시보드 버전 관리는 별도로 진행한다.
   * 기본 1.0.0 부터 시작하여 Front-end, Back-end의 개별레포와 버전을 개별로 관리한다.
-  * [HYolss Dashboard Web_Front-end :: Github](https://github.com/SOIV/HYolss-Dashboard-Web_Front-end)
-  * [HYolss Dashboard Web_Back-end :: Github](https://github.com/SOIV/HYolss-Dashboard-Web_Back-end)
+  * [HYolss Dashboard Web_Front-end(Private) :: Github](https://github.com/SOIV-Studio/HYolss-Dashboard-Web_Front-end)
+  * [HYolss Dashboard Web_Back-end(Private) :: Github](https://github.com/SOIV-Studio/HYolss-Dashboard-Web_Back-end)
 - 메인 웹사이트는 별도의 레포로 관리하여 버전 관리를 한다.
   * 메인 웹사이트 또한 1.0.0 부터 시작하며 Front-end, Back-end를 모노레포로 관리한다.
   * 모노레포 메인 관리는 Front-end 레포에서 사용되며 Back-end 레포는 추후 서비스 중 분리 작업이 필요할때 사용될 예정
-  * [SOIV-Studio_website_Front-end(Private) :: Github](https://github.com/SOIV/SOIV-Studio_website_Front-end)
-  * [SOIV-Studio_website_Back-end(Private) :: Github](https://github.com/SOIV/SOIV-Studio_website_Back-end)
+  * [SOIV-Studio_website_Front-end :: Github](https://github.com/SOIV-Studio/main-website_Front-end)
+  * [SOIV-Studio_website_Back-end(Private) :: Github](https://github.com/SOIV-Studio/main-website_Back-end)
 
 - 모든 웹사이트와 봇과의 연동은 API를 통하여 통신한다.
 - statuspage를 제작하여 `status.website.com`으로 표기한다.
