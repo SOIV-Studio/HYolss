@@ -2,6 +2,23 @@ SOIV_Studio-Project_BOT-C_2020~2025
 # Discord_BOT_HYolss
 HYolss는 개인이 사용하기 위해 제작된 디스코드 봇입니다.
 
+제작하게 된 이유는 사용하는 봇의 기능들을 한 봇에서 구동해서 사용 해보고 싶다라는 생각에서 시작된 프로젝트겸 개인 예산을 사용하여 취미적으로 제작하는 디스코드 봇임을 밝힘니다.
+- 참고 및 사용된 디스코드 봇은 다음과 같습니다.
+    * Zira
+    * Sapphire
+    * MEE6
+    * Ticket Tool
+    * ModMail
+    * TempVoice
+    * InviteManagement
+    * Xenon
+    * MonitoRSS
+    * Streamcord
+    * 치직
+    * appeal.gg
+
+기능 사용에 관해서는 전부 무료로 사용을 할 수 있도록 운영할 생각이지만, 일부 기능에 한에서 Premium 유료 요금제가 적용이 될 수 있읍니다.
+
 코딩을 해본적이 없는 사람이라 코드가 무척 지저분할 수 있으니 양해바랍니다.
 
 # 커뮤니티
@@ -14,10 +31,10 @@ HYolss는 기존 개인이 사용하기 위해 제작한 디스코드 봇입니�
 
 [Discord Bot add link](https://discord.com/oauth2/authorize?client_id=888061096441819166)
 
-[HYolss Dashboard Web_Front-end](https://github.com/SOIV/HYolss-Dashboard-Web_Front-end) / 
-[HYolss Dashboard Web_Back-end](https://github.com/SOIV/HYolss-Dashboard-Web_Back-end)
+[HYolss Dashboard Web_Front-end](https://github.com/SOIV-Studio/HYolss-Dashboard-Web_Front-end) / 
+[HYolss Dashboard Web_Back-end](https://github.com/SOIV-Studio/HYolss-Dashboard-Web_Back-end)
 
-[SOIV Studio_main website(Private)](https://github.com/SOIV/SOIV-Studio_main-website)
+[SOIV Studio_main website(Private)](https://github.com/SOIV-Studio/main-website_Front-end)
 - - -
 개인 봇이 아닌 정식 라이브 서비스를 위한 계획과 작업을 진행중입니다.
 
