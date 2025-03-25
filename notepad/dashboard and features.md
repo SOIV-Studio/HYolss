@@ -209,7 +209,7 @@
   * 사용자 상태 메시지 (기본값, AI LLM에서 호출되는 봇의 감정 상태 등)
   * 그외 AI 시스템이 필요한 기능들 (꼭 필요하다라는 값이 정해 젔을 경우에만 AI 적용)
 
-### 2-1. 서버 입장 시스템 [메시지 조건 2개를 제외한 작업 완료]
+### 2-1-1. 서버 입장 시스템 [메시지 조건 2개를 제외한 작업 완료]
 [API] [DB] [Embed] [Message-Components] [AUTO-System]
 1. 초대자 기반 메시지
     ```javascript
@@ -328,70 +328,84 @@
         ```
     - 그외 특정 기반 메시지(확정되지 않은 조건)
 
-### 2-2. 플랫폼 알림 시스템(Social Notifications)
-[대시보드] [API] [DB] [slash-command] [Embed]
-- 스트리밍 플랫폼 알림 (플랫폼 우선순번)
-  * 지원하는 플랫폼
-    - YouTube
-    - Vimeo
-    - Twitch
-    - CHZZK
-    - SOOP
-    - TikTok
-    - KICK
-    - 그외 여러 플랫폼
-  * 각 플랫폼의 API 지원 여부부
-    - YouTube : 공식 API 지원
-    - Vimeo : 유튜브랑 똑같이 가능
-    - Twitch : 공식 API 지원
-    - CHZZK : 공식 API 지원 / 공식에서 지원하는 API 기능이 많지 않음
-    - SOOP : 공식 API 지원 / 다만 개인 개발자에게는 공개되지 않음
-    - TikTok : 공식 API 지원 / Docs 문서가 머 이리저리 많냐..
-    - KICK : 공식 API 지원 / API 여부는 확인 했으나 세부적으로 확인 필요
-    - Facebook Live : 안됨 (API 지원 X)
-    - Instagram Live : 당연히 안됨 (API 지원 X)
-    - X(Twitter) Live : 안되거나 유료
-- SNS 알림 (마지막 과제)
-  * X(Twitter) : API 유료
-  * Instagram : 지원 종료(API에서 계시글 전송 불가)
-  * Bluesky : 복잡함
-  * Threads : API에서 계시글 전송 불가
-  * Facebook : API에서 계시글 전송 불가
-  * NAVER Cafe : 크롤링으로 제목에 링크로 알림 가능
-  * Tumblr : 공식 API 지원
-  * Mastodon : 공식 API 지원
-  * Reddit : 공식 API 지원
-  * RSS Feeds : 이건 그냥 만들면 됨
-  * Podcast : 이건 머지; 그냥 안만들레요
-  * 그외 여러 SNS
-- 작업 및 표시 방식
-    - 모든 표시방식은 Embed, Message Component 방식을 사용
-    - 메시지 Embed 내용 설정은 기본값을 만들어두고 추후 대시보드에서 수정을 할 수 있도록 적용
+### 2-1-2. 서버 설정 복원 시스템
+[대시보드] [DB] [AUTO-System]
+- 서버 설정 복원 시스템은 Xenon 참고
+```javascript
+// 서버 설정 DB 구조
+{
+    guild_id: String,
+    settings: {
+        command_channels: [채널ID들],
+        notification_settings: {
+            twitch: { enabled: Boolean, channel_id: String },
+            youtube: { enabled: Boolean, channel_id: String }
+        },
+        auto_roles: [역할ID들],
+        welcome_message: {
+            enabled: Boolean,
+            channel_id: String,
+            message: String
+        },
+        custom_prefix: String,
+        permissions: {
+            admin_roles: [역할ID들],
+            mod_roles: [역할ID들]
+        }
+    },
+    version: Number,
+    last_updated: Date,
+    settings_history: [{
+        version: Number,
+        changed_at: Date,
+        changed_by: String, // 변경한 관리자/봇 ID
+        changes: {
+            field: String, // 변경된 필드
+            old_value: any, // 이전 값
+            new_value: any  // 새로운 값
+        }
+    }],
+    backup: {
+        enabled: Boolean,
+        interval: String, // 백업 주기
+        last_backup: Date,
+        storage_limit: Number // 보관할 최대 백업 수
+    }
+}
+```
 
-### 2-3. 서버 관리 기능
-[대시보드] [AI] [DB] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
-- 자동 역할 부여
-- 환영 메시지 설정
-- 명령어 권한 관리
-- AutoMod/서버 활동 규정을 적용하여 자동 제재 기능 (경고 및 제재 시스템)
+### 2-2. Essentials
+- 환영 메시지 설정 (Welcome & Goodbye)
+- Welcome Channel
+- Reaction Roles
+- Moderator
+  * AutoMod/서버 활동 규정을 적용하여 자동 제재 기능 (경고 및 제재 시스템)
   * 항소 및 일부 기능 참고 : appeal.gg
-- Logging : 서버내에서 유저 활동 로그 기능(추가 확인및 기획 필요/뽑을 수 있는 모든 로그는 띄울수 있도록)
-- 서버 입장 캡차인증(뷰봇, 광고계정 걸러내기용)
-- 일부 기능은 Zira, Sapphire, MEE6를 참고하여 추가 기능 제작 및 구현
-- 관리자 문의 시스템
+
+### 2-3. 서버 관리(Server Management)
+[대시보드] [AI] [DB] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
+- Automations
+  * 자동 역할 부여
+- Logging
+  * 서버내에서 유저 활동 로그 기능(추가 확인및 기획 필요/뽑을 수 있는 모든 로그는 띄울수 있도록)
+  * Invite Tracker
+- 관리자 문의 시스템 (Ticketing)
   * 서버내에 있는 관리진에게 문의를 남길 수 있는 시스템
   * 대표적인 봇 : Ticket Tool, ModMail
+- 서버 입장 캡차인증(뷰봇, 광고계정 걸러내기용)
+- 명령어 권한 관리 (이거 머였더라?)
+- 일부 기능은 Zira, Sapphire, MEE6를 참고하여 추가 기능 제작 및 구현
+- 멤버 카운트 시스템
+  * 역할 또는 유저와 봇 갯수에 따라 카운드를 표시하는 시스템
+  * 유저와 봇 카운트를 별도로 표시 할 수 있도록 작업 필수
 
-### 2-4. 유틸리티(Utility)
+### 2-4. 유틸리티(Utilitys)
 [대시보드] [API] [DB] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
-- 오늘의 시리즈(이미 제작됨/한국어 전용)
-  * 메뉴 추가(개발자 전용)
-    - [개발자 전용 명령어] 새로운 메뉴를 추가합니다.
-  * 오늘의 메뉴
-    - 오늘의 메뉴를 추천해줍니다.
-  * 오늘의 편의점
-    - 오늘의 편의점 메뉴를 추천해줍니다.
-- 추첨/투표 시스템
+- Emote(Emojis) 시스템
+  * BTTV, 7TV와 같은 이모티콘(이모지)를 사용 하거나 서버내에 등록을 할 수 있도록 제작
+  * BTTV API 공식 지원 확인됨 / 7TV API가 존제는 하나 신규 API관련된 내용이 확인되지 않음
+- 투표 시스템 (Polls)
+- 추첨 시스템 (Giveaways)
   * 여러 방식의 추첨 기능
   * 디스코드 기본 투표 시스템 / 다른 방식의 투표 기능
   * /반응 추첨 영상업로드날짜: 2025-02-28 20:37:00 채널: #🎉ㆍ이벤트 메시지: 1344996894727733288 반응: ✅ 인원: 1
@@ -461,18 +475,17 @@
 - 룰렛 시스템
   * 직접 추가하여 돌릴수 있는 룰렛
   * 시트(엑셀, 구글 시트)를 업로드하여 돌릴수 있는 룰렛
+- Embed Messages
+- Help
+  * 서버의 대시보드 및 도움말 명령을 활성화합니다.
+- Reminders(매크로)
 - 양식 시스템 (대시보드 제작 및 기존 작업 초기화 완료)
   * 관리자가 양식을 만들어서 유저가 그 양식을 작성하여 채팅채널에 전송이 가능한 시스템
   * Message-Components -> Text Inputs 기능을 사용
   * 기본 양식 불러오기는 slash-command으로 사전에 제작된 명령어에서 양식을 선택하여 불러오기
   * 개발자가 사전에 예시로 제작된 양식을 볼 수 있도록 대시보드에서 불투명도 80% 정도의 표시로 볼 수 있도록 작업
-- 채널 시스템
+- Temporary Channels
   * 통화방 생성기 / 예시는 TempVoice를 참고
-- 멤버 카운트 시스템
-  * 역할 또는 유저와 봇 갯수에 따라 카운드를 표시하는 시스템
-  * 유저와 봇 카운트를 별도로 표시 할 수 있도록 작업 필수
-- 재미용 명령어들
-  * 가위바위보
 - 채팅 청소 [청소, prune] (확정 안됨 / 아마 제작 안할듯)
   사용시 뜨는 문구
   ```Embed
@@ -493,69 +506,62 @@
   ```
   자동 삭제 기능이 작동되었어요. 10초후 메시지를 삭제할꺼에요. 'c'를 눌러 취소할 수 있어요
   ```
-- Emote 시스템 (확정 안됨)
-  * BTTV, 7TV와 같은 이모티콘(이모지)를 사용 하거나 서버내에 등록을 할 수 있도록 제작
-  * BTTV API 공식 지원 확인됨 / 7TV API가 존제는 하나 신규 API관련된 내용이 확인되지 않음
 
-### 2-5. 서버 설정 복원 시스템
-[대시보드] [DB] [AUTO-System]
-- 서버 설정 복원 시스템은 Xenon 참고
-```javascript
-// 서버 설정 DB 구조
-{
-    guild_id: String,
-    settings: {
-        command_channels: [채널ID들],
-        notification_settings: {
-            twitch: { enabled: Boolean, channel_id: String },
-            youtube: { enabled: Boolean, channel_id: String }
-        },
-        auto_roles: [역할ID들],
-        welcome_message: {
-            enabled: Boolean,
-            channel_id: String,
-            message: String
-        },
-        custom_prefix: String,
-        permissions: {
-            admin_roles: [역할ID들],
-            mod_roles: [역할ID들]
-        }
-    },
-    version: Number,
-    last_updated: Date,
-    settings_history: [{
-        version: Number,
-        changed_at: Date,
-        changed_by: String, // 변경한 관리자/봇 ID
-        changes: {
-            field: String, // 변경된 필드
-            old_value: any, // 이전 값
-            new_value: any  // 새로운 값
-        }
-    }],
-    backup: {
-        enabled: Boolean,
-        interval: String, // 백업 주기
-        last_backup: Date,
-        storage_limit: Number // 보관할 최대 백업 수
-    }
-}
-```
+### 2-5. 플랫폼 알림 시스템(Social Notifications/Social Alerts)
+[대시보드] [API] [DB] [slash-command] [Embed]
+- 스트리밍 플랫폼 알림 (플랫폼 우선순번)
+  * 각 플랫폼의 API 지원 여부
+    - [O]YouTube : 공식 API 지원
+    - [O]Vimeo : 유튜브랑 똑같이 가능
+    - [O]Twitch : 공식 API 지원
+    - [O]CHZZK : 공식 API 지원 / 공식에서 지원하는 API 기능이 많지 않음
+    - [O]SOOP : 공식 API 지원 / 다만 개인 개발자에게는 공개되지 않음
+    - [O]TikTok : 공식 API 지원 / Docs 문서가 머 이리저리 많냐..
+    - [O]KICK : 공식 API 지원 / API 여부는 확인 했으나 세부적으로 확인 필요
+    - Facebook Live : 안됨 (API 지원 X)
+    - Instagram Live : 당연히 안됨 (API 지원 X)
+    - X(Twitter) Live : 안되거나 유료
+    - 그외 여러 플랫폼
+- SNS 알림 (마지막 과제)
+  * [O]X(Twitter) : API 유료
+  * [O]Instagram : 지원 종료(API에서 계시글 전송 불가)
+  * [O]Bluesky : 복잡함
+  * Threads : API에서 계시글 전송 불가
+  * Facebook : API에서 계시글 전송 불가
+  * NAVER Cafe : 크롤링으로 제목에 링크로 알림 가능
+  * Tumblr : 공식 API 지원
+  * Mastodon : 공식 API 지원
+  * [O]Reddit : 공식 API 지원
+  * [O]RSS Feeds : 이건 그냥 만들면 됨
+  * [O]Podcast : 이건 머지; 그냥 안만들레요
+  * 그외 여러 SNS
+- 작업 및 표시 방식
+    - 모든 표시방식은 Embed, Message Component 방식을 사용
+    - 메시지 Embed 내용 설정은 기본값을 만들어두고 추후 대시보드에서 수정을 할 수 있도록 적용
 
-### 2-6. 커스텀 명령어 시스템
+### 2-6. Games & Fun
+- 오늘의 시리즈(이미 제작됨/한국어 전용)
+  * 메뉴 추가(개발자 전용)
+    - [개발자 전용 명령어] 새로운 메뉴를 추가합니다.
+  * 오늘의 메뉴
+    - 오늘의 메뉴를 추천해줍니다.
+  * 오늘의 편의점
+    - 오늘의 편의점 메뉴를 추천해줍니다.
+- 가위바위보
+- Economy (경재)
+
+### 2-7. 커스텀 명령어 시스템 (Custom Commands)
 [대시보드] [DB] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
 - 대시보드 작업과 동시에 작업 예정 [커스텀 명령어 작성을 명령어로는 복잡 해질 경우가 있음]
 - 간편모드로 MEE6, Sapphire와 같은 커스텀 명령어 제작 방식
-- node.js, CSS으로 직접 명령어 코딩을 하여 작동하는 방식 (고급 사용자용)
+- JavaScript, CSS으로 직접 명령어 코딩을 하여 작동하는 방식 (고급 사용자용)
 - 기본 기능
   * 커스텀 명령어
   * 시스템 변수
   * 시스템 명령어
-  * 매크로
 - 시스템 기본 변수 제작
 
-### 2-7. 음악 시스템
+### 2-8. 음악 시스템
 [대시보드] [API] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
 - 지원 플렛폼
   * YouTube(YouTube/YouTube Music) : 공식 API 지원
@@ -573,7 +579,7 @@
     - 왠쪽에 검색 UI
     - MV 버튼을 통해 영상 시청 가능
 
-### 2-8. 변역 시스템(Translate)
+### 2-9. 변역 시스템(Translate)
 [API] [slash-command] [Embed] [Message-Components]
 - 지원하는 변역 시스템
   * 채팅
@@ -588,7 +594,7 @@
     - 사용 가능할 경우 유저가 설정을 변경하여 사용 가능
     - Papago Text Translation, Papago Language Detection
 
-### 2-9. 게임관련 시스템
+### 2-10. 게임관련 시스템
 [API] [slash-command] [Embed] [Message-Components]
 - 게임 전적 검색 시스템
   * OP.gg, TRN을 통하여 전적 검색 기능 (TRN API 확인 완료, op.gg API 확인 불가능, 라이엇 API 확인 완료)
@@ -598,7 +604,7 @@
   * 사용자지정게임 플레이를 할 수 있는 게임을 전부 지원 예정
   * 상황에 따라 제작 여부 확정 안됨
 
-### 2-10. AI 채팅 시스템 (LLM/GPT)
+### 2-11. AI 채팅 시스템 (LLM/GPT)
 [대시보드] [API] [AI] [DB] [Emoji-Resource]
 - 모든 기능 작업 완료 후 마지막으로 작업 예정
 - API 사용 또는 자체 LLM 사용 계획 필요
