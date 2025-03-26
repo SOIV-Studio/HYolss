@@ -169,7 +169,7 @@
   * [대시보드] : 대시보드가 필요한 기능
   * [AI] : AI 시스템이 필요한 기능
   * [API] : API가 필요한 기능
-  * [DB] : DB가 필요한 기능
+  * [DB] [DB-SQL] [DB-NoSQL] : DB가 필요한 기능
   * [slash-command] : 슬레시 명령어(/)로 사용이 가능한 명령어
   * [Prefix] : 접두사로 사용이 가능한 명령어
   * [Embed] : 메시지 전송을 Embed 방식으로 전송하는 기능
@@ -219,7 +219,7 @@
   * 그외 AI 시스템이 필요한 기능들 (꼭 필요하다라는 값이 정해 젔을 경우에만 AI 적용)
 
 ### 2-1-1. 서버 입장 시스템 [메시지 조건 2개를 제외한 작업 완료]
-[API] [DB] [Embed] [Message-Components] [AUTO-System]
+[API] [DB-SQL] [Embed] [Message-Components] [AUTO-System]
 1. 초대자 기반 메시지
     ```javascript
     // DB 구조
@@ -338,7 +338,7 @@
     - 그외 특정 기반 메시지(확정되지 않은 조건)
 
 ### 2-1-2. 서버 설정 복원 시스템
-[대시보드] [DB] [AUTO-System]
+[대시보드] [DB-SQL] [AUTO-System]
 - 서버 설정 복원 시스템은 Xenon 참고
 ```javascript
 // 서버 설정 DB 구조
