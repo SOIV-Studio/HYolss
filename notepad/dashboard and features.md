@@ -27,6 +27,7 @@
 - 도메인 : [호스팅케이알(hosting.kr)](https://www.hosting.kr/)
 - DNS, DDoS, Workers 및 Pages, CDN : [클라우드플레어(cloudflare)](https://www.cloudflare.com/)
 - 서버 : [AWS](https://aws.amazon.com/)
+- DB : [Supabase](https://supabase.com/) + [MongoDB Atlas](https://www.mongodb.com/)
 - 이메일
   * 메인 : biz@soiv-studio.xyz
     - 기본 모든 메일을 받는 메일 주소 / 문의, 광고, ETC
