@@ -44,44 +44,56 @@
 
 - `soiv-studio.xyz/account/dashboard` (웹사이트 대시보드)
 - `soiv-studio.xyz/account` (웹사이트 어카운트 페이지)
+- `soiv-studio.xyz/developer` (개발자 페이지)
 
 - `soiv-studio.xyz/service/terms-of-service` (이용약관) terms-of-service
 - `soiv-studio.xyz/service/privacy-policy` (개인정보처리방침) privacy-policy
 
 - `status.soiv-studio.xyz` (statuspage)
   * `status.soiv-studio.xyz/dashboard` (statuspage Dashboard)
-- `urlshort.soiv-studio.xyz` (urlshort/링크단축)
-  * `urlshort.soiv-studio.xyz/dashboard` (urlshort Dashboard)
-  * `urlshort.soiv-studio.xyz/movement/**` (urlshort 링크)
+    - `soiv-studio.xyz/developer`에 통합 예정
+      * ex : `soiv-studio.xyz/developer/statuspage`
+- `site.soiv-studio.xyz` (URL shortener/링크단축)
+  * URL shortener/QR Code
+  * `site.soiv-studio.xyz/dashboard` (URL shortener Dashboard)
+    - `soiv-studio.xyz/developer`에 통합 예정
+      * ex : `soiv-studio.xyz/developer/site`
+  * `site.soiv-studio.xyz/movement/**` (URL shortener 링크)
+    - 또는 `site.soiv-studio.xyz/**`으로 예정
 
 ### 대시보드 구조
 - `dashboard.soiv-studio.xyz` (봇 대시보드)
     * 디스코드 OAuth2 로그인 사용
     * 봇 관련 기능 전용 대시보드
     * SOIV_Studio-Project_BOT 에서 제작된 모든 디스코드 봇을 관리가 가능한 대시보드
-- `dashboard.soiv-studio.xyz/serverid/home` (home)
-- `dashboard.soiv-studio.xyz/serverid/**` (기능)
-  * `dashboard.website.com/serverid/general-settings`
-  * `dashboard.website.com/serverid/commands`
-  * `dashboard.website.com/serverid/auto-moderation`
-  * `dashboard.website.com/serverid/moderation`
-  * `dashboard.website.com/serverid/social-notifications`
-  * `dashboard.website.com/serverid/join-roles`
-  * `dashboard.website.com/serverid/reaction-roles`
-  * `dashboard.website.com/serverid/welcome-messages`
-  * `dashboard.website.com/serverid/role-connections`
-  * `dashboard.website.com/serverid/logging`
-  * `dashboard.website.com/serverid/utility`
-  * `dashboard.website.com/serverid/Music`
-  * `dashboard.website.com/serverid/translate`
-- `dashboard.soiv-studio.xyz/serverid/Premium` (Premium)
-  * `dashboard.soiv-studio.xyz/serverid/Premium/buy` (Premium - buy)
-  * `dashboard.soiv-studio.xyz/serverid/Premium/settings` (Premium - settings)
-- `dashboard.soiv-studio.xyz/serverid/new` (실험실/얼리 엑세스)
-- `dashboard.soiv-studio.xyz/serverid/developer` (개발자 대시보드)
-  * `dashboard.soiv-studio.xyz/developer`
+- `dashboard.soiv-studio.xyz/(serverid)/home` (home)
+- `dashboard.soiv-studio.xyz/(serverid)/**` (기능)
+  * `dashboard.website.com/(serverid)/general-settings`
+  * `dashboard.website.com/(serverid)/commands`
+  * `dashboard.website.com/(serverid)/auto-moderation`
+  * `dashboard.website.com/(serverid)/moderation`
+  * `dashboard.website.com/(serverid)/social-notifications`
+  * `dashboard.website.com/(serverid)/join-roles`
+  * `dashboard.website.com/(serverid)/reaction-roles`
+  * `dashboard.website.com/(serverid)/welcome-messages`
+  * `dashboard.website.com/(serverid)/role-connections`
+  * `dashboard.website.com/(serverid)/logging`
+  * `dashboard.website.com/(serverid)/utility`
+  * `dashboard.website.com/(serverid)/Music`
+  * `dashboard.website.com/(serverid)/translate`
+- `dashboard.soiv-studio.xyz/(serverid)/Premium` (Premium)
+  * `dashboard.soiv-studio.xyz/(serverid)/Premium/buy` (Premium - buy)
+  * `dashboard.soiv-studio.xyz/(serverid)/Premium/settings` (Premium - settings)
+- `dashboard.soiv-studio.xyz/(serverid)/new` (실험실/얼리 엑세스)
+- `dashboard.soiv-studio.xyz/developer` (개발자 대시보드)
+  * `dashboard.soiv-studio.xyz/developer/(serverid)`
 
-- `docs.soiv-studio.xyz/home` (Discord Bot Docs - HYolss / gitbook)
+- `docs.soiv-studio.xyz` (Discord Bot Docs - HYolss / gitbook)
+  * 기본적으로 한국어를 지원, 영어도 동시 지원을 하나 한국어 만큼 업데이트가 빠르지 않음
+    - 오픈소스를 해둘 예정이지만 모든 기능을 오픈하지는 않을 예정
+    - 정식 라이브 서비스 이후 오픈소스 전용 레포를 제작하고 기존 레포는 비공개 처리 될 예정
+  * 이 docs는 서비스중인 디스코드 봇에 관련된 내용만 작성되는 문서입니다.
+    - 그외 다른 서비스에서 필요할 경우 별도 docs를 제작할 예정 
   * `docs.soiv-studio.xyz/user` (Docs User :: 유저 도움말)
   * `docs.soiv-studio.xyz/api` (Docs API :: API 문서화)
   * `docs.soiv-studio.xyz/developer` (Docs developer guidelines :: 개발자 가이드라인(기술 문서))
@@ -916,11 +928,11 @@
 
 ### 약관 및 정책
 - 안전한 운영 및 필요한 약관 및 정책에 대한 내용 작성 필수 (언어에 따른 한국어, 영어 작성 필요)
-- 서비스 약관 : terms-of-service
-- 개인정보 보호정책 : privacy-policy
+- [ 필수 ] 서비스 약관 : terms-of-service
+- [ 필수 ] 개인정보 보호정책 : privacy-policy
 - 철회권 : Right of withdrawal
 - 법적 고지 : Legal Notice
-- Licenses : 제작하는데 포함된 라이브러리
+- [ 반필수 ] Licenses : 제작하는데 포함된 라이브러리
 
 ### 개발자 문서화 및 가이드라인
 - API 문서화
