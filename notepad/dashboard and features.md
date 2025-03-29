@@ -62,6 +62,7 @@
     - 또는 `site.soiv-studio.xyz/**`으로 예정
 
 ### 대시보드 구조
+- `(botname)-bot.soiv-studio.xyz` (디스코드 봇 메인 페이지)
 - `dashboard.soiv-studio.xyz` (봇 대시보드)
     * 디스코드 OAuth2 로그인 사용
     * 봇 관련 기능 전용 대시보드
@@ -161,6 +162,8 @@
     - 4컷 만화
     - 공식 일러스트
   * 봇 활동에 따른 SNS관련
+    - 해시태그
+      * #HYolss / #HYolss_FA
     - YouTube 채널
     - Instagram
     - X(Twitter)
