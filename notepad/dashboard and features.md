@@ -81,11 +81,11 @@
 - `dashboard.soiv-studio.xyz/serverid/developer` (개발자 대시보드)
   * `dashboard.soiv-studio.xyz/developer`
 
-- `dcbdocs.soiv-studio.xyz/home` (Discord Bot Docs - HYolss)
-  * `dcbdocs.soiv-studio.xyz/user` (Docs User :: 유저 도움말)
-  * `dcbdocs.soiv-studio.xyz/api` (Docs API :: API 문서화)
-  * `dcbdocs.soiv-studio.xyz/developer` (Docs developer guidelines :: 개발자 가이드라인(기술 문서))
-  * `dcbdocs.soiv-studio.xyz/community-guidelines` (Docs community contribute guidelines :: 커뮤니티 기여 가이드라인)
+- `docs.soiv-studio.xyz/home` (Discord Bot Docs - HYolss / gitbook)
+  * `docs.soiv-studio.xyz/user` (Docs User :: 유저 도움말)
+  * `docs.soiv-studio.xyz/api` (Docs API :: API 문서화)
+  * `docs.soiv-studio.xyz/developer` (Docs developer guidelines :: 개발자 가이드라인(기술 문서))
+  * `docs.soiv-studio.xyz/community-guidelines` (Docs community contribute guidelines :: 커뮤니티 기여 가이드라인)
 
 ### 로그인 시스템
 1. 메인 사이트
