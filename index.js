@@ -2,8 +2,8 @@ require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits, REST, Routes } = require('discord.js');
-const { testConnection: testSupabaseConnection } = require('./database/supabase'); // Supabase 연결 테스트
-const { testConnection: testMongoConnection, connect: connectMongo } = require('./database-nosql/mongodb'); // MongoDB 연결 테스트 및 연결
+const { testConnection: testSupabaseConnection } = require('./database/sql/supabase'); // Supabase 연결 테스트
+const { testConnection: testMongoConnection, connect: connectMongo } = require('./database/nosql/mongodb'); // MongoDB 연결 테스트 및 연결
 
 // 환경 변수에 따라 토큰과 clientId 선택
 const token = process.env.NODE_ENV === 'development' 
