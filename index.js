@@ -4,6 +4,7 @@ const path = require('node:path');
 const { Client, Collection, GatewayIntentBits, REST, Routes } = require('discord.js');
 const { testConnection: testSupabaseConnection } = require('./database/sql/supabase'); // Supabase 연결 테스트
 const { testConnection: testMongoConnection, connect: connectMongo } = require('./database/nosql/mongodb'); // MongoDB 연결 테스트 및 연결
+const { scheduleUpdateCheck } = require('./auto-updater'); // 자동 업데이트 기능
 
 // 환경 변수에 따라 토큰과 clientId 선택
 const token = process.env.NODE_ENV === 'development' 
@@ -135,3 +136,9 @@ async function startBot() {
 }
 
 startBot();
+
+// 자동 업데이트 체크 예약 (6시간마다 실행)
+if (process.env.NODE_ENV !== 'development') {
+    console.log('[INFO] 자동 업데이트 체크 예약 중...');
+    scheduleUpdateCheck(6);
+}
