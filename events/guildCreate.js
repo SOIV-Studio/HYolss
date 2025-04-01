@@ -1,67 +1,29 @@
 const { Events, EmbedBuilder } = require('discord.js');
-const { pool, initializeBotServerTables } = require('../database/database.js');
+const { updateServerHistory, addInviterInfo, initializeTables } = require('../database/supabase.js');
+const { logCommand } = require('../database-nosql/mongodb.js');
 
-// 서버 입장 기록 업데이트 함수
-async function updateBotServerHistory(guildId) {
+// 서버 입장 로그 기록 함수
+async function logGuildJoin(guild, inviterId) {
   try {
-    // 서버 기록 조회
-    const checkQuery = `
-      SELECT * FROM bot_server_history
-      WHERE guild_id = $1;
-    `;
-    
-    const result = await pool.query(checkQuery, [guildId]);
-    
-    if (result.rows.length === 0) {
-      // 신규 서버인 경우
-      const insertQuery = `
-        INSERT INTO bot_server_history (guild_id)
-        VALUES ($1)
-        RETURNING *;
-      `;
-      
-      const insertResult = await pool.query(insertQuery, [guildId]);
-      return { isNew: true, data: insertResult.rows[0] };
-    } else {
-      // 기존 서버인 경우
-      const serverData = result.rows[0];
-      
-      // 현재 상태가 false(퇴장)인 경우에만 업데이트
-      if (!serverData.current_status) {
-        const updateQuery = `
-          UPDATE bot_server_history
-          SET join_count = join_count + 1,
-              current_status = TRUE
-          WHERE guild_id = $1
-          RETURNING *;
-        `;
-        
-        const updateResult = await pool.query(updateQuery, [guildId]);
-        return { isNew: false, data: updateResult.rows[0] };
-      }
-      
-      return { isNew: false, data: serverData };
-    }
-  } catch (err) {
-    console.error('[ERROR] 서버 입장 기록 업데이트 오류:', err);
-    return { isNew: false, error: err };
-  }
-}
-
-// 초대자 정보 저장 함수
-async function saveBotInviter(guildId, inviterId) {
-  try {
-    const query = `
-      INSERT INTO bot_inviter_tracking (guild_id, inviter_id)
-      VALUES ($1, $2)
-      ON CONFLICT (inviter_id, guild_id) 
-      DO UPDATE SET invite_date = CURRENT_TIMESTAMP;
-    `;
-    
-    await pool.query(query, [guildId, inviterId]);
+    await logCommand({
+      userId: guild.client.user.id,
+      username: guild.client.user.username,
+      guildId: guild.id,
+      guildName: guild.name,
+      channelId: guild.systemChannelId || 'unknown',
+      channelName: guild.systemChannel ? guild.systemChannel.name : 'unknown',
+      commandName: 'guild_join',
+      commandOptions: {
+        memberCount: guild.memberCount,
+        inviterId: inviterId,
+        guildOwnerId: guild.ownerId
+      },
+      isSuccess: true,
+      executionTime: 0
+    });
     return true;
   } catch (err) {
-    console.error('[ERROR] 초대자 정보 저장 오류:', err);
+    console.error('[ERROR] 서버 입장 로그 기록 오류:', err);
     return false;
   }
 }
@@ -72,14 +34,25 @@ module.exports = {
     try {
       console.log(`[WAN-DB] 봇이 새로운 서버에 추가되었습니다: ${guild.name} (ID: ${guild.id})`);
       
-      // 서버 입장 기록 업데이트
-      const serverHistory = await updateBotServerHistory(guild.id);
+      // 데이터베이스 연결 상태 확인
+      const supabaseConnected = guild.client.databaseStatus && guild.client.databaseStatus.supabase;
       
-      // 초대자 정보 (가능한 경우)
-      // Discord API의 제한으로 인해 초대자 정보를 정확히 가져오기 어려울 수 있음
-      // 여기서는 서버 소유자를 초대자로 가정
+      // Supabase가 연결된 경우에만 서버 입장 기록 업데이트
+      if (supabaseConnected) {
+        // 서버 입장 기록 업데이트 (Supabase)
+        const isJoining = true;
+        await updateServerHistory(guild.id, isJoining);
+        
+        // 초대자 정보 (가능한 경우)
+        // Discord API의 제한으로 인해 초대자 정보를 정확히 가져오기 어려울 수 있음
+        // 여기서는 서버 소유자를 초대자로 가정
+        const inviterId = guild.ownerId;
+        await addInviterInfo(inviterId, guild.id);
+      }
+      
+      // MongoDB에 서버 입장 로그 기록 (항상 실행)
       const inviterId = guild.ownerId;
-      await saveBotInviter(guild.id, inviterId);
+      await logGuildJoin(guild, inviterId);
       
       // 기본 채널 찾기 (공지 채널 또는 일반 채팅 채널)
       let targetChannel = guild.systemChannel; // 시스템 메시지 채널
@@ -97,11 +70,33 @@ module.exports = {
         return;
       }
       
+      // 서버 기록 정보 (Supabase 연결 여부에 따라 다르게 처리)
+      let isNewServer = true;
+      let joinCount = 1;
+      
+      if (supabaseConnected) {
+        try {
+          // Supabase에서 서버 기록 조회
+          const { data: serverHistory, error } = await guild.client.supabase
+            .from('bot_server_history')
+            .select('*')
+            .eq('guild_id', guild.id)
+            .single();
+          
+          if (!error && serverHistory) {
+            isNewServer = serverHistory.join_count === 1;
+            joinCount = serverHistory.join_count;
+          }
+        } catch (error) {
+          console.error('[ERROR] 서버 기록 조회 오류:', error);
+        }
+      }
+      
       // 환영 메시지 생성
       let introMessage, aboutMessage, helpMessage, serverMessage, tipMessage, warningMessage;
       
       // 공통 메시지 부분
-      introMessage = `저를 대리고 와주신 유저님! ${serverHistory.isNew ? '처음' : '다시'} 뵙겠습니다!\n나는 하나의 작은 별과 꿈을 가지고 나아가는 동행자 HYolss 이라고해!\n이 서버에 대려와준 <@${inviterId}>님, 대리고 와줘서 고마워!`;
+      introMessage = `저를 대리고 와주신 유저님! ${isNewServer ? '처음' : '다시'} 뵙겠습니다!\n나는 하나의 작은 별과 꿈을 가지고 나아가는 동행자 HYolss 이라고해!\n이 서버에 대려와준 <@${inviterId}>님, 대리고 와줘서 고마워!`;
       
       helpMessage = `명령어를 사용하는데 모르는 점이 있어?\n'/help'를 사용하여 각각의 명령어에 대한 설명과 사용법을 확인해 볼 수 있어!`;
       
@@ -109,12 +104,12 @@ module.exports = {
       
       warningMessage = `[!] 운영중인 HYolss은 테스트 버전 및 경험을 위해 제작 및 활동중인 봇이므로 봇이 종료되거나 버그 및 오류가 발생 할 수 있습니다.`;
       
-      if (serverHistory.isNew) {
+      if (isNewServer) {
         // 신규 서버인 경우
         aboutMessage = `일단 내가 작동하는 방식에 대해 짧개 알려줄깨!\n기본은 슬레시(/)를 사용하고 다른 방식으로는\n접두사 방식인 ! or = 으로 호출 및 명령어, 기능 사용이 가능하고\n명령어를 사용하면 버튼과 메뉴 선택이라는 기능을 주로 작동되니 이점 알아줘!`;
         
         serverMessage = `여기는 처음 왔는데 어떤 서버일까? 궁굼하다! 알려줄 동행자는 없나?`;
-      } else if (serverHistory.data.join_count > 1) {
+      } else if (joinCount > 1) {
         // 기존 서버에 재입장한 경우
         aboutMessage = `날 대리고온 동행자 <@${inviterId}>님! 그리고 날 알고 있는 동행자가 보이네!\n그렇다면! 나에 대해 잘 알고 있는 동행자가 있으니 설명을 생략할깨!`;
         
@@ -144,5 +139,5 @@ module.exports = {
   },
   
   // 테이블 초기화 함수 내보내기
-  initializeBotServerTables
+  initializeBotServerTables: initializeTables
 };

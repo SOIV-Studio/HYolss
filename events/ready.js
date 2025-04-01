@@ -1,10 +1,42 @@
 const { Events, ActivityType } = require('discord.js');
+const { supabase } = require('../database/supabase.js');
+const mongodb = require('../database-nosql/mongodb.js');
 
 module.exports = {
     name: Events.ClientReady,
     once: true,
-    execute(client) {
+    async execute(client) {
         console.log(`Ready! Logged in as ${client.user.tag}`);
+        
+        // Supabase와 MongoDB 클라이언트를 client 객체에 추가
+        client.supabase = supabase;
+        client.mongodb = mongodb;
+        
+        // 서버 수 로깅
+        const serverCount = client.guilds.cache.size;
+        console.log(`[INFO] 봇이 ${serverCount}개의 서버에서 활동 중입니다.`);
+        
+        // MongoDB에 봇 시작 로그 기록
+        try {
+            await mongodb.logCommand({
+                userId: client.user.id,
+                username: client.user.username,
+                guildId: 'global',
+                guildName: 'Global',
+                channelId: 'system',
+                channelName: 'System',
+                commandName: 'bot_start',
+                commandOptions: {
+                    version: process.env.npm_package_version || '1.0.0',
+                    environment: process.env.NODE_ENV || 'production',
+                    serverCount: serverCount
+                },
+                isSuccess: true,
+                executionTime: 0
+            });
+        } catch (error) {
+            console.error('[ERROR] 봇 시작 로그 기록 오류:', error);
+        }
         
         // 상태 메시지 배열
         // Playing : 게임 중
@@ -18,7 +50,8 @@ module.exports = {
             { name: '동행자님! 무엇을 도와드릴까요?', type: ActivityType.Custom },
             { name: '저는 열심히 성장하고 여러가지를 해보고 싶어요!', type: ActivityType.Custom },
             { name: '저의 성정과 함께 키워나갈 개발자는 없나요?', type: ActivityType.Custom },
-            { name: '저는 SOIV Studio에 소속된 Discord BOT이에요!', type: ActivityType.Custom }
+            { name: '저는 SOIV Studio에 소속된 Discord BOT이에요!', type: ActivityType.Custom },
+            { name: `${serverCount}개의 서버에서 활동 중`, type: ActivityType.Custom }
         ];
 
         // 상태 메시지 : 안내 및 점검, 평상시에는 사용을 하지 않음
