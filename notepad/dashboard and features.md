@@ -43,23 +43,29 @@
 - `soiv-studio.xyz/(discordbotname)-bot` (디스코드 봇 메인 페이지)
 
 - `soiv-studio.xyz/account/dashboard` (웹사이트 대시보드)
-- `soiv-studio.xyz/account` (웹사이트 어카운트 페이지)
-- `soiv-studio.xyz/developer` (개발자 페이지)
+- `soiv-studio.xyz/account` (어카운트 페이지)
+- `soiv-studio.xyz/developer` (개발자 페이지/고급모드)
+  * Main / statuspage / URL shortener / 이외 관련된 서비스등
 
 - `soiv-studio.xyz/service/terms-of-service` (이용약관) terms-of-service
+  * 또는 `soiv-studio.xyz/terms-of-service`
 - `soiv-studio.xyz/service/privacy-policy` (개인정보처리방침) privacy-policy
+  * 또는 `soiv-studio.xyz/privacy-policy`
 
+### statuspage
 - `status.soiv-studio.xyz` (statuspage)
-  * `status.soiv-studio.xyz/dashboard` (statuspage Dashboard)
-    - `soiv-studio.xyz/developer`에 통합 예정
-      * ex : `soiv-studio.xyz/developer/statuspage`
+- `status.soiv-studio.xyz/dashboard` (statuspage Dashboard)
+  * `soiv-studio.xyz/developer`에 통합 예정
+    - ex : `soiv-studio.xyz/developer/statuspage`
+
+### URL shortener
+- URL shortener/QR Code
 - `site.soiv-studio.xyz` (URL shortener/링크단축)
-  * URL shortener/QR Code
-  * `site.soiv-studio.xyz/dashboard` (URL shortener Dashboard)
-    - `soiv-studio.xyz/developer`에 통합 예정
-      * ex : `soiv-studio.xyz/developer/site`
-  * `site.soiv-studio.xyz/movement/**` (URL shortener 링크)
-    - 또는 `site.soiv-studio.xyz/**`으로 예정
+- `site.soiv-studio.xyz/dashboard` (URL shortener Dashboard)
+  * `soiv-studio.xyz/developer`에 통합 예정
+    - ex : `soiv-studio.xyz/developer/site`
+- `site.soiv-studio.xyz/movement/**` (URL shortener 링크)
+  * 또는 `site.soiv-studio.xyz/**`으로 예정
 
 ### 대시보드 구조
 - `(botname)-bot.soiv-studio.xyz` (디스코드 봇 메인 페이지)
@@ -89,16 +95,17 @@
 - `dashboard.soiv-studio.xyz/developer` (개발자 대시보드)
   * `dashboard.soiv-studio.xyz/developer/(serverid)`
 
+### SOIV Studio Docs
 - `docs.soiv-studio.xyz` (Discord Bot Docs - HYolss / gitbook)
   * 기본적으로 한국어를 지원, 영어도 동시 지원을 하나 한국어 만큼 업데이트가 빠르지 않음
     - 오픈소스를 해둘 예정이지만 모든 기능을 오픈하지는 않을 예정
     - 정식 라이브 서비스 이후 오픈소스 전용 레포를 제작하고 기존 레포는 비공개 처리 될 예정
   * 이 docs는 서비스중인 디스코드 봇에 관련된 내용만 작성되는 문서입니다.
     - 그외 다른 서비스에서 필요할 경우 별도 docs를 제작할 예정 
-  * `docs.soiv-studio.xyz/user` (Docs User :: 유저 도움말)
-  * `docs.soiv-studio.xyz/api` (Docs API :: API 문서화)
-  * `docs.soiv-studio.xyz/developer` (Docs developer guidelines :: 개발자 가이드라인(기술 문서))
-  * `docs.soiv-studio.xyz/community-guidelines` (Docs community contribute guidelines :: 커뮤니티 기여 가이드라인)
+- `docs.soiv-studio.xyz/user` (Discord Bot Docs User :: 유저 도움말)
+- `docs.soiv-studio.xyz/api` (Discord Bot Docs API :: API 문서화)
+- `docs.soiv-studio.xyz/developer` (Discord Bot Docs developer guidelines :: 개발자 가이드라인(기술 문서))
+- `docs.soiv-studio.xyz/community-guidelines` (Discord Bot Docs community contribute guidelines :: 커뮤니티 기여 가이드라인)
 
 ### 로그인 시스템
 1. 메인 사이트
