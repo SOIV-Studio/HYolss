@@ -2,7 +2,8 @@ require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits, REST, Routes } = require('discord.js');
-const { testConnection } = require('./database/database'); // DB 모듈에서 testConnection만 가져오기
+const { testConnection: testSupabaseConnection } = require('./database/supabase'); // Supabase 연결 테스트
+const { testConnection: testMongoConnection, connect: connectMongo } = require('./database-nosql/mongodb'); // MongoDB 연결 테스트 및 연결
 
 // 환경 변수에 따라 토큰과 clientId 선택
 const token = process.env.NODE_ENV === 'development' 
@@ -85,26 +86,48 @@ for (const file of eventFiles) {
 // 봇 시작
 async function startBot() {
     try {
-        // 데이터베이스 연결 테스트
-        console.log('[INFO] 데이터베이스 연결 테스트 중...');
-        const dbConnected = await testConnection();
+        // Supabase 데이터베이스 연결 테스트
+        console.log('[INFO] Supabase 데이터베이스 연결 테스트 중...');
+        const supabaseConnected = await testSupabaseConnection();
         
-        if (dbConnected) {
-            // 데이터베이스 테이블 초기화
+        // MongoDB Atlas 연결 테스트
+        console.log('[INFO] MongoDB Atlas 연결 테스트 중...');
+        const mongoConnected = await testMongoConnection();
+        
+        // MongoDB는 반드시 연결되어야 함
+        if (!mongoConnected) {
+            console.error('[ERROR] MongoDB Atlas 연결에 실패했습니다. 봇을 시작할 수 없습니다.');
+            process.exit(1);
+        }
+        
+        // Supabase 연결 상태 로깅
+        if (!supabaseConnected) {
+            console.warn('[WARN] Supabase 데이터베이스 연결에 실패했습니다. 일부 기능이 제한될 수 있습니다.');
+        }
+        
+        // MongoDB에 연결
+        await connectMongo();
+        
+        // 데이터베이스 테이블 초기화 (Supabase가 연결된 경우에만)
+        if (supabaseConnected) {
             const guildCreateEvent = require('./events/guildCreate');
             console.log('[INFO] 데이터베이스 테이블 초기화 중...');
             await guildCreateEvent.initializeBotServerTables();
-            
-            // 명령어 등록
-            await loadAndDeployCommands();
-            
-            // 봇 로그인
-            await client.login(token);
-            console.log(`[INFO] 봇이 성공적으로 로그인되었습니다.`);
-        } else {
-            console.error('[ERROR] 데이터베이스 연결에 실패했습니다. 봇을 시작할 수 없습니다.');
-            process.exit(1);
         }
+        
+        // 명령어 등록
+        await loadAndDeployCommands();
+        
+        // 봇 로그인
+        await client.login(token);
+        console.log(`[INFO] 봇이 성공적으로 로그인되었습니다.`);
+        
+        // 데이터베이스 연결 상태 저장
+        client.databaseStatus = {
+            supabase: supabaseConnected,
+            mongodb: mongoConnected
+        };
+        
     } catch (error) {
         console.error('[ERROR] Error starting bot:', error);
         process.exit(1);
