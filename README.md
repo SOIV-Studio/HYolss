@@ -61,8 +61,9 @@ HYolss는 기존 개인이 사용하기 위해 제작한 디스코드 봇입니�
 - 사용된 버전 정보
     * node.js Version : v22.14.0
     * Discord.js Version : v14.18.0
-    * Database(DB) Version : PostgreSQL 17.4
-        - [Supabase](https://supabase.com/) + [MongoDB Atlas](https://www.mongodb.com/) 전환 예정
+    * Database(DB) Version : 
+        - Supabase (PostgreSQL 기반)
+        - MongoDB Atlas (NoSQL)
 - HYolss Discord Bot Info
     * Discord API : Discord.js
     * Languages : node.js(JavaScript)
