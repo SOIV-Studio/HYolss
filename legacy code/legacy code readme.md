@@ -16,3 +16,11 @@ github에 업로드 되어 있지 않은 .env를 다시 사용중입니다
 ## deploy-commands.js
 제작 당시 처음에 사용되었던 명령어 등록하는 이벤트 파일입니다.
 명령어 등록 및 업데이트에 사용되었으며 현제는 index.js에 병합되었습니다.
+
+## DB
+아레 코드 파일 리스트는 기존 PostgreSQL를 사용중인 파일들입니다.
+database.js
+db_setup.sql
+setup_database.js
+
+현제는 Supabase와 MongoDB Atlas으로 이전 및 마이그레이션되었습니다.
