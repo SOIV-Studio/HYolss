@@ -1,41 +1,31 @@
-SOIV_Studio-Project_BOT-C_2020~2025
-# Discord_BOT_HYolss
+# HYolss (Discord BOT)
+
 HYolss는 개인이 사용하기 위해 제작된 디스코드 봇입니다.
-
-제작하게 된 이유는 사용하는 봇의 기능들을 한 봇에서 구동해서 사용 해보고 싶다라는 생각에서 시작된 프로젝트겸 개인 예산을 사용하여 취미적으로 제작하는 디스코드 봇임을 밝힘니다.
-- 참고 및 사용된 디스코드 봇은 다음과 같습니다.
-    * Zira
-    * Sapphire
-    * MEE6
-    * Ticket Tool
-    * ModMail
-    * TempVoice
-    * InviteManagement
-    * Xenon
-    * MonitoRSS
-    * Streamcord
-    * 치직
-    * appeal.gg
-
-기능 사용에 관해서는 전부 무료로 사용을 할 수 있도록 운영할 생각이지만, 일부 기능에 한에서 Premium 유료 요금제가 적용이 될 수 있읍니다.
-
-코딩을 해본적이 없는 사람이라 코드가 무척 지저분할 수 있으니 양해바랍니다.
-
-# 커뮤니티
-[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/GvpmtExPrf) 
-
-## 안내 사향
-HYolss는 기존 개인이 사용하기 위해 제작한 디스코드 봇입니다.
 
 봇 추가는 상관없이 누구나 추가하여 사용은 가능합니다만, 봇이 불안정할 수 있으니 주의 바랍니다.
 
+코딩을 해본적이 없는 사람이라 코드가 무척 지저분할 수 있으니 양해바랍니다.
+
 [Discord Bot add link](https://discord.com/oauth2/authorize?client_id=888061096441819166)
 
-[HYolss Dashboard Web_Front-end](https://github.com/SOIV-Studio/HYolss-Dashboard-Web_Front-end) / 
-[HYolss Dashboard Web_Back-end](https://github.com/SOIV-Studio/HYolss-Dashboard-Web_Back-end)
+기능 사용에 관해서는 전부 무료로 사용을 할 수 있도록 운영할 생각이지만, 일부 기능에 한에서 Premium 유료 요금제가 적용이 될 수 있읍니다.
 
-[SOIV Studio_main website(Private)](https://github.com/SOIV-Studio/main-website_Front-end)
-- - -
+- HYolss Discord Bot Info
+    * Discord API : Discord.js
+    * Languages : node.js(JavaScript)
+    * locales : ko_KR
+        - en-US, ja-JP 지원 예정
+    * version : beta-3.2.0-dev
+        - 정식 라이브 서비스 예정 날자 확정 불가능
+    * Hosting Server : AWS EC2 (서울 리전)
+        - 24/7 운영 중 / 임시 구동 서버
+
+## Community[커뮤니티]
+
+[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/GvpmtExPrf) 
+
+## announcements 📢
+
 개인 봇이 아닌 정식 라이브 서비스를 위한 계획과 작업을 진행중입니다.
 
 또한 각종 문서 및 가이드라인을 준비중이며 봇 개발에 참여방법 또는 다국어 변역 참여는 별도 공지가 있을 예정입니다.
@@ -44,7 +34,7 @@ HYolss는 기존 개인이 사용하기 위해 제작한 디스코드 봇입니�
 - 개발자 문서화 및 가이드라인
 - 봇 사용자 도움말 문서화 및 가이드라인
 - 커뮤니티 참여 관련
-- - -
+---
 정식 라이브 서비스 및 원활한 서비스 제공 등을 위해 팀 모집을 준비 중에 있습니다.
 
 여러 방면으로 팀을 모집을 할 필요성이 강하게 오게 되어 모집 준비 중에 있으니 관심이 있으신 분은 아레 문의처에 남겨주시면 답변을 드리겠습니다.
@@ -57,54 +47,145 @@ HYolss는 기존 개인이 사용하기 위해 제작한 디스코드 봇입니�
     2. 문의는 E-mail로 부탁드립니다.
     3. 팀 모집 만관부
     4. 신규(뉴비)도 상관없이 지원 가능
-- - -
-- 사용된 버전 정보
-    * node.js Version : v22.14.0
-    * Discord.js Version : v14.18.0
-    * Database(DB) Version : 
-        - Supabase (PostgreSQL 기반)
-        - MongoDB Atlas (NoSQL)
-- HYolss Discord Bot Info
-    * Discord API : Discord.js
-    * Languages : node.js(JavaScript)
-    * locales : ko_KR
-        - en-US, ja-JP 지원 예정
-    * version : beta-3.0.0-dev
-        - 정식 라이브 서비스 예정 날자 확정 불가능
-    * Hosting Server : AWS EC2 (서울 리전)
-        - 24/7 운영 중 / 임시 구동 서버
 
-# 봇 주요 작동 방식
-- Embed
-- Message Component
-- 슬래시 명령어 [ / ]
-- 접두사 명령어 [ ! or = ] (일부 기능에서만 사용)
+## Features[특징] 🎉
 
-## 봇 온라인 명령어
-* 기본 모드 : node index.js
-* 점검 모드 : node system-maintenance.js
+- 업데이트 / 자동 업데이트 기능
+    * [system_update_and_auto_update_guide(KR)](dosc(notepad)\system_guide\system_update_and_auto_update_guide.md)
 
-## 자동 업데이트 기능
-HYolss 봇은 GitHub 저장소의 최신 버전을 자동으로 확인하고 업데이트하는 기능을 제공합니다.
+## Setup 🛠️
 
-### 주요 기능
-* 6시간마다 GitHub 저장소에서 최신 버전 확인
-* 새 버전이 있을 경우 자동으로 업데이트 진행
-* 업데이트 중에는 점검 모드로 전환되어 사용자에게 알림
-* 업데이트 완료 후 자동으로 봇 재시작
-* 관리 서버에 업데이트 로그 전송
+### Prerequisites[필수 조건] 📦
 
-### 관리자 명령어
-* `/update` - 수동으로 업데이트 확인 및 실행 (개발자 전용)
-* `/update force:true` - 버전이 같더라도 강제로 업데이트 실행 (개발자 전용)
-* 접두사 명령어: `!update` 또는 `=update` (개발자 전용)
+Make sure you have the following installed:
 
-### 설정 방법
-1. `.env` 파일에 `ADMIN_WEBHOOK_URL` 설정 (Discord 웹훅 URL)
-2. `.env` 파일에 `BOT_DEVELOPER_IDS` 설정 (봇 개발자의 Discord ID, 쉼표로 구분)
-3. 프로덕션 환경에서 자동으로 활성화됨 (`NODE_ENV=production`)
+- npm (Node Package Manager)
+- node.js Version : v22.14.0 or above
+- Discord.js Version : v14.18.0 or above
+- Database(DB) Version :
+    * Supabase (PostgreSQL 기반)
+    * MongoDB Atlas (NoSQL)
 
-### 보안
-* 업데이트 명령어는 서버 관리자 권한을 가진 사용자 중에서도 봇 개발자로 등록된 사용자만 실행할 수 있습니다.
-* 봇 개발자는 `.env` 파일의 `BOT_DEVELOPER_IDS`에 Discord ID를 등록해야 합니다.
-* 점검 모드 : node system-maintenance.js
+### Development Mode 🔧
+
+1. .env에서 구동할 Dev 봇의 대한 토큰을 입력합니다:
+
+    ```bash
+    # Development Bot Token
+    DEV_DISCORD_TOKEN=your_dev_token_here
+    DEV_DISCORD_CLIENT_ID=your_dev_client_id_here
+    DEV_DISCORD_GUILD_ID=your_dev_guild_id_here
+    ```
+
+2. 구동전 .env에서 다음과 같이 'NODE_ENV' 설정을 합니다:
+
+    ```bash
+    NODE_ENV=development
+    ```
+
+3. 필요한 종속성을 설치합니다:
+
+   ```bash
+   npm install
+   ```
+
+4. 개발 모드에서 봇을 실행합니다:
+
+   ```bash
+   node index.js
+
+   and
+
+   NODE_ENV=development node index.js
+   ```
+
+---
+
+### Production Mode 💥
+
+1. .env에서 구동할 Dev 봇의 대한 토큰을 입력합니다:
+
+    ```bash
+    # Main Bot Token (Production)
+    DISCORD_TOKEN=your_main_token_here
+    DISCORD_CLIENT_ID=your_main_client_id_here
+    DISCORD_GUILD_ID=your_main_guild_id_here
+    ```
+
+2. 구동전 .env에서 다음과 같이이 'NODE_ENV' 설정을 합니다:
+
+    ```bash
+    NODE_ENV=Production
+    ```
+
+3. 필요한 종속성을 설치합니다:
+
+   ```bash
+   npm install
+   ```
+
+4. Production 모드에서 봇을 실행합니다:
+
+   ```bash
+   node index.js
+
+   and
+
+   NODE_ENV=Production node index.js
+   ```
+
+## Usage[사용법] ⚙️
+
+## To-Do 📝
+
+- DB : Supabase 기초 Re setup
+    * API 자동 셋업
+
+- 작업에 관련하여 작성된 문서는 아레 2개입니다.
+    * [dashboard-and-features](dosc(notepad)\dashboard-and-features.md)
+    * [2025-2nd~4th-quarter-Features-update](dosc(notepad)\2025-2nd~4th-quarter-Features-update.md)
+
+## Contributing[기어] 💖
+
+각종 문서 및 가이드라인을 준비중이며 봇 개발에 참여방법 또는 다국어 변역 참여는 별도 공지가 있을 예정입니다.
+
+준비중인 문서 및 가이드라인은 다음과 같습니다.
+- 개발자 문서화 및 가이드라인
+- 봇 사용자 도움말 문서화 및 가이드라인
+- 커뮤니티 참여 관련
+
+---
+
+### FAQs ❓
+
+**1. What operating system does HYolss support?**
+
+> **Windows**, **Ubuntu**, **Linux (untested)**
+
+---
+
+## License 📝
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+(KR) 이 프로젝트 및 레포는 MIT 라이센스를 따라갑니다 - 자세한 내용은 [LICENSE](LICENSE) 파일을 확인 해주세요.
+
+SOIV_Studio-Project_BOT-C_2020~2025
+
+## 전체적인 참고 및 구조 환경 참고에 사용된 디스코드 봇 리스트
+
+아레 봇 리스트는 이 봇을 제작할때 참고 및 시스템 확인을 위해 확인 했었던 디스코드 봇 리스트입니다.
+
+아레 리스트 중 일부 봇은 오픈 소스 및 소스코드가 오픈 되어 있는 봇도 있음을 알림니다.
+
+- Zira
+- Sapphire
+- MEE6
+- Ticket Tool
+- ModMail
+- TempVoice
+- InviteManagement
+- Xenon
+- MonitoRSS
+- Streamcord
+- 치직
+- appeal.gg
