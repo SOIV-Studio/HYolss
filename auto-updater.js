@@ -3,7 +3,7 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
-const { WebhookClient } = require('discord.js');
+const { WebhookClient, EmbedBuilder } = require('discord.js');
 
 // 환경 변수에서 관리 서버 웹훅 URL 가져오기
 const adminWebhookUrl = process.env.ADMIN_WEBHOOK_URL;
@@ -25,7 +25,7 @@ function getLatestVersion() {
     return new Promise((resolve, reject) => {
         const options = {
             hostname: 'raw.githubusercontent.com',
-            path: '/SOIV/HYolss_js/main/package.json',
+            path: '/SOIV-Studio/HYolss/main/package.json',
             method: 'GET',
             headers: {
                 'User-Agent': 'HYolss-Bot-Updater'
@@ -51,6 +51,79 @@ function getLatestVersion() {
 
         req.on('error', (error) => {
             reject(new Error(`GitHub 최신 버전 확인 실패: ${error.message}`));
+        });
+
+        req.end();
+    });
+}
+
+// GitHub에서 최신 커밋 정보 가져오기
+function getLatestCommitInfo() {
+    return new Promise((resolve, reject) => {
+        const options = {
+            hostname: 'api.github.com',
+            path: '/repos/SOIV-Studio/HYolss/commits/main',
+            method: 'GET',
+            headers: {
+                'User-Agent': 'HYolss-Bot-Updater',
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        };
+
+        const req = https.request(options, (res) => {
+            let data = '';
+
+            res.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            res.on('end', () => {
+                try {
+                    // 응답 데이터 로깅
+                    console.log('[DEBUG] GitHub API 응답:', data.substring(0, 500) + '...');
+                    
+                    const commitInfo = JSON.parse(data);
+                    
+                    // 응답 구조 확인
+                    if (!commitInfo) {
+                        return reject(new Error('GitHub API 응답이 비어 있습니다.'));
+                    }
+                    
+                    // API 오류 확인
+                    if (commitInfo.message && commitInfo.documentation_url) {
+                        return reject(new Error(`GitHub API 오류: ${commitInfo.message}`));
+                    }
+                    
+                    // 필요한 필드 확인
+                    if (!commitInfo.commit) {
+                        console.log('[DEBUG] 전체 응답 구조:', JSON.stringify(commitInfo, null, 2));
+                        return reject(new Error('GitHub API 응답에 commit 필드가 없습니다.'));
+                    }
+                    
+                    resolve({
+                        message: commitInfo.commit.message || '커밋 메시지 없음',
+                        author: commitInfo.commit.author ? commitInfo.commit.author.name || '작성자 정보 없음' : '작성자 정보 없음',
+                        date: commitInfo.commit.author ? new Date(commitInfo.commit.author.date).toLocaleString('ko-KR') : '날짜 정보 없음',
+                        url: commitInfo.html_url || 'https://github.com/SOIV-Studio/HYolss',
+                        hash: commitInfo.sha ? commitInfo.sha.substring(0, 7) : '알 수 없음' // 커밋 해시 추가 (7자리로 축약)
+                    });
+                } catch (error) {
+                    console.error('[ERROR] GitHub 커밋 정보 파싱 실패:', error);
+                    console.error('[ERROR] 원본 데이터:', data);
+                    reject(new Error(`GitHub 커밋 정보 파싱 실패: ${error.message}`));
+                }
+            });
+        });
+
+        req.on('error', (error) => {
+            console.error('[ERROR] GitHub API 요청 실패:', error);
+            reject(new Error(`GitHub 커밋 정보 확인 실패: ${error.message}`));
+        });
+
+        // 타임아웃 설정
+        req.setTimeout(10000, () => {
+            req.abort();
+            reject(new Error('GitHub API 요청 타임아웃'));
         });
 
         req.end();
@@ -110,7 +183,24 @@ async function runUpdateProcess() {
         const currentVersion = getCurrentVersion();
         const latestVersion = await getLatestVersion();
         
-        console.log(`[INFO] 현재 버전: ${currentVersion}, 최신 버전: ${latestVersion}`);
+        // 최신 커밋 정보 가져오기
+        let commitInfo = null;
+        try {
+            commitInfo = await getLatestCommitInfo();
+            console.log('[INFO] 최신 커밋 정보:', commitInfo);
+        } catch (error) {
+            console.error('[ERROR] 최신 커밋 정보 가져오기 실패:', error);
+            // 오류가 발생해도 업데이트 프로세스는 계속 진행
+            commitInfo = {
+                message: '커밋 정보를 가져올 수 없습니다',
+                author: '알 수 없음',
+                date: new Date().toLocaleString('ko-KR'),
+                url: 'https://github.com/SOIV-Studio/HYolss',
+                hash: '알 수 없음'
+            };
+        }
+        
+        console.log(`[INFO] 현재 버전: ${currentVersion}, GitHub 버전: ${latestVersion}`);
         
         // 2. 버전 비교
         if (!isNewerVersion(currentVersion, latestVersion)) {
@@ -119,7 +209,34 @@ async function runUpdateProcess() {
         }
         
         // 3. 관리 서버에 업데이트 시작 로그 전송
-        await sendLogToAdminServer(`업데이트 시작: ${currentVersion} → ${latestVersion}`);
+        if (webhookClient) {
+            const embed = new EmbedBuilder()
+                .setColor(0x0099FF)
+                .setTitle('🔄 업데이트 시작')
+                .addFields(
+                    { name: '현재 버전', value: currentVersion || '알 수 없음', inline: true },
+                    { name: 'GitHub 버전', value: latestVersion || '알 수 없음', inline: true }
+                )
+                .setTimestamp();
+            
+            if (commitInfo) {
+                embed.addFields(
+                    { name: '최신 커밋 메시지', value: commitInfo.message || '알 수 없음' },
+                    { name: '커밋 해시', value: commitInfo.hash || '알 수 없음', inline: true },
+                    { name: '커밋 작성자', value: commitInfo.author || '알 수 없음', inline: true },
+                    { name: '커밋 날짜', value: commitInfo.date || '알 수 없음', inline: true }
+                )
+                .setURL(commitInfo.url || 'https://github.com/SOIV-Studio/HYolss');
+            }
+            
+            await webhookClient.send({
+                username: 'HYolss 업데이트 시스템',
+                avatarURL: 'https://github.com/SOIV-Studio/HYolss/raw/main/assets/logo.png',
+                embeds: [embed]
+            });
+        } else {
+            console.log('[INFO] 관리 서버 웹훅이 설정되지 않았습니다. 로그 전송을 건너뜁니다.');
+        }
         
         // 4. 점검 모드 실행 (system-maintenance.js)
         console.log('[INFO] 점검 모드로 전환 중...');
@@ -158,7 +275,7 @@ async function runUpdateProcess() {
         
         // 8. 점검 모드 종료 및 메인 봇 재시작
         console.log('[INFO] 점검 모드 종료 및 메인 봇 재시작 중...');
-        await sendLogToAdminServer(`업데이트 완료. 버전 ${latestVersion}으로 봇 재시작 중...`);
+        await sendLogToAdminServer(`업데이트 완료. 버전 ${currentVersion} → ${latestVersion}으로 봇 재시작 중...`);
         
         // 점검 모드 프로세스 종료
         if (maintenanceProcess && maintenanceProcess.pid) {
@@ -208,6 +325,7 @@ function scheduleUpdateCheck(intervalHours = 6) {
 module.exports = {
     getCurrentVersion,
     getLatestVersion,
+    getLatestCommitInfo,
     isNewerVersion,
     runUpdateProcess,
     scheduleUpdateCheck,

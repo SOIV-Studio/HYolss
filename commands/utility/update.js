@@ -1,5 +1,5 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
-const { runUpdateProcess, getCurrentVersion, getLatestVersion, isNewerVersion } = require('../../auto-updater');
+const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
+const { runUpdateProcess, getCurrentVersion, getLatestVersion, getLatestCommitInfo, isNewerVersion } = require('../../auto-updater');
 
 // 개발자 ID 목록 가져오기
 const developerIds = process.env.BOT_DEVELOPER_IDS ? process.env.BOT_DEVELOPER_IDS.split(',') : [];
@@ -54,12 +54,68 @@ module.exports = {
             const latestVersion = await getLatestVersion();
             const force = interaction.options.getBoolean('force') || false;
             
-            // 버전 비교
-            if (!isNewerVersion(currentVersion, latestVersion) && !force) {
-                return interaction.editReply(`✅ 이미 최신 버전(${currentVersion})을 사용 중입니다. 업데이트가 필요하지 않습니다.\n강제 업데이트를 원하시면 \`/update force:true\` 명령어를 사용하세요.`);
+            // 최신 커밋 정보 가져오기
+            let commitInfo = null;
+            try {
+                commitInfo = await getLatestCommitInfo();
+            } catch (error) {
+                console.error('[ERROR] 최신 커밋 정보 가져오기 실패:', error);
+                // 오류가 발생해도 명령어 실행은 계속 진행
+                commitInfo = {
+                    message: '커밋 정보를 가져올 수 없습니다',
+                    author: '알 수 없음',
+                    date: new Date().toLocaleString('ko-KR'),
+                    url: 'https://github.com/SOIV-Studio/HYolss',
+                    hash: '알 수 없음'
+                };
             }
             
-            await interaction.editReply(`🔄 업데이트를 시작합니다. 현재 버전: ${currentVersion}, 최신 버전: ${latestVersion || '확인 중...'}\n잠시 후 봇이 재시작됩니다.`);
+            // 버전 비교
+            if (!isNewerVersion(currentVersion, latestVersion) && !force) {
+                const embed = new EmbedBuilder()
+                    .setColor(0x00FF00)
+                    .setTitle('✅ 이미 최신 버전을 사용 중입니다')
+                    .setDescription('업데이트가 필요하지 않습니다.\n강제 업데이트를 원하시면 `/update force:true` 명령어를 사용하세요.')
+                    .addFields(
+                        { name: '현재 버전', value: currentVersion || '알 수 없음', inline: true },
+                        { name: 'GitHub 버전', value: latestVersion || '알 수 없음', inline: true }
+                    )
+                    .setTimestamp();
+                
+                if (commitInfo) {
+                    embed.addFields(
+                        { name: '최신 커밋 메시지', value: commitInfo.message || '알 수 없음' },
+                        { name: '커밋 해시', value: commitInfo.hash || '알 수 없음', inline: true },
+                        { name: '커밋 작성자', value: commitInfo.author || '알 수 없음', inline: true },
+                        { name: '커밋 날짜', value: commitInfo.date || '알 수 없음', inline: true }
+                    )
+                    .setURL(commitInfo.url || 'https://github.com/SOIV-Studio/HYolss');
+                }
+                
+                return interaction.editReply({ embeds: [embed] });
+            }
+            
+            const embed = new EmbedBuilder()
+                .setColor(0x0099FF)
+                .setTitle('🔄 업데이트를 시작합니다')
+                .setDescription('잠시 후 봇이 재시작됩니다.')
+                .addFields(
+                    { name: '현재 버전', value: currentVersion || '알 수 없음', inline: true },
+                    { name: 'GitHub 버전', value: latestVersion || '확인 중...', inline: true }
+                )
+                .setTimestamp();
+            
+            if (commitInfo) {
+                embed.addFields(
+                    { name: '최신 커밋 메시지', value: commitInfo.message || '알 수 없음' },
+                    { name: '커밋 해시', value: commitInfo.hash || '알 수 없음', inline: true },
+                    { name: '커밋 작성자', value: commitInfo.author || '알 수 없음', inline: true },
+                    { name: '커밋 날짜', value: commitInfo.date || '알 수 없음', inline: true }
+                )
+                .setURL(commitInfo.url || 'https://github.com/SOIV-Studio/HYolss');
+            }
+            
+            await interaction.editReply({ embeds: [embed] });
             
             // 업데이트 프로세스 실행
             runUpdateProcess();
@@ -92,12 +148,56 @@ module.exports = {
             const latestVersion = await getLatestVersion();
             const force = args.includes('force');
             
-            // 버전 비교
-            if (!isNewerVersion(currentVersion, latestVersion) && !force) {
-                return reply.edit(`✅ 이미 최신 버전(${currentVersion})을 사용 중입니다. 업데이트가 필요하지 않습니다.\n강제 업데이트를 원하시면 \`!update force\` 명령어를 사용하세요.`);
+            // 최신 커밋 정보 가져오기
+            let commitInfo = null;
+            try {
+                commitInfo = await getLatestCommitInfo();
+            } catch (error) {
+                console.error('[ERROR] 최신 커밋 정보 가져오기 실패:', error);
+                // 오류가 발생해도 명령어 실행은 계속 진행
+                commitInfo = {
+                    message: '커밋 정보를 가져올 수 없습니다',
+                    author: '알 수 없음',
+                    date: new Date().toLocaleString('ko-KR'),
+                    url: 'https://github.com/SOIV-Studio/HYolss',
+                    hash: '알 수 없음'
+                };
             }
             
-            await reply.edit(`🔄 업데이트를 시작합니다. 현재 버전: ${currentVersion}, 최신 버전: ${latestVersion || '확인 중...'}\n잠시 후 봇이 재시작됩니다.`);
+            // 버전 비교
+            if (!isNewerVersion(currentVersion, latestVersion) && !force) {
+                let replyContent = `✅ 이미 최신 버전을 사용 중입니다. 업데이트가 필요하지 않습니다.\n`;
+                replyContent += `현재 버전: ${currentVersion}\nGitHub 버전: ${latestVersion}\n`;
+                
+                if (commitInfo) {
+                    replyContent += `\n최신 커밋 정보:\n`;
+                    replyContent += `메시지: ${commitInfo.message}\n`;
+                    replyContent += `커밋 해시: ${commitInfo.hash}\n`;
+                    replyContent += `작성자: ${commitInfo.author}\n`;
+                    replyContent += `날짜: ${commitInfo.date}\n`;
+                    replyContent += `URL: ${commitInfo.url}\n`;
+                }
+                
+                replyContent += `\n강제 업데이트를 원하시면 \`!update force\` 명령어를 사용하세요.`;
+                
+                return reply.edit(replyContent);
+            }
+            
+            let replyContent = `🔄 업데이트를 시작합니다.\n`;
+            replyContent += `현재 버전: ${currentVersion}\nGitHub 버전: ${latestVersion || '확인 중...'}\n`;
+            
+            if (commitInfo) {
+                replyContent += `\n최신 커밋 정보:\n`;
+                replyContent += `메시지: ${commitInfo.message}\n`;
+                replyContent += `커밋 해시: ${commitInfo.hash}\n`;
+                replyContent += `작성자: ${commitInfo.author}\n`;
+                replyContent += `날짜: ${commitInfo.date}\n`;
+                replyContent += `URL: ${commitInfo.url}\n`;
+            }
+            
+            replyContent += `\n잠시 후 봇이 재시작됩니다.`;
+            
+            await reply.edit(replyContent);
             
             // 업데이트 프로세스 실행
             runUpdateProcess();
