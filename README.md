@@ -138,7 +138,7 @@ Make sure you have the following installed:
 
 ## To-Do 📝
 
-- DB : Supabase 기초 Re setup
+- DB : Supabase 기초 Resetup
     * API 자동 셋업
 
 - 작업에 관련하여 작성된 문서는 아레 2개입니다.
