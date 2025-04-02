@@ -11,17 +11,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node deploy-commands.js; node index.js",
-    "restart": "node index.js"
+    "start": "node index.js",
+    "restart": "node index.js",
+    "maintenance": "system-maintenance.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SOIV/HYolss_js.git"
+    "url": "git+https://github.com/SOIV-Studio/HYolss.git"
   },
   "author": "soiv_studio",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SOIV/HYolss_js/issues"
+    "url": "https://github.com/SOIV-Studio/HYolss/issues"
   },
-  "homepage": "https://github.com/SOIV/HYolss_js#readme"
+  "homepage": "https://github.com/SOIV-Studio/HYolss#readme"
 }
