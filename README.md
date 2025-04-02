@@ -171,6 +171,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 SOIV_Studio-Project_BOT-C_2020~2025
 
+---
+
 ## 전체적인 참고 및 구조 환경 참고에 사용된 디스코드 봇 리스트
 
 아레 봇 리스트는 이 봇을 제작할때 참고 및 시스템 확인을 위해 확인 했었던 디스코드 봇 리스트입니다.
