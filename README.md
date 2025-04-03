@@ -148,6 +148,8 @@ Make sure you have the following installed:
     * 셋팅이 되다 말아먹은 것들 재작업
     * 버그와 오류, 부족한 부분 작업하기
 - auto-updater / updater
+    * 부팅 1분 후 12시간마다 업데이트 체크 문제
+        - 사유 : 지속적인 1분마다 자동으로 체크가 되고 있는 문제
     * 버그와 오류 잡기
         ```bash
         [ERROR] Git pull 실패: Error: 명령 실행 실패: Command failed: git pull origin main
