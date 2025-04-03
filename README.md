@@ -145,6 +145,32 @@ Make sure you have the following installed:
 
 - DB : Supabase 기초 Resetup
     * API 자동 셋업
+    * 셋팅이 되다 말아먹은 것들 재작업
+    * 버그와 오류, 부족한 부분 작업하기
+- auto-updater / updater
+    * 버그와 오류 잡기
+        ```bash
+        [ERROR] Git pull 실패: Error: 명령 실행 실패: Command failed: git pull origin main
+        fatal: not a git repository (or any of the parent directories): .git
+
+        fatal: not a git repository (or any of the parent directories): .git
+
+            at /app/auto-updater.js:171:24
+            at ChildProcess.exithandler (node:child_process:421:5)
+            at ChildProcess.emit (node:events:518:28)
+            at maybeClose (node:internal/child_process:1101:16)
+            at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+        [ERROR] 업데이트 프로세스 실패: Error: 명령 실행 실패: Command failed: git pull origin main
+        fatal: not a git repository (or any of the parent directories): .git
+
+        fatal: not a git repository (or any of the parent directories): .git
+
+            at /app/auto-updater.js:171:24
+            at ChildProcess.exithandler (node:child_process:421:5)
+            at ChildProcess.emit (node:events:518:28)
+            at maybeClose (node:internal/child_process:1101:16)
+            at ChildProcess._handle.onexit (node:internal/child_process:304:5)
+        ```
 
 - 작업에 관련하여 작성된 문서는 아레 2개입니다.
     * [dashboard-and-features](dosc(notepad)\dashboard-and-features.md)
