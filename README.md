@@ -71,7 +71,7 @@ Make sure you have the following installed:
 
 1. .env에서 구동할 Dev 봇의 대한 토큰을 입력합니다:
 
-    [.env.example](.env.example)
+    [.env.example #6~9](.env.example)
     ```bash
     # Development Bot Token
     DEV_DISCORD_TOKEN=your_dev_token_here
@@ -81,8 +81,9 @@ Make sure you have the following installed:
 
 2. 구동전 .env에서 다음과 같이 'NODE_ENV' 설정을 합니다:
 
-    [.env.example](.env.example)
+    [.env.example #11~12](.env.example)
     ```bash
+    # Environment Flag (set to 'development' or 'production')
     NODE_ENV=development
     ```
 
@@ -108,7 +109,7 @@ Make sure you have the following installed:
 
 1. .env에서 구동할 Dev 봇의 대한 토큰을 입력합니다:
 
-    [.env.example](.env.example)
+    [.env.example #1~4](.env.example)
     ```bash
     # Main Bot Token (Production)
     DISCORD_TOKEN=your_main_token_here
@@ -118,8 +119,9 @@ Make sure you have the following installed:
 
 2. 구동전 .env에서 다음과 같이이 'NODE_ENV' 설정을 합니다:
 
-    [.env.example](.env.example)
+    [.env.example #11~12](.env.example)
     ```bash
+    # Environment Flag (set to 'development' or 'production')
     NODE_ENV=Production
     ```
 
