@@ -308,17 +308,22 @@ async function runUpdateProcess() {
 }
 
 // 자동 업데이트 체크 (주기적으로 실행)
-function scheduleUpdateCheck(intervalHours = 6) {
+function scheduleUpdateCheck(intervalHours = 12) { // 6시간에서 12시간으로 변경
+    console.log(`[INFO] 자동 업데이트 체크 예약됨: 봇 시작 1분 후 첫 체크, 이후 ${intervalHours}시간마다 체크`);
+    
     // 초기 실행
     setTimeout(async () => {
-        console.log('[INFO] 자동 업데이트 체크 실행 중...');
+        console.log('[INFO] 자동 업데이트 첫 체크 실행 중...');
         await runUpdateProcess();
         
         // 주기적 실행 설정
-        setInterval(async () => {
-            console.log('[INFO] 자동 업데이트 체크 실행 중...');
+        const intervalId = setInterval(async () => {
+            console.log(`[INFO] 자동 업데이트 정기 체크 실행 중... (${intervalHours}시간 간격)`);
             await runUpdateProcess();
         }, intervalHours * 60 * 60 * 1000);
+        
+        // 인터벌 ID 로깅 (디버깅용)
+        console.log(`[DEBUG] 업데이트 체크 인터벌 ID: ${intervalId}`);
     }, 60 * 1000); // 봇 시작 1분 후 첫 체크
 }
 
