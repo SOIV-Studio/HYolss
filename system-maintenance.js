@@ -15,11 +15,11 @@ client.once('ready', () => {
     console.log('[INFO] 서버 점검 모드가 활성화되었습니다.');
     
     // 봇 상태를 "점검 중"으로 설정
+    // DEV전용 메시지 : <안내> DEV버전의 봇입니다. 재부팅 또는 정상 작동이 안될 수 있습니다.
     client.user.setPresence({
-        activities: [{ 
-            name: '<안내> 봇 점검 모드 활성화! 잠시만 기달려 주세요.', // DEV전용 메시지 : 안내 : DEV버전의 봇입니다. 재부팅 또는 정상 작동이 안될 수 있습니다.
-            type: ActivityType.Custom 
-        }],
+        activities: [
+            { name: '<안내> 봇 점검 모드 활성화! 잠시만 기달려 주세요.', type: ActivityType.Custom }
+        ],
         status: 'dnd'
     });
 });
