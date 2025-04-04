@@ -180,7 +180,6 @@ Make sure you have the following installed:
 - commands\default\help.js 관련 작업 필요
     * 깃북에서도 작업중이지만 별도 간단한 설명을 해줄수 있는 명령어가 필요
 
-
 - 작업에 관련하여 작성된 문서는 아레 2개입니다.
     * [dashboard-and-features](dosc(notepad)\dashboard-and-features.md)
     * [2025-2nd~4th-quarter-Features-update](dosc(notepad)\2025-2nd~4th-quarter-Features-update.md)
