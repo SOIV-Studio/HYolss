@@ -642,6 +642,13 @@
   * 게임 사설 방을 체크하여 운영하는 시스템
   * 사용자지정게임 플레이를 할 수 있는 게임을 전부 지원 예정
   * 상황에 따라 제작 여부 확정 안됨
+- 프로세카 관련 시스템(PJSK Info)
+  * 관련 링크
+    - https://github.com/Sekai-World
+    - https://github.com/watagashi-uni/Unibot
+    - https://github.com/hanakokoizumi/unibot-tg
+    - https://wonderhoy.app/
+    - https://st.ayaka.one/
 
 ### 2-11. AI 채팅 시스템 (LLM/GPT)
 [대시보드] [API] [AI] [DB] [Emoji-Resource]
