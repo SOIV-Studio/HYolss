@@ -233,7 +233,7 @@
 - 핑(ping) / 제작 완료
   * 서버와의 핑 테스트를 보여줍니다.
 
-### 2-0-2. MAIN AI 시스템 (default AI system) [최종단계 부분 AI 작업]
+### 2-0-2. MAIN AI 시스템 (default AI system) [최종단계에서 AI 작업]
 - default AI API : Google Gemini, OpenAI ChatGPT
   * AI system : 딥러닝 기반 AI 시스템
 - AI chat을 제외한 기본 시스템에서 작동하는 AI 기반 시스템입니다.
@@ -412,7 +412,7 @@
 }
 ```
 
-### 2-2. Essentials
+### 2-2. Essentials [commands\management]
 - 환영 메시지 설정 (Welcome & Goodbye)
 - Welcome Channel
 - Reaction Roles
@@ -420,7 +420,7 @@
   * AutoMod/서버 활동 규정을 적용하여 자동 제재 기능 (경고 및 제재 시스템)
   * 항소 및 일부 기능 참고 : appeal.gg
 
-### 2-3. 서버 관리(Server Management)
+### 2-3. 서버 관리(Server Management) [commands\management]
 [대시보드] [AI] [DB] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
 - Automations
   * 자동 역할 부여
@@ -437,7 +437,7 @@
   * 역할 또는 유저와 봇 갯수에 따라 카운드를 표시하는 시스템
   * 유저와 봇 카운트를 별도로 표시 할 수 있도록 작업 필수
 
-### 2-4. 유틸리티(Utilitys)
+### 2-4. 유틸리티(Utilitys) [commands\utility]
 [대시보드] [API] [DB] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
 - Emote(Emojis) 시스템
   * BTTV, 7TV와 같은 이모티콘(이모지)를 사용 하거나 서버내에 등록을 할 수 있도록 제작
@@ -543,7 +543,7 @@
   자동 삭제 기능이 작동되었어요. 10초후 메시지를 삭제할꺼에요. 'c'를 눌러 취소할 수 있어요
   ```
 
-### 2-5. 플랫폼 알림 시스템(Social Notifications/Social Alerts)
+### 2-5. 플랫폼 알림 시스템(Social Notifications/Social Alerts) [commands\utility]
 [대시보드] [API] [DB] [slash-command] [Embed]
 - 스트리밍 플랫폼 알림 (플랫폼 우선순번)
   * 각 플랫폼의 API 지원 여부
@@ -575,7 +575,7 @@
     - 모든 표시방식은 Embed, Message Component 방식을 사용
     - 메시지 Embed 내용 설정은 기본값을 만들어두고 추후 대시보드에서 수정을 할 수 있도록 적용
 
-### 2-6. Games & Fun
+### 2-6. Games & Fun [commands\games-and-fun]
 - 오늘의 시리즈(이미 제작됨/한국어 전용)
   * 메뉴 추가(개발자 전용)
     - [개발자 전용 명령어] 새로운 메뉴를 추가합니다.
@@ -589,7 +589,7 @@
   * (/☆ワ☆)/~~☆’.･.･:★’.･.･:☆ MIKU MIKU BEAAAAAAAAAAAAAM!☆
 - Economy (경재)
 
-### 2-7. 커스텀 명령어 시스템 (Custom Commands)
+### 2-7. 커스텀 명령어 시스템 (Custom Commands) [commands\utility]
 [대시보드] [DB] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
 - 대시보드 작업과 동시에 작업 예정 [커스텀 명령어 작성을 명령어로는 복잡 해질 경우가 있음]
 - 간편모드로 MEE6, Sapphire와 같은 커스텀 명령어 제작 방식
@@ -600,7 +600,7 @@
   * 시스템 명령어
 - 시스템 기본 변수 제작
 
-### 2-8. 음악 시스템
+### 2-8. 음악 시스템 [commands\utility]
 [대시보드] [API] [slash-command] [Prefix] [Embed] [Message-Components] [Emoji-Resource]
 - 지원 플렛폼
   * YouTube(YouTube/YouTube Music) : 공식 API 지원
@@ -618,7 +618,7 @@
     - 왠쪽에 검색 UI
     - MV 버튼을 통해 영상 시청 가능
 
-### 2-9. 변역 시스템(Translate)
+### 2-9. 변역 시스템(Translate) [commands\utility]
 [API] [slash-command] [Embed] [Message-Components]
 - 지원하는 변역 시스템
   * 채팅
@@ -633,7 +633,7 @@
     - 사용 가능할 경우 유저가 설정을 변경하여 사용 가능
     - Papago Text Translation, Papago Language Detection
 
-### 2-10. 게임관련 시스템
+### 2-10. 게임관련 시스템 [commands\games-utility]
 [API] [slash-command] [Embed] [Message-Components]
 - 게임 전적 검색 시스템
   * OP.gg, TRN을 통하여 전적 검색 기능 (TRN API 확인 완료, op.gg API 확인 불가능, 라이엇 API 확인 완료)
