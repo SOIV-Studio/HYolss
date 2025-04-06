@@ -27,6 +27,7 @@
 - 도메인 : [호스팅케이알(hosting.kr)](https://www.hosting.kr/)
 - DNS, DDoS, Workers 및 Pages, CDN : [클라우드플레어(cloudflare)](https://www.cloudflare.com/)
 - 서버 : [AWS](https://aws.amazon.com/)
+  * GCP / Raspberry Pi / N100 / 
 - DB : [Supabase](https://supabase.com/) + [MongoDB Atlas](https://www.mongodb.com/)
 - 이메일
   * 메인 : biz@soiv-studio.xyz
@@ -67,7 +68,7 @@
 - `site.soiv-studio.xyz/movement/**` (URL shortener 링크)
   * 또는 `site.soiv-studio.xyz/**`으로 예정
 
-### 대시보드 구조
+### Bot 메인 페이지 및 대시보드 구조
 - `(botname)-bot.soiv-studio.xyz` (디스코드 봇 메인 페이지)
 - `dashboard.soiv-studio.xyz` (봇 대시보드)
     * 디스코드 OAuth2 로그인 사용
@@ -147,9 +148,19 @@
   * 신규 오리지널 캐릭터 및 설정 작업 필요, 캐릭터에 맞는 이름 적용
     * 이름(활동명)
       - 이름을 만드는데 애니에 나오는 이름이나 버튜버 이름처럼 지어도 상관은 없음
+      - 한국어 : -
+      - 영어 : -
+      - 일본어 : -
     * 오리지널 캐릭터
-      - 여자애
-      - 나이는 고딩 (17 ~ 19)
+      - 성별 : 여성
+      - 생일 : - [나이는 고딩 (17 ~ 19)]
+      - 신장 : - [156 ~ 167]
+      - 취미 : -
+      - 특기 : -
+      - 싫어하는 것 : -
+      - 좋아하는 음식 : -
+      - 싫어하는 음식 : -
+      - 이미지 컬러 : - [#------]
       - 별의 형태를 띤 머리핀
         * 머리핀을 넣지 못하더라도 의상이나 포인트를 주는 느낌을 넣어줘도 됨
       - 세부적인 스토리는 제작할 예정이 없음
