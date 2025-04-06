@@ -186,7 +186,7 @@
     - 공식 일러스트
   * 봇 활동에 따른 SNS관련
     - 해시태그
-      * #HYolss / #HYolss_FA
+      * #HYolss / #HYolss_FA / #HYolss_FV
     - YouTube 채널
     - Instagram
     - X(Twitter)
