@@ -663,6 +663,9 @@
   * 사용자지정게임 플레이를 할 수 있는 게임을 전부 지원 예정
   * 상황에 따라 제작 여부 확정 안됨
 - 프로세카 관련 시스템(PJSK Info)
+  * 지원 서버 : JP/KR/EN
+  * 프로세카 데이터 받아 오는 기능 필요
+    - 별도로 저장해야되는 데이터는 별도 저장소 서버 사용
   * 관련 링크
     - https://github.com/Sekai-World
     - https://github.com/watagashi-uni/Unibot
