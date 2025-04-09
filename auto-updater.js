@@ -191,6 +191,7 @@ async function sendLogToAdminServer(message, isError = false) {
         console.error('[ERROR] 관리 서버에 로그 전송 실패:', error);
     }
 }
+*/
 
 // 명령 실행 함수
 function executeCommand(command) {
@@ -204,7 +205,6 @@ function executeCommand(command) {
         });
     });
 }
-*/
 
 // 업데이트 프로세스 실행
 async function runUpdateProcess() {
