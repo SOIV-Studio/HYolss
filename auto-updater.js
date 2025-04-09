@@ -147,6 +147,35 @@ function isNewerVersion(current, latest) {
 
 // 관리 서버에 로그 전송
 async function sendLogToAdminServer(message, isError = false) {
+    console.log('--------------------------------------------');
+    console.log('[DEBUG] sendLogToAdminServer 실행됨');
+    console.log('[DEBUG] ADMIN_WEBHOOK_URL:', process.env.ADMIN_WEBHOOK_URL);
+    console.log('[DEBUG] webhookClient 존재 여부:', !!webhookClient);
+    console.log('[DEBUG] 전송할 메시지:', message);
+
+    if (!webhookClient) {
+        console.log('[INFO] 관리 서버 웹훅이 설정되지 않았습니다. 로그 전송을 건너뜁니다.');
+        console.log('--------------------------------------------');
+        return;
+    }
+
+    try {
+        await webhookClient.send({
+            content: isError ? `⚠️ **오류**: ${message}` : `🔄 **업데이트**: ${message}`,
+            username: 'HYolss 업데이트 시스템',
+            avatarURL: 'https://github.com/SOIV/HYolss_js/raw/main/assets/logo.png'
+        });
+
+        console.log('[DEBUG] 웹훅 전송 성공!');
+    } catch (error) {
+        console.error('[ERROR] 웹훅 전송 중 오류 발생:', error);
+    }
+
+    console.log('--------------------------------------------');
+}
+
+/*
+async function sendLogToAdminServer(message, isError = false) {
     if (!webhookClient) {
         console.log('[INFO] 관리 서버 웹훅이 설정되지 않았습니다. 로그 전송을 건너뜁니다.');
         return;
@@ -175,6 +204,7 @@ function executeCommand(command) {
         });
     });
 }
+*/
 
 // 업데이트 프로세스 실행
 async function runUpdateProcess() {

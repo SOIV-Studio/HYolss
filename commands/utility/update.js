@@ -116,6 +116,9 @@ module.exports = {
             }
             
             await interaction.editReply({ embeds: [embed] });
+
+            // 잠깐 대기 후 재시작 (응답 유실 방지)
+            await new Promise(resolve => setTimeout(resolve, 1500));
             
             // 업데이트 프로세스 실행
             runUpdateProcess();
@@ -198,6 +201,9 @@ module.exports = {
             replyContent += `\n잠시 후 봇이 재시작됩니다.`;
             
             await reply.edit(replyContent);
+
+            // 잠깐 대기 후 재시작 (응답 유실 방지)
+            await new Promise(resolve => setTimeout(resolve, 1500));
             
             // 업데이트 프로세스 실행
             runUpdateProcess();
