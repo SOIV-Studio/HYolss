@@ -150,33 +150,8 @@ Make sure you have the following installed:
     * 셋팅이 되다 말아먹은 것들 재작업
     * 버그와 오류, 부족한 부분 작업하기
 - auto-updater / updater
-    * 조건부 수정
-        - 버전이 똑같더라도 깃허브 해쉬가 동일하지 않으면 업데이트 실행
     * 깃허브 레포가 private의 조건에 대한 문제 작업
         - 깃허브 레포가 private으로 설정 되어 있더라도 업데이트를 실행 할 수 있도록 작업 필요
-    * 버그와 오류 잡기
-        ```bash
-        [ERROR] Git pull 실패: Error: 명령 실행 실패: Command failed: git pull origin main
-        fatal: not a git repository (or any of the parent directories): .git
-
-        fatal: not a git repository (or any of the parent directories): .git
-
-            at /app/auto-updater.js:171:24
-            at ChildProcess.exithandler (node:child_process:421:5)
-            at ChildProcess.emit (node:events:518:28)
-            at maybeClose (node:internal/child_process:1101:16)
-            at ChildProcess._handle.onexit (node:internal/child_process:304:5)
-        [ERROR] 업데이트 프로세스 실패: Error: 명령 실행 실패: Command failed: git pull origin main
-        fatal: not a git repository (or any of the parent directories): .git
-
-        fatal: not a git repository (or any of the parent directories): .git
-
-            at /app/auto-updater.js:171:24
-            at ChildProcess.exithandler (node:child_process:421:5)
-            at ChildProcess.emit (node:events:518:28)
-            at maybeClose (node:internal/child_process:1101:16)
-            at ChildProcess._handle.onexit (node:internal/child_process:304:5)
-        ```
 - commands\default\help.js 관련 작업 필요
     * 깃북에서도 작업중이지만 별도 간단한 설명을 해줄수 있는 명령어가 필요
 
@@ -206,6 +181,7 @@ Make sure you have the following installed:
 ## License 📝
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 (KR) 이 프로젝트 및 레포는 MIT 라이센스를 따라갑니다 - 자세한 내용은 [LICENSE](LICENSE) 파일을 확인 해주세요.
 
 SOIV_Studio-Project_BOT-C_2020~2025
