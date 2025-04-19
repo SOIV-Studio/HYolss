@@ -15,6 +15,9 @@ HYolss는 개인이 사용하기 위해 제작된 디스코드 봇입니다.
     * Languages : node.js(JavaScript)
     * locales : ko_KR
         - en-US, ja-JP 지원 예정
+    * AI locales : ko_KR, ja-JP, en-US
+        - 3개 국어 기본 지원 예정
+        - TTS X / Live 2D, 3D X
     * version : beta-3.2.0-dev
         - 정식 라이브 서비스 예정 날자 확정 불가능
     * Hosting Server : 서버 이전 및 호스팅 업체 탐색 중 / 홈서버 구축 생각 중
