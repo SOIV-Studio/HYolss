@@ -28,7 +28,7 @@ HYolss는 개인이 사용하기 위해 제작된 디스코드 봇입니다.
             * Dev([HYolss](https://github.com/SOIV-Studio/HYolss)) : 2 OCPU, 16 RAM / Ubuntu 24.*
     * Lite Version
         - 지속적인 장기간 운영을 시행중입니다!
-        - 24/7 운영 중
+        - 24/7 운영 중 / 서버 이전에 문제를 격는 중
 
 ## Community[커뮤니티]
 
@@ -154,6 +154,10 @@ Make sure you have the following installed:
 
 ## To-Do 📝
 
+- [ ] Dashboard, website UI/UX 작업
+    - 작업은 한번식 하고는 있으나 UI/UX는 아무것도 모르는 상태라 진행 속도가 느림
+    - 작업을 도와주거나 UI/UX에 대해 도움을 조금 주실수 있으시면 이메일로 연락 부탁드리겠습니다.
+    - 작업 프로그램 : Figma
 - [ ] DB : Supabase Resetup
     * 작업 완료후 Lite 버전에 수정 버전 적용
     * [supabase_refactor_todo](docs(notepad)\supabase_refactor_todo.md)
