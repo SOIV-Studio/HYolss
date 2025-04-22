@@ -48,7 +48,7 @@
 
 - [ ] `pg`를 통해 수행 중인 기능 목록 정리
   - 메뉴 추가 [addmenu.js](commands\utility\addmenu.js)
-  - 메뉴 삭제
+  - 메뉴 삭제 (파일 생성 필요)
   - today 시리즈 [오늘의메뉴](commands\utility\todaymenu.js) / [오늘의편의점](commands\utility\todayconvenience.js)
 
 - [ ] `supabase-js`로 기능 전환
