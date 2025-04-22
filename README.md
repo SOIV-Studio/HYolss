@@ -154,19 +154,21 @@ Make sure you have the following installed:
 
 ## To-Do 📝
 
-- DB : Supabase 기초 Resetup
-    * API 자동 셋업
-    * 셋팅이 되다 말아먹은 것들 재작업
-    * 버그와 오류, 부족한 부분 작업하기
+- DB : Supabase Resetup
+    * 작업 완료후 Lite 버전에 수정 버전 적용
+    * [supabase_refactor_todo](docs(notepad)\supabase_refactor_todo.md)
 - auto-updater / updater
-    * 깃허브 레포가 private의 조건에 대한 문제 작업
+    * PAT(Personal Access Token) 작업
+        - 깃허브 레포 상태(Public/Private)의 조건에 대한 문제 작업
         - 깃허브 레포가 private으로 설정 되어 있더라도 업데이트를 실행 할 수 있도록 작업 필요
 - commands\default\help.js 관련 작업 필요
     * 깃북에서도 작업중이지만 별도 간단한 설명을 해줄수 있는 명령어가 필요
 
 - 작업에 관련하여 작성된 문서는 아레 2개입니다.
     * [dashboard-and-features](dosc(notepad)\dashboard-and-features.md)
-    * [2025-2nd~4th-quarter-Features-update](dosc(notepad)\2025-2nd~4th-quarter-Features-update.md)
+        - 기존 '2025-2nd~4th-quarter-Features-update'에 있던 모든 내용을 통합됨
+    * [HYolss-original-setup](docs(notepad)\HYolss-original-setup.md)
+        - HYolss Project 오리지널 문서 / 오리지널 캐릭터와 관련됨
 
 ## Contributing[기어] 💖
 
