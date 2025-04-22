@@ -9,8 +9,8 @@
 
 - [ ] `.env` 파일에 Supabase URL과 익명 키 저장
   ```env
-  SUPABASE_URL=https://your-project.supabase.co  
-  SUPABASE_ANON_KEY=your-anon-key  
+  SUPABASE_URL=https://your-project.supabase.co
+  SUPABASE_ANON_KEY=your-anon-key
   ```
 
 - [ ] Supabase 클라이언트 초기화
@@ -47,26 +47,13 @@
 ## 🧹 3. 기존 `pg` 코드 전면 리팩토링
 
 - [ ] `pg`를 통해 수행 중인 기능 목록 정리
-  - 단어 추가
-  - 단어 삭제
-  - 랜덤 추천
+  - 메뉴 추가 [addmenu.js](commands\utility\addmenu.js)
+  - 메뉴 삭제
+  - today 시리즈 [오늘의메뉴](commands\utility\todaymenu.js) / [오늘의편의점](commands\utility\todayconvenience.js)
 
 - [ ] `supabase-js`로 기능 전환
-  ```js
-  // 삽입
-  await supabase.from('menu_items').insert([{ name: '김치찌개', category: '한식' }]);
-
-  // 랜덤 선택
-  const { data } = await supabase
-    .from('menu_items')
-    .select('*')
-    .eq('category', '편의점');
-
-  const random = data[Math.floor(Math.random() * data.length)];
-
-  // 삭제
-  await supabase.from('menu_items').delete().eq('id', 3);
-  ```
+  - random-words-store를 하나의 테이블로 작업
+  - events\guildCreate.js, events\guildDelete.js 리팩토링
 
 - [ ] `pg` 관련 코드 및 라이브러리 제거
 
@@ -75,11 +62,12 @@
 ## 🧪 4. 테스트 및 디버깅
 
 - [ ] 개발용 DB에 테스트 데이터 입력
+  - 기존 random-words-store에 저장된 텍스트 데이터 DB로 데이터 이전
 - [ ] 명령어별 기능 확인
   - `/오늘의메뉴`
   - `/오늘의편의점`
-  - `추가`
-  - `삭제`
+  - `/메뉴추가`
+  - `/메뉴삭제`
 
 - [ ] 권한, 정책, 오류 로그 확인
 
