@@ -633,7 +633,7 @@
   * 프로세카 데이터 받아 오는 기능 필요
     - 별도로 저장해야되는 데이터는 별도 저장소 서버 사용
   * 관련 링크
-    - https://github.com/Sekai-World
+    - https://github.com/Sekai-World / [Sekai Viewer](https://sekai.best/)
     - https://github.com/watagashi-uni/Unibot
     - https://github.com/hanakokoizumi/unibot-tg
     - https://wonderhoy.app/
