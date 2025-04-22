@@ -154,10 +154,10 @@ Make sure you have the following installed:
 
 ## To-Do 📝
 
-- DB : Supabase Resetup
+- [ ] DB : Supabase Resetup
     * 작업 완료후 Lite 버전에 수정 버전 적용
     * [supabase_refactor_todo](docs(notepad)\supabase_refactor_todo.md)
-- auto-updater / updater
+- [ ] auto-updater / updater
     * PAT(Personal Access Token) 작업
         - 깃허브 레포 상태(Public/Private)의 조건에 대한 문제 작업
         - 깃허브 레포가 private으로 설정 되어 있더라도 업데이트를 실행 할 수 있도록 작업 필요
