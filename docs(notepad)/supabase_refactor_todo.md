@@ -2,18 +2,18 @@
 
 ## 🔧 1. `supabase-js` 환경 구축
 
-- [ ] `supabase-js` 라이브러리 설치  
+- [ ] `supabase-js` 라이브러리 설치
   ```bash
   npm install @supabase/supabase-js
   ```
 
-- [ ] `.env` 파일에 Supabase URL과 익명 키 저장  
+- [ ] `.env` 파일에 Supabase URL과 익명 키 저장
   ```env
   SUPABASE_URL=https://your-project.supabase.co  
   SUPABASE_ANON_KEY=your-anon-key  
   ```
 
-- [ ] Supabase 클라이언트 초기화  
+- [ ] Supabase 클라이언트 초기화
   ```js
   import { createClient } from '@supabase/supabase-js';
 
@@ -30,7 +30,7 @@
 ## 🔒 2. RLS 설정 및 권한 정책 구성
 
 - [ ] Supabase 콘솔에서 RLS 활성화
-- [ ] 정책 생성: 봇 사용자에게 접근 권한 부여  
+- [ ] 정책 생성: 봇 사용자에게 접근 권한 부여
   ```sql
   CREATE POLICY "Allow bot access"
   ON menu_items
@@ -51,7 +51,7 @@
   - 단어 삭제
   - 랜덤 추천
 
-- [ ] `supabase-js`로 기능 전환  
+- [ ] `supabase-js`로 기능 전환
   ```js
   // 삽입
   await supabase.from('menu_items').insert([{ name: '김치찌개', category: '한식' }]);
