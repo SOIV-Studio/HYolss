@@ -199,7 +199,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 (KR) 이 프로젝트 및 레포는 MIT 라이센스를 따라갑니다 - 자세한 내용은 [LICENSE](LICENSE) 파일을 확인 해주세요.
 
-SOIV_Studio-Project_BOT-C_2020~2025
+SOIV Studio
+HYolss Project 2020~
 
 ---
 
