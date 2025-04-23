@@ -4,9 +4,15 @@ require('dotenv').config();
 // Supabase 연결 설정
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
+const supabaseSecret = process.env.SUPABASE_SECRET;
 
-// Supabase 클라이언트 생성
+// 일반 Supabase 클라이언트 생성 (RLS 정책 적용)
 const supabase = createClient(supabaseUrl, supabaseKey);
+
+// 관리자 Supabase 클라이언트 생성 (RLS 정책 우회)
+const supabaseAdmin = supabaseSecret
+  ? createClient(supabaseUrl, supabaseSecret)
+  : supabase; // 서비스 역할 키가 없으면 일반 클라이언트 사용
 
 // Supabase 연결 테스트
 const testConnection = async () => {
@@ -171,16 +177,36 @@ const addInviterInfo = async (inviterId, guildId) => {
 // 서버 설정 가져오기
 const getServerSettings = async (guildId) => {
   try {
+    // 먼저 일반 클라이언트로 조회 시도
     const { data, error } = await supabase
       .from('bot_server_settings')
       .select('*')
       .eq('guild_id', guildId)
       .single();
     
-    if (error && error.code !== 'PGRST116') throw error;
+    // 일반 조회에 성공한 경우
+    if (!error && data) {
+      return data;
+    }
     
-    if (!data) {
-      // 기본 설정으로 새 레코드 생성
+    // 결과가 없는 경우 (PGRST116)는 무시하고 계속 진행
+    if (error && error.code !== 'PGRST116') {
+      console.warn('[WARN] 일반 클라이언트로 서버 설정 조회 실패:', error);
+    }
+    
+    // 관리자 클라이언트로 조회 시도
+    const { data: adminData, error: adminError } = await supabaseAdmin
+      .from('bot_server_settings')
+      .select('*')
+      .eq('guild_id', guildId)
+      .single();
+    
+    if (adminError && adminError.code !== 'PGRST116') {
+      throw adminError;
+    }
+    
+    if (!adminData) {
+      // 기본 설정으로 새 레코드 생성 (관리자 클라이언트 사용)
       const defaultSettings = {
         guild_id: guildId,
         prefix: '!',
@@ -192,27 +218,42 @@ const getServerSettings = async (guildId) => {
         }
       };
       
-      const { data: newData, error: insertError } = await supabase
+      const { data: newData, error: insertError } = await supabaseAdmin
         .from('bot_server_settings')
         .insert([defaultSettings])
         .select()
         .single();
       
-      if (insertError) throw insertError;
+      if (insertError) {
+        console.error('[ERROR] 서버 설정 생성 오류:', insertError);
+        // 오류 발생 시 기본 설정 객체 반환
+        return defaultSettings;
+      }
       
       return newData;
     }
     
-    return data;
+    return adminData;
   } catch (err) {
     console.error('[ERROR] 서버 설정 가져오기 오류:', err);
-    return null;
+    // 오류 발생 시 기본 설정 객체 반환
+    return {
+      guild_id: guildId,
+      prefix: '!',
+      language: 'ko-KR',
+      enabled_features: {
+        welcome: true,
+        logging: true,
+        automod: false
+      }
+    };
   }
 };
 
 // 서버 설정 업데이트
 const updateServerSettings = async (guildId, settings) => {
   try {
+    // 먼저 일반 클라이언트로 업데이트 시도
     const { error } = await supabase
       .from('bot_server_settings')
       .update({
@@ -221,7 +262,23 @@ const updateServerSettings = async (guildId, settings) => {
       })
       .eq('guild_id', guildId);
     
-    if (error) throw error;
+    // 일반 업데이트에 성공한 경우
+    if (!error) {
+      return true;
+    }
+    
+    console.warn('[WARN] 일반 클라이언트로 서버 설정 업데이트 실패:', error);
+    
+    // 관리자 클라이언트로 업데이트 시도
+    const { error: adminError } = await supabaseAdmin
+      .from('bot_server_settings')
+      .update({
+        ...settings,
+        updated_at: new Date().toISOString()
+      })
+      .eq('guild_id', guildId);
+    
+    if (adminError) throw adminError;
     
     return true;
   } catch (err) {
@@ -320,6 +377,7 @@ const migrateFromPostgres = async (pgPool) => {
 
 module.exports = {
   supabase,
+  supabaseAdmin,
   testConnection,
   initializeTables,
   updateServerHistory,
