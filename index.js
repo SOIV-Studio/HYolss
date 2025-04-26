@@ -4,7 +4,7 @@ const path = require('node:path');
 const { Client, Collection, GatewayIntentBits, REST, Routes } = require('discord.js');
 const { testConnection: testSupabaseConnection } = require('./database/sql/supabase'); // Supabase 연결 테스트
 const { testConnection: testMongoConnection, connect: connectMongo } = require('./database/nosql/mongodb'); // MongoDB 연결 테스트 및 연결
-const { scheduleUpdateCheck } = require('./utils/auto-updater'); // 자동 업데이트 기능
+const { scheduleUpdateCheck } = require('./events/auto-updater'); // 자동 업데이트 기능
 const { startStatusServer, setBotClient } = require('./utils/status-server'); // 경로는 실제 파일 위치에 맞게 조정
 
 // 환경 변수에 따라 토큰과 clientId 선택
