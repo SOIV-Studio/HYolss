@@ -5,11 +5,11 @@
 
 ## 구현 방법
 
-### 1. 기본 설정
+### [X] 1. 기본 설정
 1. GitHub에서 [Upptime 템플릿](https://github.com/upptime/upptime)을 포크합니다.
 2. 저장소 이름은 `status` 또는 원하는 이름으로 설정합니다.
 
-### 2. 설정 파일 구성
+### [ ] 2. 설정 파일 구성
 `.upptimerc.yml` 파일을 수정하여 모니터링할 서비스와 기본 설정을 합니다:
 
 ```yaml
@@ -65,7 +65,7 @@ notifications:
       - your-email@example.com
 ```
 
-### 3. 다국어 지원 설정
+### [X] 3. 다국어 지원 설정
 다국어 지원을 원하는 경우 `.upptimerc.yml`에 다음을 추가합니다:
 
 ```yaml
@@ -122,7 +122,7 @@ i18n:
     footer: このページは[Upptime](https://upptime.js.org)によって運営されています
 ```
 
-### 4. 디스코드 봇 상태 엔드포인트 구현
+### [X] 4. 디스코드 봇 상태 엔드포인트 구현
 디스코드 봇에 상태 확인용 엔드포인트를 추가합니다:
 
 ```javascript
@@ -210,7 +210,7 @@ jobs:
           COMMIT_MSG: "상태 페이지 템플릿 업데이트 및 커스텀 스타일 추가"
 ```
 
-### 6. 도메인 연결 설정
+### [X] 6. 도메인 연결 설정
 Cloudflare에서 커스텀 도메인 연결:
 
 1. Cloudflare 대시보드 > DNS 설정에서 레코드 추가:
@@ -224,7 +224,7 @@ Cloudflare에서 커스텀 도메인 연결:
    - Custom domain에 `status.soiv-studio.xyz` 입력
    - "Enforce HTTPS" 체크
 
-### 7. 보안 설정
+### [X] 7. 보안 설정
 GitHub 저장소의 Settings > Secrets and variables > Actions에서 필요한 비밀 값 설정:
 
 1. `GH_PAT`: GitHub Personal Access Token
