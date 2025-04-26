@@ -130,19 +130,43 @@ function getLatestCommitInfo() {
     });
 }
 
-// 버전 비교 (semver 형식: x.y.z)
+// 버전 비교 (semver 형식: x.y.z 또는 x.y.z-suffix)
 function isNewerVersion(current, latest) {
     if (!current || !latest) return false;
     
-    const currentParts = current.split('.').map(Number);
-    const latestParts = latest.split('.').map(Number);
+    // 버전을 숫자 부분과 접미사 부분으로 분리
+    const parseVersion = (version) => {
+        // 정규식을 사용하여 버전을 분리 (예: '1.2.3-fix' -> ['1.2.3', 'fix'])
+        const match = version.match(/^(\d+\.\d+\.\d+)(?:-(.+))?$/);
+        if (!match) return null;
+        
+        const numericPart = match[1];
+        const suffix = match[2] || ''; // 접미사가 없으면 빈 문자열
+        const numericParts = numericPart.split('.').map(Number);
+        
+        return {
+            majorMinorPatch: numericParts,
+            suffix
+        };
+    };
     
+    const currentVersion = parseVersion(current);
+    const latestVersion = parseVersion(latest);
+    
+    // 버전 파싱에 실패한 경우
+    if (!currentVersion || !latestVersion) return false;
+    
+    // 먼저 숫자 부분 비교 (x.y.z)
     for (let i = 0; i < 3; i++) {
-        if (latestParts[i] > currentParts[i]) return true;
-        if (latestParts[i] < currentParts[i]) return false;
+        if (latestVersion.majorMinorPatch[i] > currentVersion.majorMinorPatch[i]) return true;
+        if (latestVersion.majorMinorPatch[i] < currentVersion.majorMinorPatch[i]) return false;
     }
     
-    return false; // 버전이 동일한 경우
+    // 숫자 부분이 동일한 경우, 접미사 비교
+    // 접미사가 다르면 버전이 다른 것으로 간주
+    if (currentVersion.suffix !== latestVersion.suffix) return true;
+    
+    return false; // 모든 부분이 동일한 경우
 }
 
 // 관리 서버에 로그 전송
