@@ -4,16 +4,25 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const { WebhookClient, EmbedBuilder } = require('discord.js');
+const semver = require('semver');
 
 // 환경 변수에서 관리 서버 웹훅 URL 가져오기
 const adminWebhookUrl = process.env.ADMIN_WEBHOOK_URL;
 const webhookClient = adminWebhookUrl ? new WebhookClient({ url: adminWebhookUrl }) : null;
 
 // 현재 버전 가져오기
+// getCurrentVersion 함수에 버전 유효성 검사 추가
 function getCurrentVersion() {
     try {
         const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'));
-        return packageJson.version;
+        const version = packageJson.version;
+        
+        // 유효한 버전인지 확인
+        if (!semver.valid(version)) {
+            console.warn('[WARNING] package.json에 유효하지 않은 버전 형식이 있습니다:', version);
+        }
+        
+        return version;
     } catch (error) {
         console.error('[ERROR] 현재 버전 가져오기 실패:', error);
         return null;
@@ -131,42 +140,26 @@ function getLatestCommitInfo() {
 }
 
 // 버전 비교 (semver 형식: x.y.z 또는 x.y.z-suffix)
+// 버전 비교 (semver 라이브러리 사용)
 function isNewerVersion(current, latest) {
     if (!current || !latest) return false;
     
-    // 버전을 숫자 부분과 접미사 부분으로 분리
-    const parseVersion = (version) => {
-        // 정규식을 사용하여 버전을 분리 (예: '1.2.3-fix' -> ['1.2.3', 'fix'])
-        const match = version.match(/^(\d+\.\d+\.\d+)(?:-(.+))?$/);
-        if (!match) return null;
+    try {
+        // semver.valid로 유효한 버전인지 확인하고 정규화
+        const validCurrent = semver.valid(current);
+        const validLatest = semver.valid(latest);
         
-        const numericPart = match[1];
-        const suffix = match[2] || ''; // 접미사가 없으면 빈 문자열
-        const numericParts = numericPart.split('.').map(Number);
+        if (!validCurrent || !validLatest) {
+            console.error('[ERROR] 유효하지 않은 버전 형식:', { current, latest });
+            return false;
+        }
         
-        return {
-            majorMinorPatch: numericParts,
-            suffix
-        };
-    };
-    
-    const currentVersion = parseVersion(current);
-    const latestVersion = parseVersion(latest);
-    
-    // 버전 파싱에 실패한 경우
-    if (!currentVersion || !latestVersion) return false;
-    
-    // 먼저 숫자 부분 비교 (x.y.z)
-    for (let i = 0; i < 3; i++) {
-        if (latestVersion.majorMinorPatch[i] > currentVersion.majorMinorPatch[i]) return true;
-        if (latestVersion.majorMinorPatch[i] < currentVersion.majorMinorPatch[i]) return false;
+        // latest가 current보다 크면(newer) true 반환
+        return semver.gt(validLatest, validCurrent);
+    } catch (error) {
+        console.error('[ERROR] 버전 비교 실패:', error);
+        return false;
     }
-    
-    // 숫자 부분이 동일한 경우, 접미사 비교
-    // 접미사가 다르면 버전이 다른 것으로 간주
-    if (currentVersion.suffix !== latestVersion.suffix) return true;
-    
-    return false; // 모든 부분이 동일한 경우
 }
 
 // 관리 서버에 로그 전송
@@ -234,8 +227,21 @@ function executeCommand(command) {
 async function runUpdateProcess(force = false) {
     try {
         // 1. 현재 버전과 최신 버전 확인
-        const currentVersion = getCurrentVersion();
-        const latestVersion = await getLatestVersion();
+        // runUpdateProcess 함수 내에서 버전 차이 표시
+        const currentSemver = semver.parse(currentVersion);
+        const latestSemver = semver.parse(latestVersion);
+
+        if (currentSemver && latestSemver) {
+            let updateType = '패치';
+            if (latestSemver.major > currentSemver.major) {
+                updateType = '메이저';
+            } else if (latestSemver.minor > currentSemver.minor) {
+                updateType = '마이너';
+            }
+            
+            console.log(`[INFO] ${updateType} 업데이트 발견: ${currentVersion} → ${latestVersion}`);
+            await sendLogToAdminServer(`${updateType} 업데이트 발견: ${currentVersion} → ${latestVersion}`);
+        }
         
         // 최신 커밋 정보 가져오기
         let commitInfo = null;
