@@ -227,6 +227,9 @@ function executeCommand(command) {
 async function runUpdateProcess(force = false) {
     try {
         // 1. 현재 버전과 최신 버전 확인
+        const currentVersion = getCurrentVersion();
+        const latestVersion = await getLatestVersion();
+        
         // runUpdateProcess 함수 내에서 버전 차이 표시
         const currentSemver = semver.parse(currentVersion);
         const latestSemver = semver.parse(latestVersion);
