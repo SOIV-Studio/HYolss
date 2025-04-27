@@ -45,8 +45,8 @@ app.get('/health', (req, res) => {
 function startStatusServer() {
   return new Promise((resolve, reject) => {
     try {
-      app.listen(PORT, () => {
-        console.log(`[INFO] 상태 서버가 포트 ${PORT}에서 실행 중입니다`);
+      app.listen(PORT, '0.0.0.0', () => {
+        console.log(`[INFO] 상태 서버가 포트 ${PORT}에서 실행 중입니다 (모든 인터페이스)`);
         resolve(true);
       });
     } catch (error) {
