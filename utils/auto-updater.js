@@ -230,20 +230,34 @@ async function runUpdateProcess(force = false) {
         const currentVersion = getCurrentVersion();
         const latestVersion = await getLatestVersion();
         
-        // runUpdateProcess 함수 내에서 버전 차이 표시
+        // 버전 차이 표시
         const currentSemver = semver.parse(currentVersion);
         const latestSemver = semver.parse(latestVersion);
 
-        if (currentSemver && latestSemver) {
-            let updateType = '패치';
-            if (latestSemver.major > currentSemver.major) {
-                updateType = '메이저';
-            } else if (latestSemver.minor > currentSemver.minor) {
-                updateType = '마이너';
+        // 2. 버전 비교 및 상태에 따른 웹훅 메시지 전송
+        if (!isNewerVersion(currentVersion, latestVersion) && !force) {
+            console.log('[INFO] 이미 최신 버전입니다. 업데이트가 필요하지 않습니다.');
+            
+            // 최신 버전일 때 웹훅 메시지 (선택적)
+            if (webhookClient) {
+                const embed = new EmbedBuilder()
+                    .setColor(0x00FF00) // 녹색
+                    .setTitle('✅ 버전 확인 완료')
+                    .setDescription(`현재 최신 버전 \`${currentVersion}\`을(를) 사용 중입니다.`)
+                    .addFields(
+                        { name: '봇 상태', value: '정상 작동 중', inline: true },
+                        { name: '다음 확인', value: '다음 예정된 시간에 다시 확인합니다.', inline: true }
+                    )
+                    .setTimestamp();
+                
+                await webhookClient.send({
+                    username: 'HYolss 업데이트 시스템',
+                    avatarURL: 'https://github.com/SOIV-Studio/HYolss/raw/main/assets/logo.png',
+                    embeds: [embed]
+                });
             }
             
-            console.log(`[INFO] ${updateType} 업데이트 발견: ${currentVersion} → ${latestVersion}`);
-            await sendLogToAdminServer(`${updateType} 업데이트 발견: ${currentVersion} → ${latestVersion}`);
+            return false;
         }
         
         // 최신 커밋 정보 가져오기
@@ -253,7 +267,6 @@ async function runUpdateProcess(force = false) {
             console.log('[INFO] 최신 커밋 정보:', commitInfo);
         } catch (error) {
             console.error('[ERROR] 최신 커밋 정보 가져오기 실패:', error);
-            // 오류가 발생해도 업데이트 프로세스는 계속 진행
             commitInfo = {
                 message: '커밋 정보를 가져올 수 없습니다',
                 author: '알 수 없음',
@@ -265,45 +278,76 @@ async function runUpdateProcess(force = false) {
         
         console.log(`[INFO] 현재 버전: ${currentVersion}, GitHub 버전: ${latestVersion}`);
         
-        // 2. 버전 비교
-        if (!isNewerVersion(currentVersion, latestVersion) && !force) {
-            console.log('[INFO] 이미 최신 버전입니다. 업데이트가 필요하지 않습니다.');
-            return false;
-        }
-        
-        // 3. 관리 서버에 업데이트 시작 로그 전송
-        if (webhookClient) {
-            const embed = new EmbedBuilder()
-                .setColor(0x0099FF)
-                .setTitle('🔄 업데이트 시작')
-                .addFields(
-                    { name: '현재 버전', value: currentVersion || '알 수 없음', inline: true },
-                    { name: 'GitHub 버전', value: latestVersion || '알 수 없음', inline: true }
-                )
-                .setTimestamp();
+        // 3. 업데이트가 필요할 때 - 더 자세한 웹훅 메시지 전송
+        if (currentSemver && latestSemver) {
+            let updateType = '패치';
+            let updateColor = 0x3498DB; // 기본 파란색
+            let updateEmoji = '🔄';
             
-            if (commitInfo) {
-                embed.addFields(
-                    { name: '최신 커밋 메시지', value: commitInfo.message || '알 수 없음' },
-                    { name: '커밋 해시', value: commitInfo.hash || '알 수 없음', inline: true },
-                    { name: '커밋 작성자', value: commitInfo.author || '알 수 없음', inline: true },
-                    { name: '커밋 날짜', value: commitInfo.date || '알 수 없음', inline: true }
-                )
-                .setURL(commitInfo.url || 'https://github.com/SOIV-Studio/HYolss');
+            // 업데이트 유형과 시각적 요소 결정
+            if (latestSemver.major > currentSemver.major) {
+                updateType = '메이저';
+                updateColor = 0xFF0000; // 빨간색
+                updateEmoji = '⚠️';
+            } else if (latestSemver.minor > currentSemver.minor) {
+                updateType = '마이너';
+                updateColor = 0xFFA500; // 주황색
+                updateEmoji = '📢';
             }
             
-            await webhookClient.send({
-                username: 'HYolss 업데이트 시스템',
-                avatarURL: 'https://github.com/SOIV-Studio/HYolss/raw/main/assets/logo.png',
-                embeds: [embed]
-            });
-        } else {
-            console.log('[INFO] 관리 서버 웹훅이 설정되지 않았습니다. 로그 전송을 건너뜁니다.');
+            console.log(`[INFO] ${updateType} 업데이트 발견: ${currentVersion} → ${latestVersion}`);
+            await sendLogToAdminServer(`${updateType} 업데이트 발견: ${currentVersion} → ${latestVersion}`);
+            
+            // 업데이트 타입에 따른 맞춤형 웹훅 메시지
+            if (webhookClient) {
+                const embed = new EmbedBuilder()
+                    .setColor(updateColor)
+                    .setTitle(`${updateEmoji} ${updateType} 업데이트 발견`)
+                    .setDescription(`버전 \`${currentVersion}\` → \`${latestVersion}\`(으)로 업데이트가 ${force ? '강제로 ' : ''}시작됩니다.`)
+                    .addFields(
+                        { name: '현재 버전', value: currentVersion || '알 수 없음', inline: true },
+                        { name: 'GitHub 버전', value: latestVersion || '알 수 없음', inline: true },
+                        { name: '업데이트 유형', value: updateType, inline: true }
+                    )
+                    .setTimestamp();
+                
+                if (commitInfo) {
+                    embed.addFields(
+                        { name: '최신 커밋 메시지', value: commitInfo.message || '알 수 없음' },
+                        { name: '커밋 해시', value: commitInfo.hash || '알 수 없음', inline: true },
+                        { name: '커밋 작성자', value: commitInfo.author || '알 수 없음', inline: true },
+                        { name: '커밋 날짜', value: commitInfo.date || '알 수 없음', inline: true }
+                    )
+                    .setURL(commitInfo.url || 'https://github.com/SOIV-Studio/HYolss');
+                }
+                
+                await webhookClient.send({
+                    username: 'HYolss 업데이트 시스템',
+                    avatarURL: 'https://github.com/SOIV-Studio/HYolss/raw/main/assets/logo.png',
+                    embeds: [embed]
+                });
+            }
         }
         
-        // 4. 점검 모드 실행 (system-maintenance.js)
+        // 4. 점검 모드 활성화 - PM2 환경에 맞게 수정
         console.log('[INFO] 점검 모드로 전환 중...');
-        const maintenanceProcess = exec('node system-maintenance.js');
+        await sendLogToAdminServer('점검 모드로 전환 중...');
+        
+        try {
+            // PM2로 관리되는 점검 모드 시작
+            // 옵션 1: 점검 모드용 별도 프로세스 시작 및 메인 프로세스 중지
+            await executeCommand('pm2 start system-maintenance.js --name hyolss-maintenance');
+            await executeCommand('pm2 stop hyolss');
+            
+            // 옵션 2: 환경변수로 제어하는 경우 (package.json에 설정 필요)
+            // await executeCommand('pm2 restart hyolss --env maintenance');
+            
+            await sendLogToAdminServer('점검 모드 활성화 완료');
+        } catch (maintenanceError) {
+            console.error('[ERROR] 점검 모드 활성화 실패:', maintenanceError);
+            await sendLogToAdminServer(`점검 모드 활성화 실패: ${maintenanceError.message}`, true);
+            // 점검 모드 실패해도 업데이트 계속 진행
+        }
         
         // 5. 잠시 대기 (점검 모드가 시작될 시간 부여)
         await new Promise(resolve => setTimeout(resolve, 5000));
@@ -336,36 +380,66 @@ async function runUpdateProcess(force = false) {
             throw npmError;
         }
         
-        // 8. 점검 모드 종료 및 메인 봇 재시작
+        // 8. 점검 모드 종료 및 메인 봇 재시작 - PM2 환경에 맞게 수정
         console.log('[INFO] 점검 모드 종료 및 메인 봇 재시작 중...');
         await sendLogToAdminServer(`업데이트 완료. 버전 ${currentVersion} → ${latestVersion}으로 봇 재시작 중...`);
         
-        // 점검 모드 프로세스 종료
-        if (maintenanceProcess && maintenanceProcess.pid) {
-            process.kill(maintenanceProcess.pid);
+        try {
+            // PM2 점검 모드 종료 및 메인 앱 재시작
+            if (await isPM2ProcessRunning('hyolss-maintenance')) {
+                await executeCommand('pm2 delete hyolss-maintenance');
+            }
+            
+            // 메인 봇 재시작
+            await executeCommand('pm2 restart hyolss');
+            console.log('[INFO] PM2를 통해 봇이 성공적으로 재시작되었습니다.');
+            await sendLogToAdminServer(`버전 ${latestVersion}으로 봇이 성공적으로 재시작되었습니다.`);
+        } catch (restartError) {
+            console.error('[ERROR] 봇 재시작 실패:', restartError);
+            await sendLogToAdminServer(`봇 재시작 실패: ${restartError.message}`, true);
+            
+            // 재시작 실패 시 복구 시도
+            try {
+                await executeCommand('pm2 restart hyolss');
+            } catch (recoveryError) {
+                console.error('[ERROR] 봇 복구 시도 실패:', recoveryError);
+                await sendLogToAdminServer(`봇 복구 시도 실패. 수동 개입이 필요할 수 있습니다.`, true);
+            }
         }
-        
-        // 메인 봇 재시작
-        setTimeout(() => {
-            const mainProcess = exec('node index.js');
-            mainProcess.stdout.on('data', (data) => {
-                console.log(data);
-            });
-            mainProcess.stderr.on('data', (data) => {
-                console.error(data);
-            });
-        }, 2000);
         
         return true;
     } catch (error) {
         console.error('[ERROR] 업데이트 프로세스 실패:', error);
         await sendLogToAdminServer(`업데이트 프로세스 실패: ${error.message}`, true);
         
-        // 오류 발생 시 메인 봇 재시작
-        setTimeout(() => {
-            exec('node index.js');
-        }, 5000);
+        // 오류 발생 시 메인 봇 재시작 (PM2 활용)
+        try {
+            // 점검 모드 프로세스 정리
+            if (await isPM2ProcessRunning('hyolss-maintenance')) {
+                await executeCommand('pm2 delete hyolss-maintenance');
+            }
+            
+            // 메인 봇 재시작
+            await executeCommand('pm2 restart hyolss');
+            console.log('[INFO] 오류 복구: PM2를 통해 봇이 재시작되었습니다.');
+            await sendLogToAdminServer(`오류 복구: 봇이 재시작되었습니다.`);
+        } catch (restartError) {
+            console.error('[ERROR] 오류 복구 실패:', restartError);
+            await sendLogToAdminServer(`오류 복구 실패. 수동 개입이 필요합니다.`, true);
+        }
         
+        return false;
+    }
+}
+
+// PM2 프로세스 존재 확인 헬퍼 함수
+async function isPM2ProcessRunning(processName) {
+    try {
+        const result = await executeCommand(`pm2 id ${processName}`);
+        // 정상적인 ID가 반환되면 프로세스가 존재
+        return !result.includes('[]') && !result.includes('error');
+    } catch (error) {
+        console.error(`[ERROR] PM2 프로세스 ${processName} 확인 실패:`, error);
         return false;
     }
 }
