@@ -102,10 +102,12 @@
 - `dashboard.soiv-studio.xyz/(serverid)/new` (실험실/얼리 엑세스)
 - `dashboard.soiv-studio.xyz/developer` (개발자 대시보드)
   * `dashboard.soiv-studio.xyz/developer/(serverid)`
+  * 봇 서버에 대한 서버 상태(PM2)
 - `dashboard.soiv-studio.xyz/archive/(userid)` (캐릭터 아카이브)
   * 카드
   * 대화/대사
   * 업적
+  * 키즈나 랭크(인연 랭크)
 
 ### SOIV Studio Docs
 - `docs.soiv-studio.xyz` (Discord Bot Docs - HYolss / gitbook)
