@@ -634,8 +634,28 @@
   * 지원 서버 : JP/KR/EN
   * 프로세카 데이터 받아 오는 기능 필요
     - 별도로 저장해야되는 데이터는 별도 저장소 서버 사용
-  * 관련 링크
+    - 별도 에셋 뷰어를 지원하지 않을 예정 (봇이 저장소 서버에서 데이터를 호출해서 보여주는 방식의 시스템으로 사용할 예정이라)
+      - 에셋 뷰어 또는 웹 사이트에서 확인을 하고 싶다면 [Sekai Viewer](https://sekai.best/) 에서 확인
+  * 지원되는 서비스 목록
+    - 유저 데이터
+    - 각 서버 진행 상황(이벤트, 가챠 등)
+  * 저장되는 데이터 목록
+    - 카드
+    - 음악(악곡)
+    - 가챠
+    - 이벤트
+    - 스템프
+    - 만화
+    - 캐릭터
+    - 미션
+    - 칭호
+  * 서비스에 필요가 없는 데이터 또는 중립 데이터
+    - 스토리
+    - Live 2D
+    - 그외 에셋 데이터
+  * 관련 링크 및 참고 자료
     - https://github.com/Sekai-World / [Sekai Viewer](https://sekai.best/)
+    - https://mos9527.com/en/posts/pjsk/archive-20240105/
     - https://github.com/watagashi-uni/Unibot
     - https://github.com/hanakokoizumi/unibot-tg
     - https://wonderhoy.app/
