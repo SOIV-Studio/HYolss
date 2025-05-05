@@ -61,6 +61,7 @@
   * 또는 `soiv-studio.xyz/privacy-policy`
 
 ### statuspage
+- 사용중인 오픈소스 : [upptime](https://github.com/upptime/upptime)
 - `status.soiv-studio.xyz` (statuspage)
 - `status.soiv-studio.xyz/dashboard` (statuspage Dashboard)
   * `soiv-studio.xyz/developer`에 통합 예정
@@ -68,6 +69,7 @@
 
 ### URL shortener
 - URL shortener/QR Code
+  - 오픈소스 : [Shlink](https://github.com/shlinkio/shlink) / [kutt](https://github.com/thedevs-network/kutt)
 - `site.soiv-studio.xyz` (URL shortener/링크단축)
 - `site.soiv-studio.xyz/dashboard` (URL shortener Dashboard)
   * `soiv-studio.xyz/developer`에 통합 예정
