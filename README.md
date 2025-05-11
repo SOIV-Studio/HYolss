@@ -23,9 +23,6 @@ HYolss는 개인이 사용하기 위해 제작된 디스코드 봇입니다.
     * Hosting Server : 서버 이전 및 호스팅 업체 탐색 중 / 홈서버 구축 생각 중
         - 24/7 운영 중지 / 최소 과금
         - 이전 서버 : AWS EC2 프리티어 (서울 리전)
-        - < VM 정보 > [Oracle Cloud Free Tier/Arm Ampere A1]
-            * Lite : 2 OCPU, 8 RAM / Ubuntu 24.*
-            * Dev([HYolss](https://github.com/SOIV-Studio/HYolss)) : 2 OCPU, 16 RAM / Ubuntu 24.*
     * Lite Version
         - 지속적인 장기간 운영을 시행중입니다!
         - 24/7 운영 중 / 서버 이전에 문제를 격는 중
