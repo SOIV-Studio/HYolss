@@ -29,7 +29,20 @@ HYolss는 개인이 사용하기 위해 제작된 디스코드 봇입니다.
 
 ## Community[커뮤니티]
 
-[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/GvpmtExPrf) 
+<div align="center">
+  <a href="https://discord.gg/tVnhbaB9yY">
+    <img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
+  </a>
+  <a href="https://x.com/SOIV_Studio">
+    <img src="https://img.shields.io/badge/X-%23000000.svg?style=for-the-badge&logo=X&logoColor=white" alt="X">
+  </a>
+  <a href="https://instagram.com/DocuVerseOfficial">
+    <img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white" alt="Instagram">
+  </a>
+  <a href="https://youtube.com/@SOIV_Studio_official">
+    <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white" alt="YouTube">
+  </a>
+</div>
 
 ## announcements 📢
 
@@ -162,6 +175,12 @@ Make sure you have the following installed:
     * PAT(Personal Access Token) 작업
         - 깃허브 레포 상태(Public/Private)의 조건에 대한 문제 작업
         - 깃허브 레포가 private으로 설정 되어 있더라도 업데이트를 실행 할 수 있도록 작업 필요
+    - [x] 강재 업데이트 오류
+        - 버전 비교 및 강재 업데이트 실행 했는데 업데이트 시스템에서 버전 동일로 업데이트 중지 처리 되는 문제
+- [ ] 오늘의 시리즈 단어장(random-words-store) 부분
+    * 기존 내부에 txt 파일에 저장된 내용을 불러오는 방식에서 DB에서 불러오는 방식으로 교채 하는 것도 생각중.
+        - 사유: Lite 버전과 메인 버전의 음식 등록되는 단어 개수의 싱크를 맞추기 위해
+        - 작업 확정 / txt 파일에서 supabase으로 이전 작업 준비중 / 기존 레포에서 적용 후 Lite에 적용 예정
 - commands\default\help.js 관련 작업 필요
     * 깃북에서도 작업중이지만 별도 간단한 설명을 해줄수 있는 명령어가 필요
 
