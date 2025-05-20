@@ -2,11 +2,13 @@
 
 HYolss는 개인이 사용하기 위해 제작된 디스코드 봇입니다.<br>
 코딩을 해본적이 없는 사람이라 코드가 무척 지저분할 수 있으니 양해바랍니다.<br>
-봇 추가는 상관없이 누구나 추가하여 사용은 가능합니다만, 봇이 불안정할 수 있으니 주의 바랍니다.
+또한 기능 사용에 관해서는 전부 무료로 사용을 할 수 있도록 운영할 생각이지만, 일부 기능에 한에서 Premium 유료 요금제가 적용이 될 수 있읍니다.
 
-기능 사용에 관해서는 전부 무료로 사용을 할 수 있도록 운영할 생각이지만, 일부 기능에 한에서 Premium 유료 요금제가 적용이 될 수 있읍니다.
-
+봇 추가는 상관없이 누구나 추가하여 사용은 가능합니다만, 봇이 불안정할 수 있으니 주의 바랍니다.<br>
 [Discord Bot add link](https://discord.com/oauth2/authorize?client_id=888061096441819166)
+
+Lite 버전의 레포는 아레 링크에서 확인이 가능합니다!<br>
+[ https://github.com/SOIV-Studio/HYolss-Lite ]
 
 - HYolss Discord Bot Info
     * Discord API : Discord.js
@@ -27,7 +29,7 @@ HYolss는 개인이 사용하기 위해 제작된 디스코드 봇입니다.<br>
 
 ## Community[커뮤니티]
 
-<div align="center">
+<div align="center" style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
   <a href="https://discord.gg/tVnhbaB9yY">
     <img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
   </a>
@@ -68,6 +70,8 @@ E-mail : biz@soiv-studio.xyz
 
 - 업데이트 / 자동 업데이트 기능
     * [system_update_and_auto_update_guide(KR)](dosc(notepad)\system_guide\system_update_and_auto_update_guide.md)
+- 오늘의 시리즈!
+    - 어떤 음식을 먹을지 안정했다면 '/오늘의메뉴'를 사용해보세요! 100개가 넘는 메뉴중에서 하나를 추천합니다.
 
 ## Setup 🛠️
 
