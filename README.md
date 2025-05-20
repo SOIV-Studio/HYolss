@@ -29,17 +29,17 @@ Lite 버전의 레포는 아레 링크에서 확인이 가능합니다!<br>
 
 ## Community[커뮤니티]
 
-<div align="center" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-  <a href="https://discord.gg/tVnhbaB9yY">
+<div align="center">
+  <a href="https://discord.gg/tVnhbaB9yY" style="text-decoration: none; display: inline-block; line-height: 0; margin: 4px;">
     <img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
   </a>
-  <a href="https://x.com/SOIV_Studio">
+  <a href="https://x.com/SOIV_Studio" style="text-decoration: none; display: inline-block; line-height: 0; margin: 4px;">
     <img src="https://img.shields.io/badge/X-%23000000.svg?style=for-the-badge&logo=X&logoColor=white" alt="X">
   </a>
-  <a href="https://instagram.com/DocuVerseOfficial">
+  <a href="https://instagram.com/DocuVerseOfficial" style="text-decoration: none; display: inline-block; line-height: 0; margin: 4px;">
     <img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white" alt="Instagram">
   </a>
-  <a href="https://youtube.com/@SOIV_Studio_official">
+  <a href="https://youtube.com/@SOIV_Studio_official" style="text-decoration: none; display: inline-block; line-height: 0; margin: 4px;">
     <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white" alt="YouTube">
   </a>
 </div>
