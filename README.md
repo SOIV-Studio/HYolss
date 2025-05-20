@@ -29,7 +29,7 @@ Lite 버전의 레포는 아레 링크에서 확인이 가능합니다!<br>
 
 ## Community[커뮤니티]
 
-<div align="center" style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
+<div align="center" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
   <a href="https://discord.gg/tVnhbaB9yY">
     <img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
   </a>
