@@ -206,7 +206,7 @@ Make sure you have the following installed:
 This project is licensed under the GPL-3.0 license - see the [LICENSE](LICENSE) file for details.<br>
 (KR) 이 프로젝트 및 레포는 GPL-3.0 라이센스를 따라갑니다 - 자세한 내용은 [LICENSE](LICENSE) 파일을 확인 해주세요.
 
-SOIV Studio<br>
+SOIV Studio / Palette Square Studio (PS Studio)<br>
 HYolss Project 2020~
 
 ---
