@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { Pool } = require('pg');
-const { supabase, migrateFromPostgres } = require('./supabase');
+const { supabase, migrateFromPostgres } = require('../../database/sql-supabase');
 
 // PostgreSQL 연결 설정
 const pool = new Pool({

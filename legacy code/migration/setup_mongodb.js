@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { connect, testConnection } = require('./mongodb');
+const { connect, testConnection } = require('../../database/nosql-mongodb');
 
 async function setupMongoDB() {
   console.log('[INFO] MongoDB Atlas 데이터베이스 초기화를 시작합니다...');
