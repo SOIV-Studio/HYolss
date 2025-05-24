@@ -553,8 +553,10 @@
   * [O]Instagram : 지원 종료 / 2차 또는 3차에서 지원 예정(API 관련 추가 확인 중)
     - API에서 계시글 전송 불가
   * [O]Bluesky : API가 지원하나 복잡함 / 2차 또는 3차에서 지원 예정
-  * Threads : API에서 계시글 전송 불가 / 3차 지원 예정
-  * Facebook : API에서 계시글 전송 불가 / 지원 예정 없음
+  * Threads : API 지원 / 3차 지원 예정
+    - API에서 계시글 전송 불가
+  * Facebook : API 지원하던가? / 지원 예정 없음
+    - API에서 계시글 전송 불가
   * NAVER Cafe : 크롤링으로 제목에 링크로 알림 가능 / 3차 지원 예정
   * Tumblr : 공식 API 지원 / 3차 지원 예정
   * Mastodon : 공식 API 지원 / 3차 지원 예정
@@ -563,8 +565,8 @@
   * [O]Podcast : 이건 머지; 그냥 안만들레요 / 지원 예정 없음
   * 그외 여러 SNS
 - 작업 및 표시 방식
-    - 모든 표시방식은 Embed, Message Component 방식을 사용
-    - 메시지 Embed 내용 설정은 기본값을 만들어두고 추후 대시보드에서 수정을 할 수 있도록 적용
+  - 모든 표시방식은 Embed, Message Component 방식을 사용
+  - 메시지 Embed 내용 설정은 기본값을 만들어두고 추후 대시보드에서 수정을 할 수 있도록 적용
 
 ### 6. Games & Fun [commands\games-and-fun]
 - 오늘의 시리즈(이미 제작됨/한국어 전용)
