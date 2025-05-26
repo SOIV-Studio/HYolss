@@ -1,6 +1,6 @@
 const { Events, ActivityType } = require('discord.js');
-const { supabase } = require('../database/sql/supabase.js');
-const mongodb = require('../database/nosql/mongodb.js');
+const { supabase } = require('../database/sql-supabase.js');
+const mongodb = require('../database/nosql-mongodb.js');
 
 module.exports = {
     name: Events.ClientReady,
