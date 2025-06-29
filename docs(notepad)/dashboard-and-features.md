@@ -407,7 +407,7 @@
 - Logging (서버 활동 로그 시스템)
   * 서버내에서 유저 활동 로그 기능
   * 추가 확인및 기획 필요/뽑을 수 있는 모든 로그는 띄울수 있도록
-  * Invite Trackerㄴ
+  * Invite Tracker
 - 관리자 문의 시스템 (Ticketing)
   * 서버내에 있는 관리진에게 문의를 남길 수 있는 시스템
   * 대표적인 봇 : Ticket Tool, ModMail
