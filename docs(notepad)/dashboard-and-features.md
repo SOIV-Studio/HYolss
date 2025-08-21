@@ -534,35 +534,36 @@
 ### 5. 플랫폼 알림 시스템(Social Notifications/Social Alerts) [commands\utility]
 [대시보드] [API] [DB] [slash-command] [Embed]
 - 스트리밍 플랫폼 알림 (플랫폼 우선순번 / 각 플랫폼의 API 지원 여부)
-  - [O]YouTube : 공식 API 지원 / 서비스 시작 지원
-  - [O]Twitch : 공식 API 지원 / 서비스 시작 지원
-  - [O]CHZZK : 공식 API 지원 / 서비스 시작 지원
-  - [O]Vimeo : 공식 API 지원 / 2차 지원
-  - [O]TikTok : 공식 API 지원 / 2차 지원
-    - Docs 문서가 머 이리저리 많냐..
-  - [O]KICK : 공식 API 지원 / 2차 지원
+  - [O]YouTube : 공식 API 지원 / 서비스 시작 지원**Phase 1**
+  - [O]Twitch : 공식 API 지원 / 서비스 시작 지원**Phase 1**
+  - [O]CHZZK : 공식 API 지원 / 서비스 시작 지원**Phase 1**
+  - [O]X(Twitter) Live : 공식 API 지원 / 서비스 시작 지원**Phase 1**(제한적 무료 또는 유료)
+    - SNS 플랫폼에 포함된 알림 - X(Twitter)
+  - [O]KICK : 공식 API 지원 / 2차 지원**Phase 2A**
     - API 여부는 확인 했으나 세부적으로 확인 필요
-  - [O]SOOP : 공식 API 지원 / 지원 예정이 확정이 되지 않음 (2차 또는 3차 예정)
+  - [O]Vimeo : 공식 API 지원 / 3차 지원**Phase 2B**
+  - [O]TikTok : 공식 API 지원 / 3차 지원**Phase 2B**
+    - Docs 문서가 머 이리저리 많냐..
+  - [O]SOOP : 공식 API 지원 / 2차**Phase 2A** 또는 3차**Phase 2B** 예정
     - 개인 개발자에게 있어 사용신청이 까다로움
   - Facebook Live : API 지원 X
   - Instagram Live : API 지원 X
-  - X(Twitter) Live : API가 지원을 안하거나 유료
   - 그외 여러 플랫폼
 - SNS 알림 (마지막 과제)
-  * [O]X(Twitter) : API 유료 / 2차 지원 예정(제한적 무료 또는 유료)
-  * [O]Instagram : 지원 종료 / 2차 또는 3차에서 지원 예정(API 관련 추가 확인 중)
+  * [O]X(Twitter) : 공식 API 지원 (무료 또는 유료) / 서비스 시작 지원**Phase 1**(제한적 무료 또는 유료)
+  * [O]RSS Feeds : 이건 그냥 만들면 됨 / 서비스 시작 지원**Phase 1.5**
+  * [O]Bluesky : API가 지원하나 복잡함 / 2차 지원**Phase 2A**
+  * [O]Mastodon : 공식 API 지원 / 2차 지원**Phase 2A**
+  * [O]Reddit : 공식 API 지원 / 2차 지원**Phase 2A**
+  * [O]Tumblr : 공식 API 지원 / 3차 지원**Phase 2B**
+  * Instagram : 지원 종료 / 2차 또는 3차에서 지원 예정(API 관련 추가 확인 중)
     - API에서 계시글 전송 불가
-  * [O]Bluesky : API가 지원하나 복잡함 / 2차 또는 3차에서 지원 예정
   * Threads : API 지원 / 3차 지원 예정
     - API에서 계시글 전송 불가
   * Facebook : API 지원하던가? / 지원 예정 없음
     - API에서 계시글 전송 불가
   * NAVER Cafe : 크롤링으로 제목에 링크로 알림 가능 / 3차 지원 예정
-  * Tumblr : 공식 API 지원 / 3차 지원 예정
-  * Mastodon : 공식 API 지원 / 3차 지원 예정
-  * [O]Reddit : 공식 API 지원 / 3차 지원 예정
-  * [O]RSS Feeds : 이건 그냥 만들면 됨 / 2차 지원 예정
-  * [O]Podcast : 이건 머지; 그냥 안만들레요 / 지원 예정 없음
+  * Podcast : 이건 머지; 그냥 안만들레요 / 지원 예정 없음
   * 그외 여러 SNS
 - 작업 및 표시 방식
   - 모든 표시방식은 Embed, Message Component 방식을 사용
