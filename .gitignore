@@ -1,6 +1,12 @@
-node_modules
-.env
-package-lock.json
+# 환경 변수 & 의존성
 # config.json 파일은 더 이상 사용하지 않음
+node_modules
+package-lock.json
+.env
+
+# 도커 관련
 Dockerfile
 .dockerignore
+
+# 제외 폴더
+.claude
