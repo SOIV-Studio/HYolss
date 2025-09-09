@@ -72,7 +72,10 @@ function getStatusText(status) {
 app.get('/health', (req, res) => {
   try {
     const botStatus = getBotStatus();
-    const isHealthy = botStatus.connected;
+    const dbStatus = botClient ? botClient.databaseStatus : { supabase: false, mongodb: false };
+    
+    // 봇이 연결되어 있고 필수 데이터베이스(MongoDB)가 연결되어 있어야 healthy
+    const isHealthy = botStatus.connected && dbStatus.mongodb;
     
     const response = {
       status: isHealthy ? 'ok' : 'error',
@@ -80,7 +83,7 @@ app.get('/health', (req, res) => {
       timestamp: new Date().toISOString(),
       environment: process.env.NODE_ENV || 'production',
       discord: botStatus,
-      database: botClient ? botClient.databaseStatus : { supabase: false, mongodb: false }
+      database: dbStatus
     };
     
     // Uptime Kuma가 인식할 수 있도록 적절한 HTTP 상태코드 반환
@@ -101,14 +104,20 @@ app.get('/health', (req, res) => {
 app.get('/ping', (req, res) => {
   try {
     const botStatus = getBotStatus();
+    const dbStatus = botClient ? botClient.databaseStatus : { supabase: false, mongodb: false };
     
-    if (botStatus.connected) {
+    // 봇과 필수 데이터베이스가 모두 연결되어 있어야 정상 응답
+    if (botStatus.connected && dbStatus.mongodb) {
       res.status(200).send('pong');
     } else {
-      res.status(503).send('Bot disconnected');
+      const issues = [];
+      if (!botStatus.connected) issues.push('Bot disconnected');
+      if (!dbStatus.mongodb) issues.push('Database disconnected');
+      res.status(503).send(issues.join(', '));
     }
   } catch (error) {
-    res.status(500).send('Error');
+    console.error('[ERROR] Ping 엔드포인트 오류:', error);
+    res.status(500).send('Internal server error');
   }
 });
 
@@ -139,20 +148,39 @@ app.get('/status', (req, res) => {
   }
 });
 
+// Uptime Kuma HTTP 키워드 체크용 엔드포인트
+app.get('/uptime-check', (req, res) => {
+  try {
+    const botStatus = getBotStatus();
+    const dbStatus = botClient ? botClient.databaseStatus : { supabase: false, mongodb: false };
+    const isHealthy = botStatus.connected && dbStatus.mongodb;
+    
+    if (isHealthy) {
+      // Uptime Kuma가 찾을 수 있는 키워드 포함
+      res.status(200).send('HEALTHY: Discord bot is running and connected');
+    } else {
+      res.status(503).send('UNHEALTHY: Discord bot or database connection issue');
+    }
+  } catch (error) {
+    console.error('[ERROR] Uptime check 엔드포인트 오류:', error);
+    res.status(500).send('ERROR: Internal server error');
+  }
+});
+
 // 루트 경로
 app.get('/', (req, res) => {
   res.json({
     message: 'Discord Bot Status Server',
-    endpoints: ['/health', '/ping', '/status'],
+    endpoints: ['/health', '/ping', '/status', '/uptime-check'],
     timestamp: new Date().toISOString()
   });
 });
 
 // 404 처리
-app.use('*', (req, res) => {
+app.use((req, res) => {
   res.status(404).json({
     error: 'Endpoint not found',
-    availableEndpoints: ['/health', '/ping', '/status'],
+    availableEndpoints: ['/health', '/ping', '/status', '/uptime-check'],
     timestamp: new Date().toISOString()
   });
 });
