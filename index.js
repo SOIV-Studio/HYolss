@@ -134,8 +134,27 @@ async function startBot() {
         setBotClient(client);
 
         // 상태 서버 시작
-        await startStatusServer();
+        const statusServer = await startStatusServer();
         console.log('[INFO] 상태 확인 서버가 시작되었습니다.');
+
+        // Railway에서 graceful shutdown 처리
+        process.on('SIGTERM', () => {
+            console.log('[INFO] SIGTERM 신호를 받았습니다. 서버를 종료합니다...');
+            statusServer.close(() => {
+                console.log('[INFO] 상태 서버가 종료되었습니다.');
+                client.destroy();
+                process.exit(0);
+            });
+        });
+
+        process.on('SIGINT', () => {
+            console.log('[INFO] SIGINT 신호를 받았습니다. 서버를 종료합니다...');
+            statusServer.close(() => {
+                console.log('[INFO] 상태 서버가 종료되었습니다.');
+                client.destroy();
+                process.exit(0);
+            });
+        });
         
     } catch (error) {
         console.error('[ERROR] Error starting bot:', error);

@@ -1,7 +1,8 @@
 // status-server.js
 const express = require('express');
 const app = express();
-const PORT = process.env.STATUS_PORT || 3000;
+// Railway에서는 PORT 환경 변수를 사용해야 함
+const PORT = process.env.PORT || process.env.STATUS_PORT || 3000;
 
 // 전역 변수로 봇 클라이언트 참조 저장
 let botClient = null;
@@ -76,6 +77,13 @@ app.get('/health', (req, res) => {
     
     // 봇이 연결되어 있고 필수 데이터베이스(MongoDB)가 연결되어 있어야 healthy
     const isHealthy = botStatus.connected && dbStatus.mongodb;
+    
+    // Uptime Kuma 호환성을 위한 응답 헤더 설정
+    res.set({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
+      'X-Bot-Status': isHealthy ? 'healthy' : 'unhealthy'
+    });
     
     const response = {
       status: isHealthy ? 'ok' : 'error',
@@ -199,17 +207,37 @@ app.use((error, req, res, next) => {
 function startStatusServer() {
   return new Promise((resolve, reject) => {
     try {
+      // Railway 환경 변수 디버깅
+      console.log(`[DEBUG] PORT 환경 변수: ${process.env.PORT}`);
+      console.log(`[DEBUG] STATUS_PORT 환경 변수: ${process.env.STATUS_PORT}`);
+      console.log(`[DEBUG] 사용할 포트: ${PORT}`);
+      
       const server = app.listen(PORT, '0.0.0.0', () => {
         console.log(`[INFO] 상태 서버가 포트 ${PORT}에서 실행 중입니다 (모든 인터페이스)`);
         console.log(`[INFO] Health check: http://0.0.0.0:${PORT}/health`);
         console.log(`[INFO] Ping check: http://0.0.0.0:${PORT}/ping`);
+        console.log(`[INFO] Railway 배포 환경에서 외부 접근 가능`);
+        
+        // Railway에서 서버가 정말로 시작되었는지 확인
+        const address = server.address();
+        console.log(`[DEBUG] 서버 주소 정보:`, address);
+        
         resolve(server);
       });
 
       // 서버 에러 처리
       server.on('error', (error) => {
         console.error('[ERROR] 상태 서버 에러:', error);
+        if (error.code === 'EADDRINUSE') {
+          console.error(`[ERROR] 포트 ${PORT}가 이미 사용 중입니다`);
+        }
         reject(error);
+      });
+
+      // 연결 에러 처리
+      server.on('clientError', (err, socket) => {
+        console.error('[ERROR] 클라이언트 연결 에러:', err);
+        socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
       });
 
     } catch (error) {
