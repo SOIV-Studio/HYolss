@@ -20,8 +20,8 @@ Lite 버전의 레포는 아레 링크에서 확인이 가능합니다!<br>
         - TTS X / Live 2D, 3D X
     * version : beta-3.2.0-dev
         - 정식 라이브 서비스 예정 날자 확정 불가능
-    * Hosting Server : 서버 이전 및 호스팅 업체 탐색 중 / 홈서버 구축 생각 중
-        - 24/7 운영 중지 / 최소 과금
+    * Hosting Server : railway에서 운영 중
+        - 24/7 운영 중 / 최소 과금
         - 이전 서버 : AWS EC2 프리티어 (서울 리전)
     * Lite Version
         - 지속적인 장기간 운영을 시행중입니다!
