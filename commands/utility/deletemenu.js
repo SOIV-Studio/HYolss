@@ -83,7 +83,24 @@ module.exports = {
         
         // Supabase에서 메뉴 삭제
         const result = await deleteMenuFromSupabase(menuName, menuType);
-        
+
+        // 현재 메뉴 개수 조회
+        let totalCount = 0;
+        if (result.success) {
+            try {
+                const { data: allMenus, error: countError } = await supabase
+                    .from('menu_items')
+                    .select('*')
+                    .eq('type', menuType);
+
+                if (!countError && allMenus) {
+                    totalCount = allMenus.length;
+                }
+            } catch (error) {
+                console.error('[ERROR] 메뉴 개수 조회 중 오류:', error);
+            }
+        }
+
         const embed = new EmbedBuilder()
             .setColor(result.success ? '#00FF00' : '#FF0000')
             .setTitle('🗑️ 메뉴 삭제 결과')
@@ -91,8 +108,16 @@ module.exports = {
                 { name: '메뉴', value: menuName, inline: true },
                 { name: '종류', value: menuType === 'menu' ? '일반메뉴' : '편의점메뉴', inline: true },
                 { name: '결과', value: result.message }
-            )
-            .setTimestamp()
+            );
+
+        // 성공한 경우에만 총 메뉴 개수 표시
+        if (result.success) {
+            embed.addFields(
+                { name: '총 메뉴 개수', value: `${totalCount}개`, inline: true }
+            );
+        }
+
+        embed.setTimestamp()
             .setFooter({ text: 'HYolss' });
 
         return interaction.reply({
