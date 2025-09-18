@@ -26,6 +26,19 @@ Lite 버전의 레포는 아레 링크에서 확인이 가능합니다!<br>
     * Lite Version
         - 24/7 운영 중단
 
+## 프로젝트 히스토리 📚
+
+### Ayaka Project (미디어 믹스 프로젝트)
+HYolss Project는 현재 **Ayaka Project**의 일부입니다.
+- **시작**: 2020년 HYolss Project로 시작
+- **발전**: 미디어 믹스 프로젝트로 확장하여 Ayaka Project로 통합
+- **현재**: Ayaka Project 내 HYolss Project로 운영
+
+### 관련 문서
+- **상세 설정**: [HYolss-original-setup.md](docs(notepad)/HYolss-original-setup.md)
+- **미디어 믹스 관련**: [Ayaka Project Notion](https://kileu-network.notion.site/Ayaka-Project-25edffb97eda807ca6e8d383d65b7a2d?source=copy_link)
+- **프로젝트 연혁**: 2020~ Ayaka Project(HYolss Project) by SOIV Studio (from. PSquare DIVISION)
+
 ## Community[커뮤니티]
 
 <p align="center">
