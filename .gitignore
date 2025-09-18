@@ -10,3 +10,7 @@ Dockerfile
 
 # 제외 폴더
 .claude
+
+# Claude Code 문서 (개발용, 배포 제외)
+CLAUDE.md
+**/CLAUDE.md
