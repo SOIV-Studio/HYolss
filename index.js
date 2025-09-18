@@ -33,6 +33,12 @@ async function loadAndDeployCommands() {
 
     for (const folder of commandFolders) {
         const commandsPath = path.join(foldersPath, folder);
+
+        // 디렉토리인지 확인하고, CLAUDE.md 같은 파일은 건너뛰기
+        if (!fs.statSync(commandsPath).isDirectory()) {
+            continue;
+        }
+
         const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
         
         for (const file of commandFiles) {
