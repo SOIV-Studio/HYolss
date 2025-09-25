@@ -1,6 +1,7 @@
 const { Events } = require('discord.js');
 const { updateServerHistory } = require('../database/sql-supabase.js');
 const { logCommand } = require('../database/nosql-mongodb.js');
+const { dashboardAPI } = require('../utils/dashboardAPI.js');
 
 // 서버 퇴장 로그 기록 함수
 async function logGuildLeave(guild) {
@@ -47,6 +48,9 @@ module.exports = {
       // MongoDB에 서버 퇴장 로그 기록 (항상 실행)
       await logGuildLeave(guild);
       console.log(`[WAN-DB] 서버 ${guild.name} (ID: ${guild.id})에서 퇴장 로그가 MongoDB에 기록되었습니다.`);
+
+      // 대시보드 API에 서버 탈퇴 알림
+      await dashboardAPI.notifyServerLeave(guild.id, guild.name);
       
       // 여기서는 메시지를 보낼 수 없음 (이미 서버에서 퇴장했기 때문)
       

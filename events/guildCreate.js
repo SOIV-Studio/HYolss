@@ -1,6 +1,7 @@
 const { Events, EmbedBuilder } = require('discord.js');
 const { updateServerHistory, addInviterInfo, initializeTables } = require('../database/sql-supabase.js');
 const { logCommand } = require('../database/nosql-mongodb.js');
+const { dashboardAPI } = require('../utils/dashboardAPI.js');
 
 // 서버 입장 로그 기록 함수
 async function logGuildJoin(guild, inviterId) {
@@ -53,6 +54,14 @@ module.exports = {
       // MongoDB에 서버 입장 로그 기록 (항상 실행)
       const inviterId = guild.ownerId;
       await logGuildJoin(guild, inviterId);
+
+      // 대시보드 API에 서버 정보 동기화
+      await dashboardAPI.syncServerConfig(guild.id, {
+        name: guild.name,
+        icon: guild.iconURL(),
+        memberCount: guild.memberCount,
+        ownerId: guild.ownerId
+      });
       
       // 기본 채널 찾기 (공지 채널 또는 일반 채팅 채널)
       let targetChannel = guild.systemChannel; // 시스템 메시지 채널
