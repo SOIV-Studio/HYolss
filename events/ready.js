@@ -50,6 +50,7 @@ module.exports = {
             { name: '열심히 성장 중! 같이 성장할 개발자를 찼아요!', type: ActivityType.Custom },
             { name: '저는 SOIV Studio에 소속된 Discord BOT이에요!', type: ActivityType.Custom },
             { name: `${serverCount}개의 서버에서 활동 중!`, type: ActivityType.Custom },
+            { name: `오픈 베타를 준비중이에요! 문의는 Support 서버에서 부탁드립니다.`, type: ActivityType.Custom },
             { name: '(/☆ワ☆)/~~☆’.･.･:★’.･.･:☆ MIKU MIKU BEAAAAAAAAAAAAAM!☆', type: ActivityType.Custom },
             { name: '88☆彡', type: ActivityType.Listening }
         ];
